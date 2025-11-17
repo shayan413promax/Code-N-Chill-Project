@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Essentials - Stationery Shop</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a2332 0%, #2d4563 50%, #4a6fa5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 50%, #4a7ba7 100%);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .hero {
+            position: relative;
+            height: 650px;
+            background-image: linear-gradient(rgba(30, 58, 95, 0.2), rgba(45, 90, 123, 0.15)),
+                url('bg.jpg1.png');
+            background-size: 1400px 650px;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 50px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .artisan {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #d4a574 0%, #f5e6d3 50%, #d4a574 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            line-height: 1;
+            animation: shimmer 3s infinite;
+            background-size: 200% 200%;
+        }
+
+        .essentials {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #a8c5e0;
+            text-transform: lowercase;
+            font-style: italic;
+            margin-top: -5px;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .shop-label {
+            color: #a8c5e0;
+            font-size: 0.85rem;
+            font-weight: 300;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1e3a5f;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+        }
+
+        nav a:hover {
+            background: rgba(74, 123, 167, 0.1);
+        }
+
+        .cart-btn {
+            background: #5a8fc4;
+            color: white !important;
+            padding: 8px 16px !important;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+        }
+
+        .cart-btn:hover {
+            background: #4a7ba7 !important;
+        }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .hero-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #fff;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-btn {
+            background: white;
+            color: #1e3a5f;
+            padding: 14px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .brands {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 30px 50px;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .brands span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                padding: 10px 15px;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+
+            .artisan {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+            }
+
+            .essentials {
+                font-size: 0.9rem;
+                letter-spacing: 4px;
+            }
+
+            .shop-label {
+                font-size: 0.7rem;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .brands span {
+                font-size: 0.7rem;
+            }
+
+            .cta-btn {
+                font-size: 0.85rem;
+                padding: 12px 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero">
+            <header>
+                <div class="logo">
+                    <div class="logo-text">
+                        <span class="artisan">Artisan</span>
+                        <span class="essentials">essentials</span>
+                    </div>
+                    <span class="shop-label">shop</span>
+                </div>
+                <nav>
+                    <a href="#catalog">catalog</a>
+                    <a href="#categories">categories</a>
+                    <a href="#about">about</a>
+                    <a href="#blog">blog</a>
+                    <a href="#contacts">contacts</a>
+                    <a href="#cart" class="cart-btn">
+                        <img src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1f6d2.svg"
+                            alt="Cart" style="width: 20px; height: 20px;">
+                    </a>
+                </nav>
+            </header>
+
+            <div class="hero-content">
+                <h2>Elegance Crafted For<br>Everyday Creativity</h2>
+                <a href="#shop" class="cta-btn">Shop Now</a>
+            </div>
+
+            <div class="brands">
+                <span>Moleskine</span>
+                <span>Leuchtturm1917</span>
+                <span>Rhodia</span>
+                <span>Pilot</span>
+                <span>Faber-Castell</span>
+                <span>Staedtler</span>
+                <span>Tombow</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
