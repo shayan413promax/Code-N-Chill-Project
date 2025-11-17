@@ -1,11 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignIn/SignUp</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login / Signup - Notebook Animation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            background: url('wmremove-transformed.png') no-repeat right center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            /* keep elements on left so notebook sits in the empty right area */
+            padding: 40px;
+            color: #fff;
+        }
+
+        /* START CARD: simple entry button that visitor clicks to open the notebook */
+        #startCard {
+            width: 360px;
+            padding: 28px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+            animation: cardFade .6s ease;
+        }
+
+        #startCard h1 {
+            margin: 0 0 14px 0;
+            font-size: 20px
+        }
+
+        #startCard p {
+            margin: 0 0 20px 0;
+            opacity: .9
+        }
+
+        .cta {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: #0061d5;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform .18s ease, box-shadow .18s;
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3)
+        }
+
+        @keyframes cardFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        /* NOTEBOOK */
+        .notebook-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%
+        }
+
+        .notebook {
+            width: 420px;
+            height: 300px;
+            position: relative;
+            perspective: 1200px;
+            transform-style: preserve-3d
+        }
+
+        /* cover */
+        .cover {
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            background: linear-gradient(180deg, #0f5fb8, #0b4aa0);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+            transform-origin: left center;
+            transition: transform .7s cubic-bezier(.2, .9, .2, 1), opacity .4s;
+            z-index: 8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 20px
+        }
+
+        .cover h3 {
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: 0.4px
+        }
+
+        .cover small {
+            opacity: .85
+        }
+
+        /* pages stack (where form will appear) */
+        .pages {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, #fff, #f7f9fc);
+            border-radius: 6px;
+            padding: 18px;
+            box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.03);
+            z-index: 6;
+            transform: translateX(12px) scale(.98)
+        }
+
+        /* closed state */
+        .notebook.closed .cover {
+            transform: rotateY(0deg)
+        }
+
+        .notebook.closed .pages {
+            opacity: 0;
+            transform: translateX(28px) scale(.96)
+        }
+
+        /* open state */
+        .notebook.open .cover {
+            transform: rotateY(-150deg);
+            opacity: 0
+        }
+
+        .notebook.open .pages {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            transition: opacity .5s .3s, transform .6s .3s
+        }
+
+        /* form box inside pages */
+        #formBox {
+            width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px;
+            padding: 18px;
+            background: transparent;
+            display: none;
+            color: #0b2b4a
+        }
+
+        #formBox .panel {
+            background: #fff;
+            border-radius: 8px;
+            padding: 18px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08)
+        }
+
+        #formBox h2 {
+            margin: 0 0 10px 0;
+            color: #0b2b4a
+        }
+
+        .input-group {
+            margin-bottom: 12px
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: #425466
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e6eef8;
+            outline: none
+        }
+
+        .btn {
+            width: 100%;
+            padding: 11px;
+            border-radius: 8px;
+            border: none;
+            background: #0061d5;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer
+        }
+
+        .toggle {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #3767b4;
+            cursor: pointer
+        }
+
+        /* small responsive tweaks */
+        @media (max-width:900px) {
+            body {
+                justify-content: center;
+                padding: 28px
+            }
+
+            .notebook {
+                transform: scale(.9)
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>welcome</h1>
+    <!-- LEFT: entry card -->
+    <div id="startCard">
+        <h1>Welcome back</h1>
+        <p>Click the button to open the notebook and sign in securely.</p>
+        <button class="cta" id="openBtn">Open Login</button>
+    </div>
+
+    <!-- RIGHT: notebook sits on the empty space of the background -->
+    <div class="notebook-wrap">
+        <div class="notebook closed" id="notebook" aria-hidden="true">
+            <div class="cover" id="cover">
+                <h3>My Notebook</h3>
+                <small>Click to open</small>
+            </div>
+
+            <div class="pages">
+                <!-- Visual paper lines (optional) -->
+                <div style="position:absolute;inset:0;pointer-events:none;opacity:0.55">
+                    <!-- repeat faint horizontal lines -->
+                    <svg width="100%" height="100%" viewBox="0 0 420 300" preserveAspectRatio="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <pattern id="lines" width="1" height="20" patternUnits="userSpaceOnUse">
+                                <rect width="100%" height="1" fill="#e6eef8" />
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#lines)" />
+                    </svg>
+                </div>
+
+                <!-- Form box will appear here after opening -->
+                <div id="formBox">
+                    <div class="panel">
+                        <h2 id="formTitle">Login</h2>
+
+                        <div class="input-group" id="nameField" style="display:none;">
+                            <label for="fullname">Full Name</label>
+                            <input id="fullname" type="text" placeholder="Enter your name" />
+                        </div>
+
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" placeholder="you@example.com" />
+                        </div>
+
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <input id="password" type="password" placeholder="••••••••" />
+                        </div>
+
+                        <button class="btn" id="actionBtn">Login</button>
+                        <div class="toggle" id="toggleText">Don't have an account? Sign up</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const notebook = document.getElementById('notebook');
+        const formBox = document.getElementById('formBox');
+        const openBtn = document.getElementById('openBtn');
+        const cover = document.getElementById('cover');
+
+        // Toggle between login/signup
+        let isSignup = false;
+        const nameField = document.getElementById('nameField');
+        const formTitle = document.getElementById('formTitle');
+        const actionBtn = document.getElementById('actionBtn');
+        const toggleText = document.getElementById('toggleText');
+
+        function showForm() {
+            // show form box (already after notebook animation)
+            formBox.style.display = 'block';
+            // small focus effect
+            actionBtn.focus();
+        }
+
+        function openNotebook() {
+            // hide start card smoothly
+            const startCard = document.getElementById('startCard');
+            startCard.style.transition = 'opacity .4s, transform .4s';
+            startCard.style.opacity = 0;
+            startCard.style.transform = 'translateY(8px)';
+            setTimeout(() => { startCard.style.display = 'none'; }, 420);
+
+            // open notebook with class
+            notebook.classList.remove('closed');
+            notebook.classList.add('open');
+            notebook.setAttribute('aria-hidden', 'false');
+
+            // wait for cover rotation to finish then show form
+            setTimeout(showForm, 650);
+        }
+
+        // safe event bindings
+        openBtn.addEventListener('click', openNotebook);
+        cover.addEventListener('click', () => { if (notebook.classList.contains('closed')) openNotebook(); });
+
+        // toggle between login and signup
+        function toggleFormMode() {
+            isSignup = !isSignup;
+            if (isSignup) {
+                nameField.style.display = 'block';
+                formTitle.innerText = 'Sign Up';
+                actionBtn.innerText = 'Create Account';
+                toggleText.innerText = 'Already have an account? Login';
+            } else {
+                nameField.style.display = 'none';
+                formTitle.innerText = 'Login';
+                actionBtn.innerText = 'Login';
+                toggleText.innerText = "Don't have an account? Sign up";
+            }
+        }
+        toggleText.addEventListener('click', toggleFormMode);
+
+        // Basic placeholder submit handling (prevent page reload in demo)
+        actionBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // simple client-side validation example
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            if (!email || !password) {
+                actionBtn.innerText = 'Fill all fields';
+                setTimeout(() => { actionBtn.innerText = isSignup ? 'Create Account' : 'Login'; }, 1200);
+                return;
+            }
+            actionBtn.innerText = 'Processing...';
+            setTimeout(() => { actionBtn.innerText = isSignup ? 'Account Created' : 'Welcome'; }, 1000);
+        });
+
+        // initial state (closed)
+        notebook.classList.add('closed');
+        formBox.style.display = 'none';
+    </script>
 </body>
+
 </html>
