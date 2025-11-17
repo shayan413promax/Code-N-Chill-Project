@@ -8,19 +8,32 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
         rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Poppins:ital@1&family=Pacifico&family=Crimson+Pro:ital@1&family=Fira+Mono:ital@1&family=Quicksand:ital@1&family=Raleway:ital@1&display=swap"
-        rel="stylesheet">
-
-    <style>
-       
-.brands {
+          <style> 
+          
+          /* .brands {
             display: flex;
             justify-content: space-around;
             align-items: center;
             padding: 30px 50px;
             gap: 30px;
             flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brands::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            animation: rotate-gradient 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate-gradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .brands span {
@@ -35,6 +48,27 @@
             border-radius: 12px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             position: relative;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .brands span:nth-child(1) { animation-delay: 0.2s; }
+        .brands span:nth-child(2) { animation-delay: 0.4s; }
+        .brands span:nth-child(3) { animation-delay: 0.6s; }
+        .brands span:nth-child(4) { animation-delay: 0.8s; }
+        .brands span:nth-child(5) { animation-delay: 1s; }
+        .brands span:nth-child(6) { animation-delay: 1.2s; }
+        .brands span:nth-child(7) { animation-delay: 1.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .brands span:hover {
@@ -48,6 +82,7 @@
                         0 0 40px rgba(212, 165, 116, 0.2),
                         inset 0 1px 0 rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            z-index: 10;
         }
 
         .brands span::before {
@@ -66,7 +101,143 @@
             border-color: rgba(212, 165, 116, 0.4);
         }
 
-        * {
+        .brands span::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.4), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .brands span:hover::after {
+            width: 200%;
+            height: 200%;
+        }
+          
+           */
+          
+
+
+.brands {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 30px 50px;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brands::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            animation: rotate-gradient 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate-gradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .brands span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .brands span:nth-child(1) { animation-delay: 0.2s; }
+        .brands span:nth-child(2) { animation-delay: 0.4s; }
+        .brands span:nth-child(3) { animation-delay: 0.6s; }
+        .brands span:nth-child(4) { animation-delay: 0.8s; }
+        .brands span:nth-child(5) { animation-delay: 1s; }
+        .brands span:nth-child(6) { animation-delay: 1.2s; }
+        .brands span:nth-child(7) { animation-delay: 1.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .brands span:hover {
+            color: rgba(255, 255, 255, 1);
+            transform: translateY(-8px) scale(1.15);
+            /* text-shadow: 0 8px 16px rgba(0, 0, 0, 0.5),
+                         0 0 20px rgba(212, 165, 116, 0.4),
+                         0 0 30px rgba(212, 165, 116, 0.2);
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.2), rgba(245, 230, 211, 0.15)); */
+            /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                        0 0 40px rgba(212, 165, 116, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1); */
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .brands span::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            /* border: 1px solid rgba(212, 165, 116, 0); */
+            transition: all 0.4s ease;
+        }
+
+        .brands span:hover::before {
+            /* border-color: rgba(212, 165, 116, 0.4); */
+        }
+
+        .brands span::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            /* background: radial-gradient(circle, rgba(212, 165, 116, 0.4), transparent); */
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .brands span:hover::after {
+            width: 200%;
+            height: 200%;
+        }
+
+
+
+
+
+          
+          * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -303,11 +474,9 @@
                 font-size: 0.85rem;
                 padding: 12px 35px;
             }
-        }
-    </style>
-</head>
-
-<body>
+        }</style>
+        </head>
+        <body>
     <div class="container">
         <div class="hero">
             <header>
