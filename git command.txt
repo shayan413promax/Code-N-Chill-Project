@@ -1,0 +1,87 @@
+
+
+
+
+for configuration >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+
+
+git config  –list
+
+
+
+
+for clone any repo >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+git clone "https://github.com/adnan0000001/five.git" 
+
+
+
+
+
+commit any work for use this >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+git add .
+git commit -m "first commit"
+git push
+
+
+
+
+
+for merge branch to main branch >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+git pull origin "brachName"
+
+
+
+jb bhi koi branch show nahi ho tw ye command run karein  >>>>>>>>>>>>>>>>>>>>>>>
+git fetch --all
+
+
+
+
+
+
+ye branch batati hy k kis branch p hy ap >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+git status
+
+
+
+create git repositry method without add readme file >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+1)git init . 
+---> then make a file index.html and create dumy page
+---> make a repositry in website git 
+2)git status
+3)git add .
+4)git commit -m "add first commit"
+5)git log
+6)git remote add origin https://github.com/adnan0000001/xyz.git
+---> ye link apki repo say aey ga 
+7)git push -u origin master
+
+
+
+change branch by using command  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+git checkout "about"
+ 
+
+
+for backword folder >>>>>>>>>>>>>>>
+cd ..
+
+for inner folder >>>>>>>>>>>>>>>>>
+cd two
+
+
+
+
+pull request >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+git stash >>>>>>>>>>>>>>>>>>>>>>>>
+
+
+git conflict >>>>>>>>>>>>>>>>>>>>>>>>>>>
