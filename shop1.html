@@ -11,6 +11,180 @@
     <style>
 
 
+/* Improved select styling (replace your .sort-select block with this) */
+.sort-select {
+  /* keep layout */
+  padding: 10px 40px 10px 18px;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  border: 1px solid rgba(143, 179, 213, 0.3);
+
+  /* make sure the select is readable and has a clear background */
+  background-color: rgba(26,45,74,0.9); /* visible dropdown background */
+  color: #d4e4f7;
+  font-family: 'Cormorant Garamond', serif;
+
+  /* custom arrow (keeps your SVG arrow) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238fb3d5' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
+
+  /* remove native controls but handle vendor prefixes */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* ensure it renders above overlays and is clickable */
+  position: relative;
+  z-index: 1100;
+  text-align: left;
+}
+
+/* optional: if you want to debug and show native browser arrow, add .debug-native */
+.sort-select.debug-native {
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
+  appearance: menulist;
+  background-image: none; /* remove custom arrow when debugging */
+}
+
+/* focus state */
+.sort-select:focus {
+  outline: none;
+  background-color: rgba(255,255,255,0.06);
+  border-color: rgba(143,179,213,0.55);
+  box-shadow: 0 0 12px rgba(143,179,213,0.18);
+}
+
+/* option readability */
+.sort-select option {
+  background: #1a2d4a; /* background for opened items in many browsers */
+  color: #d4e4f7;
+}
+
+/* fix for IE/Edge showing default expand arrow */
+.sort-select::-ms-expand {
+  display: none;
+}
+
+
+
+
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    z-index: 900;
+    border-bottom: 1px solid rgba(143, 179, 213, 0.2);
+}
+
+.brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, #8fb3d5, #b8d4eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.search-container {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 40px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 45px 12px 20px;
+    border: 1px solid rgba(143, 179, 213, 0.3);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #d4e4f7;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+    color: rgba(212, 228, 247, 0.5);
+}
+
+.search-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(143, 179, 213, 0.5);
+    box-shadow: 0 0 20px rgba(143, 179, 213, 0.3);
+}
+
+.search-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8fb3d5;
+    font-size: 1.2rem;
+    pointer-events: none;
+}
+
+.cart-icon-nav {
+    position: relative;
+    cursor: pointer;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgba(74, 123, 167, 0.3), rgba(107, 154, 196, 0.3));
+    border-radius: 50px;
+    border: 1px solid rgba(143, 179, 213, 0.3);
+    transition: all 0.3s ease;
+}
+
+.cart-icon-nav:hover {
+    background: linear-gradient(135deg, rgba(74, 123, 167, 0.5), rgba(107, 154, 196, 0.5));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 123, 167, 0.4);
+}
+
+.cart-icon-nav span {
+    color: #d4e4f7;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    margin-right: 8px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4757;
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+
+
+
 
 body {
             font-family: 'Cormorant Garamond', serif;
@@ -586,6 +760,22 @@ body {
 </head>
 
 <body>
+
+    <nav class="navbar">
+        <div class="brand-name">Artisan Essentials</div>
+    
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
+            <span class="search-icon">🔍</span>
+        </div>
+    
+        <div class="cart-icon-nav" id="cartIconNav">
+            <span>🛒 Cart</span>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </div>
+    </nav>
+    
+
     <div class="opening-overlay">
         <div class="opening-text">Welcome</div>
     </div>
@@ -616,6 +806,21 @@ body {
                 <br>Each piece is carefully curated to inspire your creativity and elevate your writing experience.
             </p>
         </div>
+
+
+<!-- HTML (same as before) -->
+<div class="sort-container">
+    <span class="sort-label">Sort by:</span>
+    <select class="sort-select" id="sortSelect">
+      <option value="default">Default</option>
+      <option value="price-low">Price: Low to High</option>
+      <option value="price-high">Price: High to Low</option>
+      <option value="popularity">Popularity</option>
+    </select>
+  </div>
+
+
+
 
         <div class="brands-section">
             <h2 class="section-title">Featured Products</h2>
