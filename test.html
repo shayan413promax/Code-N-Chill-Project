@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Essentials - Stationery Shop</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ---------------- LOGIN OVERLAY ---------------- */
+
+        #login-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #1a2332, #2d4563, #4a6fa5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #login-box {
+            width: 360px;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 22px;
+            backdrop-filter: blur(12px);
+            text-align: center;
+            color: white;
+            opacity: 0;
+            animation: slideUp 1s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        #login-box h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        #login-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #login-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 1rem;
+            background: #d4a574;
+            color: #142436;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        #login-btn:hover {
+            background: #f5e6d3;
+        }
+
+        #error {
+            margin-top: 8px;
+            color: #ffbdbd;
+            display: none;
+        }
+
+        /* Fade out animation */
+        .fadeOut {
+            animation: fadeOut 0.8s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+            }
+        }
+
+
+        /* ---------------- YOUR ORIGINAL CSS BELOW ---------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a2332 0%, #2d4563 50%, #4a6fa5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        body.show-home {
+            opacity: 1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 50%, #4a7ba7 100%);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .hero {
+            position: relative;
+            height: 650px;
+            background-image: linear-gradient(rgba(30, 58, 95, 0.2), rgba(45, 90, 123, 0.15)), url('bg.jpg1.png');
+            background-size: 1400px 650px;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 50px;
+        }
+
+        /* (All your original CSS remains unchanged — not repeated to save space) */
+    </style>
+</head>
+
+<body>
+
+    <!-- ---------------- LOGIN SCREEN ---------------- -->
+    <div id="login-overlay">
+        <div id="login-box">
+            <h2>Login</h2>
+
+            <input type="text" id="user" placeholder="Enter Username">
+            <input type="password" id="pass" placeholder="Enter Password">
+
+            <button id="login-btn" onclick="loginNow()">Login</button>
+
+            <div id="error">Incorrect Username or Password</div>
+        </div>
+    </div>
+
+    <!-- ---------------- YOUR ORIGINAL PAGE ---------------- -->
+    <div class="container">
+        <div class="hero">
+            <header>
+                <div class="logo">
+                    <div class="logo-text">
+                        <span class="artisan">Artisan</span>
+                        <span class="essentials">essentials</span>
+                    </div>
+                    <span class="shop-label">shop</span>
+                </div>
+
+                <nav>
+                    <a href="#catalog">𝒸𝒶𝓉𝒶𝓁𝑜𝑔</a>
+                    <a href="#about">𝒶𝒷𝑜𝓊𝓉</a>
+                    <a href="#contacts">𝒸𝑜𝓃𝓉𝒶𝒸𝓉𝓈</a>
+                    <a href="#cart" class="cart-btn">
+                        <img src="https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1f6d2.svg"
+                            style="width: 20px;">
+                    </a>
+                </nav>
+            </header>
+
+            <div class="hero-content">
+                <h2>𝙴𝚕𝚎𝚐𝚊𝚗𝚌𝚎 𝙲𝚛𝚊𝚏𝚝𝚎𝚍 𝙵𝚘𝚛 <br> 𝙴𝚟𝚎𝚛𝚢𝚍𝚊𝚢 𝙲𝚛𝚎𝚊𝚝𝚒𝚟𝚒𝚝𝚢</h2>
+                <a href="#shop" class="cta-btn">𝕊𝕙𝕠𝕡 ℕ𝕠𝕨</a>
+            </div>
+
+            <div class="brands">
+                <span>ᗰᗝᒪᗴᔕᛕᎥᑎᗴ</span>
+                <span>ᒪᗴᑌᑕᕼ丅丅ᑌᖇᗰ1917</span>
+                <span>ᖇᕼᗝᗪᎥᗩ</span>
+                <span>ℙ𝕚𝕝𝕠𝕥</span>
+                <span>𝕱𝖆𝖇𝖊𝖗-𝕮𝖆𝖘𝖙𝖊𝖑𝖑</span>
+                <span>𝔖𝔱𝔞𝔢𝔡𝔱𝔩𝔢𝔯</span>
+                <span>Tombow</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* -------- LOGIN LOGIC -------- */
+        function loginNow() {
+            let u = document.getElementById("user").value;
+            let p = document.getElementById("pass").value;
+
+            if (u === "admin" && p === "1234") {
+                document.getElementById("login-overlay").classList.add("fadeOut");
+
+                setTimeout(() => {
+                    document.getElementById("login-overlay").style.display = "none";
+                    document.body.classList.add("show-home");
+                }, 800);
+
+            } else {
+                document.getElementById("error").style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
