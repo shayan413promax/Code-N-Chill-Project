@@ -449,7 +449,14 @@
                     setTimeout(function () {
                         $('#signupForm')[0].reset();
                         $success.fadeOut();
+
+                        // Redirect to homepage after signup success
+                        setTimeout(function () {
+                            window.location.href = "1.html";  // ← change to your page name
+                        }, 300); // a small delay so the fade-out looks smooth
+
                     }, 1800);
+
                 }, 1200);
             });
 
@@ -480,11 +487,13 @@
                     $success.text('Welcome back to Artisan Essentials!').fadeIn();
                     $btn.text(originalText).prop('disabled', false);
 
+                    // Redirect after 1.5 seconds
                     setTimeout(function () {
-                        $('#loginForm')[0].reset();
-                        $success.fadeOut();
-                    }, 1600);
+                        window.location.href = "1.html";  // <-- Your homepage URL
+                    }, 1500);
+
                 }, 1000);
+
             });
 
         });
