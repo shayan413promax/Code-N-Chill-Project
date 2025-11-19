@@ -1,3 +1,4 @@
+<!-- Updated login page with Sapphire Veil theme + animated gradient -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,25 +24,56 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
+        /* =============================== */
+        /*   SAPPHIRE VEIL BACKGROUND      */
+        /* =============================== */
+
         #bg-video {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: fill;
-            z-index: -1;
+            object-fit: cover;
+            z-index: -2;
+            filter: brightness(0.55) saturate(1.3);
         }
 
+        /* Sapphire Veil animated gradient overlay */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(231, 240, 250, 0.25), rgba(123, 164, 208, 0.20), rgba(46, 94, 153, 0.30));
-            z-index: 0;
+            background: linear-gradient(120deg,
+                    rgba(14, 32, 62, 0.75),
+                    rgba(28, 62, 110, 0.55),
+                    rgba(45, 98, 150, 0.65),
+                    rgba(22, 46, 86, 0.75));
+            background-size: 400% 400%;
+            animation: sapphireFlow 18s ease infinite;
+            z-index: -1;
         }
+
+        /* Gradient Animation */
+        @keyframes sapphireFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* =============================== */
+        /*         LOGO STYLING            */
+        /* =============================== */
 
         .header-logo {
             position: fixed;
@@ -55,7 +87,7 @@
             font-size: 2rem;
             font-weight: 900;
             letter-spacing: 4px;
-            background: linear-gradient(135deg, #d4a574 0%, #f5e6d3 50%, #d4a574 100%);
+            background: linear-gradient(135deg, #8bbdf7 0%, #d8ecff 50%, #8bbdf7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -68,12 +100,28 @@
 
         .header-logo p {
             font-family: 'Cormorant Garamond', serif;
-            color: #a8c5e0;
+            color: #b7d4f5;
             font-size: 1rem;
             letter-spacing: 3px;
             font-style: italic;
             font-weight: 300;
         }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* =============================== */
+        /*         MAIN CARD WRAPPER       */
+        /* =============================== */
 
         .container {
             position: relative;
@@ -91,7 +139,7 @@
             width: 480px;
             height: 620px;
             transform-style: preserve-3d;
-            transition: transform 1s;
+            transition: transform 1.4s cubic-bezier(0.22, 0.61, 0.36, 1);
         }
 
         .card-wrapper.flipped {
@@ -102,21 +150,27 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(30, 58, 95, 0.25), rgba(45, 90, 123, 0.2));
-            backdrop-filter: blur(20px);
+
+            /* Updated Sapphire Veil Card Theme */
+            background: linear-gradient(145deg,
+                    rgba(18, 40, 70, 0.72),
+                    rgba(32, 70, 115, 0.58),
+                    rgba(60, 110, 165, 0.68));
+
+            backdrop-filter: blur(25px);
             border-radius: 24px;
             padding: 40px 35px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-                0 0 60px rgba(212, 165, 116, 0.15),
-                inset 0 0 0 1px rgba(212, 165, 116, 0.2);
+
+            box-shadow:
+                0 0 25px rgba(120, 180, 255, 0.5),
+                0 0 45px rgba(80, 140, 210, 0.4),
+                0 0 70px rgba(60, 110, 165, 0.5),
+                inset 0 0 12px rgba(150, 200, 255, 0.6);
+
             backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
-        }
-
-        .form-content {
-            width: 100%;
         }
 
         .signup-side {
@@ -127,21 +181,9 @@
             transform: rotateY(180deg);
         }
 
-
-
-        @keyframes shimmer {
-
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-
+        /* =============================== */
+        /*             FORM UI             */
+        /* =============================== */
 
         .form-group {
             margin-bottom: 18px;
@@ -161,120 +203,60 @@
             width: 100%;
             padding: 12px 16px;
             background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(212, 165, 116, 0.3);
+            border: 1px solid rgba(150, 200, 255, 0.4);
             border-radius: 12px;
             color: #fff;
             font-size: 14px;
-            font-family: 'Cormorant Garamond', serif;
             transition: all 0.3s ease;
             outline: none;
         }
 
-        .form-group input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-            font-family: 'Cormorant Garamond', serif;
-        }
-
         .form-group input:focus {
-            background: rgba(255, 255, 255, 0.18);
-            border-color: rgba(212, 165, 116, 0.6);
-            box-shadow: 0 0 20px rgba(212, 165, 116, 0.3);
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 18px;
-        }
-
-        .checkbox-wrapper {
-            display: flex;
-            align-items: center;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
-            cursor: pointer;
-            accent-color: #d4a574;
-        }
-
-        .checkbox-group label {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 12px;
-            cursor: pointer;
-            font-weight: 300;
-        }
-
-        .forgot-link {
-            color: #d4a574;
-            text-decoration: none;
-            font-size: 12px;
-            transition: color 0.3s ease;
-        }
-
-        .forgot-link:hover {
-            color: #f5e6d3;
-        }
-
-        .terms-link {
-            color: #d4a574;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .terms-link:hover {
-            color: #f5e6d3;
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(120, 180, 255, 1);
+            box-shadow:
+                0 0 12px rgba(120, 180, 255, 0.8),
+                0 0 22px rgba(80, 140, 210, 0.7);
+            transform: scale(1.02);
         }
 
         .submit-btn {
             width: 100%;
             padding: 13px;
-            background: linear-gradient(135deg, #d4a574, #c4956a);
+            background: linear-gradient(135deg, #8bbdf7, #6ba7e6);
             border: none;
             border-radius: 12px;
-            color: #1e3a5f;
+            color: #0e223d;
             font-size: 15px;
             font-weight: 600;
             font-family: 'Cinzel', serif;
             letter-spacing: 1.5px;
             cursor: pointer;
+            box-shadow: 0 4px 18px rgba(120, 180, 255, 0.5);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.4);
             text-transform: uppercase;
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(212, 165, 116, 0.6);
-            background: linear-gradient(135deg, #e5b684, #d4a574);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
+            box-shadow: 0 6px 30px rgba(120, 180, 255, 0.7);
         }
 
         .switch-link {
+            margin-top: 15px;
             text-align: center;
             color: rgba(255, 255, 255, 0.8);
-            font-size: 13px;
-            margin-top: 15px;
-            font-weight: 300;
         }
 
         .switch-link a {
-            color: #d4a574;
-            text-decoration: none;
+            color: #8bbdf7;
             font-weight: 600;
             cursor: pointer;
-            transition: color 0.3s ease;
         }
 
-        .switch-link a:hover {
-            color: #f5e6d3;
-        }
+        /* =============================== */
+        /*          PARTICLE EFFECTS       */
+        /* =============================== */
 
         .particles {
             position: fixed;
@@ -290,7 +272,7 @@
             position: absolute;
             width: 3px;
             height: 3px;
-            background: rgba(212, 165, 116, 0.5);
+            background: rgba(120, 180, 255, 0.55);
             border-radius: 50%;
             animation: float 3s infinite ease-in-out;
         }
@@ -299,37 +281,13 @@
 
             0%,
             100% {
-                transform: translateY(0) translateX(0);
                 opacity: 0;
+                transform: translateY(0) translateX(0);
             }
 
             50% {
                 opacity: 1;
             }
-        }
-
-        .success-message {
-            display: none;
-            text-align: center;
-            color: #d4a574;
-            background: rgba(212, 165, 116, 0.2);
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(212, 165, 116, 0.4);
-            font-size: 13px;
-        }
-
-        .error-message {
-            display: none;
-            text-align: center;
-            color: #f5a5a5;
-            background: rgba(245, 165, 165, 0.2);
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(245, 165, 165, 0.4);
-            font-size: 13px;
         }
     </style>
 </head>
@@ -349,111 +307,97 @@
 
     <div class="container">
         <div class="card-wrapper" id="cardWrapper">
+
             <!-- SIGNUP SIDE -->
             <div class="auth-card signup-side">
                 <div class="form-content">
-                    <div class="success-message" id="successMessageSignup"></div>
-                    <div class="error-message" id="errorMessageSignup"></div>
-
+                    <div id="successBox"
+                        style="display:none; background:rgba(120,180,255,0.25); border:1px solid rgba(150,200,255,0.4); color:#b5d9ff; padding:10px; border-radius:10px; margin-bottom:12px; text-align:center; font-size:14px;">
+                    </div>
+                    <div id="errorBox"
+                        style="display:none; background:rgba(255,120,120,0.25); border:1px solid rgba(255,150,150,0.4); color:#ffbcbc; padding:10px; border-radius:10px; margin-bottom:12px; text-align:center; font-size:14px;">
+                    </div>
                     <form id="signupForm">
                         <div class="form-group">
-                            <label for="fullname">Full Name</label>
+                            <label>Full Name</label>
                             <input type="text" id="fullname" placeholder="Enter your full name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="signupEmail">Email Address</label>
+                            <label>Email Address</label>
                             <input type="email" id="signupEmail" placeholder="Enter your email" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="signupPassword">Password</label>
+                            <label>Password</label>
                             <input type="password" id="signupPassword" placeholder="Create a password" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
+                            <label>Confirm Password</label>
                             <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" id="terms" required>
-                                <label for="terms">I agree to the <a href="#" class="terms-link">Terms</a></label>
-                            </div>
                         </div>
 
                         <button type="submit" class="submit-btn">Create Account</button>
                     </form>
 
-                    <div class="switch-link">
-                        Already have an account? <a id="switchToLogin">Log In</a>
-                    </div>
+                    <div class="switch-link">Already have an account? <a id="switchToLogin">Log In</a></div>
                 </div>
             </div>
 
             <!-- LOGIN SIDE -->
             <div class="auth-card login-side">
                 <div class="form-content">
-                    <div class="success-message" id="successMessageLogin"></div>
-                    <div class="error-message" id="errorMessageLogin"></div>
-
                     <form id="loginForm">
                         <div class="form-group">
-                            <label for="loginEmail">Email Address</label>
+                            <label>Email Address</label>
                             <input type="email" id="loginEmail" placeholder="Enter your email" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="loginPassword">Password</label>
+                            <label>Password</label>
                             <input type="password" id="loginPassword" placeholder="Enter your password" required>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">Remember me</label>
-                            </div>
-                            <a href="#" class="forgot-link">Forgot Password?</a>
                         </div>
 
                         <button type="submit" class="submit-btn">Log In</button>
                     </form>
 
-                    <div class="switch-link">
-                        Don't have an account? <a id="switchToSignup">Sign Up</a>
-                    </div>
+                    <div class="switch-link">Don't have an account? <a id="switchToSignup">Sign Up</a></div>
                 </div>
             </div>
+
         </div>
     </div>
 
     <script>
         $(document).ready(function () {
+            // Increase video FPS feel (smoother + faster playback)
+            const vid = document.getElementById('bg-video');
+            if (vid) {
+                try { vid.playbackRate = 1.35; } catch (e) { }
+                // attempt to play (some browsers block autoplay until interaction)
+                try { vid.play(); } catch (e) { }
+            }
+
             // Create floating particles
             function createParticles() {
-                const particlesContainer = $('#particles');
+                const p = $('#particles');
+                p.empty();
                 for (let i = 0; i < 30; i++) {
-                    const particle = $('<div class="particle"></div>');
-                    const randomX = Math.random() * 100;
-                    const randomY = Math.random() * 100;
-                    const randomDelay = Math.random() * 3;
-                    const randomDuration = 3 + Math.random() * 4;
-
-                    particle.css({
-                        left: randomX + '%',
-                        top: randomY + '%',
-                        animationDelay: randomDelay + 's',
-                        animationDuration: randomDuration + 's'
+                    const d = $('<div class="particle"></div>');
+                    d.css({
+                        left: (Math.random() * 100) + '%',
+                        top: (Math.random() * 100) + '%',
+                        animationDelay: (Math.random() * 3) + 's',
+                        animationDuration: (3 + Math.random() * 4) + 's'
                     });
-
-                    particlesContainer.append(particle);
+                    p.append(d);
                 }
             }
 
             createParticles();
 
-            // Card flip animations
+            // Card flip handlers
             $('#switchToLogin').on('click', function (e) {
                 e.preventDefault();
                 $('#cardWrapper').addClass('flipped');
@@ -464,68 +408,85 @@
                 $('#cardWrapper').removeClass('flipped');
             });
 
-            // Signup form submission
+            // Form feedback boxes
+            const $success = $('#successBox');
+            const $error = $('#errorBox');
+
+            // Signup form
             $('#signupForm').on('submit', function (e) {
                 e.preventDefault();
+                $success.hide();
+                $error.hide();
 
-                const fullname = $('#fullname').val();
-                const email = $('#signupEmail').val();
+                const fullname = $('#fullname').val().trim();
+                const email = $('#signupEmail').val().trim();
                 const password = $('#signupPassword').val();
                 const confirmPassword = $('#confirmPassword').val();
+                const $btn = $(this).find('.submit-btn');
+                const originalText = $btn.text();
 
-                $('#successMessageSignup').hide();
-                $('#errorMessageSignup').hide();
+                if (!fullname || !email) {
+                    $error.text('Please fill all required fields.').fadeIn();
+                    return;
+                }
 
                 if (password !== confirmPassword) {
-                    $('#errorMessageSignup').text('Passwords do not match!').fadeIn();
+                    $error.text('Passwords do not match!').fadeIn();
                     return;
                 }
 
                 if (password.length < 6) {
-                    $('#errorMessageSignup').text('Password must be at least 6 characters!').fadeIn();
+                    $error.text('Password must be at least 6 characters!').fadeIn();
                     return;
                 }
 
-                $('.submit-btn').text('Creating Account...').prop('disabled', true);
+                $btn.text('Creating Account...').prop('disabled', true);
 
                 setTimeout(function () {
-                    $('#successMessageSignup').text('Welcome to Artisan Essentials, ' + fullname + '!').fadeIn();
-                    $('.submit-btn').text('Create Account').prop('disabled', false);
+                    $success.text('Welcome to Artisan Essentials, ' + fullname + '!').fadeIn();
+                    $btn.text(originalText).prop('disabled', false);
 
                     setTimeout(function () {
                         $('#signupForm')[0].reset();
-                        $('#successMessageSignup').fadeOut();
-                    }, 2000);
-                }, 1500);
+                        $success.fadeOut();
+                    }, 1800);
+                }, 1200);
             });
 
-            // Login form submission
+            // Login form
             $('#loginForm').on('submit', function (e) {
                 e.preventDefault();
+                $success.hide();
+                $error.hide();
 
-                const email = $('#loginEmail').val();
+                const email = $('#loginEmail').val().trim();
                 const password = $('#loginPassword').val();
+                const $btn = $(this).find('.submit-btn');
+                const originalText = $btn.text();
 
-                $('#successMessageLogin').hide();
-                $('#errorMessageLogin').hide();
-
-                if (password.length < 6) {
-                    $('#errorMessageLogin').text('Invalid password!').fadeIn();
+                if (!email || !password) {
+                    $error.text('Please enter email and password.').fadeIn();
                     return;
                 }
 
-                $('.submit-btn').text('Logging In...').prop('disabled', true);
+                if (password.length < 6) {
+                    $error.text('Invalid password!').fadeIn();
+                    return;
+                }
+
+                $btn.text('Logging In...').prop('disabled', true);
 
                 setTimeout(function () {
-                    $('#successMessageLogin').text('Welcome back to Artisan Essentials!').fadeIn();
-                    $('.submit-btn').text('Log In').prop('disabled', false);
+                    $success.text('Welcome back to Artisan Essentials!').fadeIn();
+                    $btn.text(originalText).prop('disabled', false);
 
                     setTimeout(function () {
                         $('#loginForm')[0].reset();
-                        $('#successMessageLogin').fadeOut();
-                    }, 2000);
-                }, 1500);
+                        $success.fadeOut();
+                    }, 1600);
+                }, 1000);
             });
+
         });
     </script>
 </body>
