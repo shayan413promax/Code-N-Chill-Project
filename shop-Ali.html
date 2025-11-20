@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Artisan Essentials - Shop</title>
+    <title>Artisan Essentials - Shop (Updated)</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
         rel="stylesheet">
@@ -144,6 +144,9 @@
             display: flex;
             gap: 18px;
             padding: 22px;
+            position: relative;
+            /* used so cart-sidebar can be abs/flex as needed */
+            align-items: flex-start;
         }
 
         /* LEFT FILTER SIDEBAR (collapsed by default) */
@@ -230,12 +233,17 @@
             color: var(--s1);
         }
 
-        /* GRID */
+        /* GRID - default: 4 columns on wide screens */
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 18px;
             padding-bottom: 34px;
+        }
+
+        /* when cart is open the main gets class 'cart-open' and grid becomes 3 columns */
+        .main.cart-open .grid {
+            grid-template-columns: repeat(3, 1fr);
         }
 
         /* CARD (flip) */
@@ -384,18 +392,28 @@
         }
 
         /* RIGHT CART SIDEBAR */
+        /* Make cart-sidebar participate in flex layout but collapse to zero-width when hidden so it doesn't leave a blank gap.
+           On small screens we override to a fixed overlay behavior. */
         .cart-sidebar {
+            flex: 0 0 360px;
             width: 360px;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
             padding: 16px;
             border-radius: 12px;
             border-left: 1px solid rgba(255, 255, 255, 0.03);
-            transition: transform .28s ease;
+            transition: flex-basis .28s ease, width .28s ease, padding .28s ease, opacity .28s ease, transform .28s ease;
             transform: translateX(0);
+            overflow: hidden;
+            opacity: 1;
         }
 
         .cart-sidebar.hidden {
-            transform: translateX(110%);
+            flex: 0 0 0;
+            width: 0;
+            padding: 0;
+            border-left: none;
+            transform: translateX(6px);
+            opacity: 0;
         }
 
         .cart-list {
@@ -484,11 +502,22 @@
                 display: block;
             }
 
+            /* on small screens we want the cart to overlay (fixed) rather than be a flex column */
             .cart-sidebar {
                 position: fixed;
                 right: 12px;
                 top: 82px;
                 z-index: 30;
+                width: 320px;
+                flex: 0 0 auto;
+                transform: translateX(110%);
+                opacity: 1;
+            }
+
+            .cart-sidebar.hidden {
+                transform: translateX(110%);
+                opacity: 1;
+                /* keep visible for animation but off-canvas */
                 width: 320px;
             }
         }
@@ -554,7 +583,7 @@
         </header>
 
         <!-- MAIN -->
-        <div class="main">
+        <div class="main" id="mainArea">
             <!-- left filter -->
             <aside class="left-filter" id="leftFilter">
                 <div class="filter-section">
@@ -700,6 +729,7 @@
         const subtotalEl = document.getElementById('subtotal');
         const visibleCount = document.getElementById('visibleCount');
         const modal = document.getElementById('modal');
+        const mainArea = document.getElementById('mainArea');
 
         /* ---------- Render categories & brands ---------- */
         function renderFilters() {
@@ -938,11 +968,15 @@
             lf.style.display = lf.style.display === 'block' ? 'none' : 'block';
         });
 
+        // Toggle cart: when cart is visible we add 'cart-open' to .main so grid becomes 3 columns.
         document.getElementById('cartBtn').addEventListener('click', () => {
-            cartSidebar.classList.toggle('hidden');
+            const nowHidden = cartSidebar.classList.toggle('hidden'); // toggles hidden state
+            // if not hidden => cart is open
+            mainArea.classList.toggle('cart-open', !nowHidden);
         });
         document.getElementById('closeCart').addEventListener('click', () => {
             cartSidebar.classList.add('hidden');
+            mainArea.classList.remove('cart-open');
         });
 
         document.getElementById('clearCart').addEventListener('click', () => {
@@ -976,7 +1010,7 @@
         modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
 
         /* keyboard escape closes modal */
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { modal.classList.remove('show'); cartSidebar.classList.add('hidden'); } });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { modal.classList.remove('show'); cartSidebar.classList.add('hidden'); mainArea.classList.remove('cart-open'); } });
 
         /* initialize */
         render();
