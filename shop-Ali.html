@@ -433,43 +433,6 @@
             transform: scale(1.1);
         }
 
-        .info-btn .tooltip-text {
-            position: absolute;
-            top: calc(100% + 12px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--s3), var(--s4));
-            color: var(--soft-white);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            white-space: nowrap;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 100;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .info-btn .tooltip-text::after {
-            content: '';
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border-width: 6px;
-            border-style: solid;
-            border-color: transparent transparent var(--s4) transparent;
-        }
-
-        .info-btn:hover .tooltip-text {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(4px);
-        }
-
         .card-back {
             transform: rotateY(180deg);
             padding: 20px;
@@ -500,6 +463,24 @@
             background: rgba(255, 255, 255, 0.3);
             border-radius: 10px;
         }
+
+        .corner-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            cursor: pointer;
+            z-index: 12;
+            filter: brightness(0) invert(1);
+            transition: all 0.2s ease;
+        }
+
+        .corner-icon:hover {
+            transform: scale(1.15);
+        }
+
 
         .modal {
             position: fixed;
@@ -979,11 +960,7 @@
 
             const infoBtn = document.createElement('button');
             infoBtn.className = 'info-btn';
-            infoBtn.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/512/471/471662.png" style="width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1);">`;
-            const tooltip = document.createElement('span');
-            tooltip.className = 'tooltip-text';
-            tooltip.innerText = 'Flip for details';
-            infoBtn.appendChild(tooltip);
+            infoBtn.innerHTML = `<img src="info.png" style="width:12px;height:12px;object-fit:contain;filter:brightness(0) invert(1);">`;
             infoBtn.onclick = (e) => {
                 e.stopPropagation();
                 inner.classList.toggle('flipped');
@@ -1066,21 +1043,17 @@
             desc.innerText = product.long;
             back.appendChild(desc);
 
-            const backInfoBtn = document.createElement('button');
-            backInfoBtn.className = 'info-btn back-info-btn';
-            backInfoBtn.style.position = 'absolute';
-            backInfoBtn.style.left = '12px';
-            backInfoBtn.style.top = '12px';
-            backInfoBtn.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/512/471/471662.png" style="width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1);">`;
-            const backTooltip = document.createElement('span');
-            backTooltip.className = 'tooltip-text';
-            backTooltip.innerText = 'Flip back';
-            backInfoBtn.appendChild(backTooltip);
-            backInfoBtn.onclick = (e) => {
+            const backCornerIcon = document.createElement('img');
+            backCornerIcon.src = "reply.png";    // yaha reply.png ko apne actual image name se replace kar dena
+            backCornerIcon.className = "corner-icon";
+
+            backCornerIcon.onclick = (e) => {
                 e.stopPropagation();
-                inner.classList.toggle('flipped');
+                inner.classList.toggle("flipped");
             };
-            back.appendChild(backInfoBtn);
+
+            back.appendChild(backCornerIcon);
+
 
             inner.appendChild(front);
             inner.appendChild(back);
