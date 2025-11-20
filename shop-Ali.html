@@ -266,6 +266,24 @@
             color: var(--s1);
         }
 
+        .sort-select {
+            background: var(--s3);
+            color: var(--s1);
+        }
+
+        .sort-select option {
+            background: var(--s4);
+            /* dark theme background */
+            color: var(--s1);
+            /* light text */
+        }
+
+        .sort-select option:hover {
+            background: var(--s3);
+            /* hover = deep blue theme */
+        }
+
+
         /* GRID - default: 4 columns on wide screens */
         .grid {
             display: grid;
@@ -360,7 +378,7 @@
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.06);
             padding: 8px 10px;
-            border-radius: 8px;
+            border-radius: 20px;
             color: var(--s1);
             cursor: pointer;
             font-size: 0.9rem;
