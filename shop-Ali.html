@@ -402,18 +402,24 @@
             position: absolute;
             left: 10px;
             top: 10px;
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.24);
-            color: var(--s1);
+            background: none;
+            border: none;
+            padding: 0;
+            width: auto;
+            height: auto;
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.03);
             z-index: 5;
         }
+
+        .info-btn img {
+            opacity: 0.6;
+            transition: 0.2s ease;
+        }
+
+        .info-btn img:hover {
+            opacity: 1;
+        }
+
 
         /* back face */
         .card-back {
@@ -857,7 +863,7 @@
 
             const infoBtn = document.createElement('button');
             infoBtn.className = 'info-btn';
-            infoBtn.innerHTML = 'i';
+            infoBtn.innerHTML = `<img src="info.png" style="width:20px;height:12px;object-fit:contain;">`;
             infoBtn.title = 'Flip for description';
             infoBtn.onclick = (e) => {
                 e.stopPropagation();
@@ -945,11 +951,16 @@
             inner.appendChild(back);
             card.appendChild(inner);
 
-            // clicking card front flips too (if user clicks elsewhere)
-            card.addEventListener('click', (e) => {
+            // back info button (flip back)
+            const backInfoBtn = document.createElement('button');
+            backInfoBtn.className = 'info-btn back-info-btn';
+            backInfoBtn.innerHTML = `<img src="info.png" style="width:20px;height:12px;object-fit:contain;">`;
+            backInfoBtn.title = 'Flip back';
+            backInfoBtn.onclick = (e) => {
+                e.stopPropagation();
                 inner.classList.toggle('flipped');
-            });
-
+            };
+            back.appendChild(backInfoBtn);
             return card;
         }
 
