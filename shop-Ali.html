@@ -32,7 +32,8 @@
         body {
             font-family: 'Cormorant Garamond', serif;
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--s4) 0%, #16354f 40%, #274f78 100%);
+            background: linear-gradient(135deg, var(--s4) 0%, var(--s3) 50%, var(--s2) 90%);
+
             color: var(--soft-white);
             -webkit-font-smoothing: antialiased;
             padding: 24px;
@@ -55,6 +56,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 22px 28px;
+            background: #7BA4D0;
             gap: 16px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(6px);
@@ -125,6 +127,13 @@
             box-shadow: 0 6px 18px rgba(18, 40, 70, 0.4);
         }
 
+        .cart-btn:hover {
+            transform: scale(1.12);
+            transition: 0.25s;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+        }
+
+
         .cart-badge {
             position: absolute;
             right: -6px;
@@ -145,6 +154,8 @@
             gap: 18px;
             padding: 22px;
             position: relative;
+            background: var(--s2);
+
             /* used so cart-sidebar can be abs/flex as needed */
             align-items: flex-start;
         }
@@ -187,6 +198,28 @@
             text-align: left;
             font-size: 0.95rem;
         }
+
+        .brand-btn {
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: 0.25s;
+        }
+
+        .brand-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .brand-btn.active {
+            background: linear-gradient(90deg, var(--s2), var(--s3));
+            border: none;
+            box-shadow: 0 0 12px rgba(46, 94, 153, 0.3);
+        }
+
 
         .category-btn.active {
             background: linear-gradient(90deg, var(--s2), var(--s3));
@@ -332,6 +365,19 @@
             cursor: pointer;
             font-size: 0.9rem;
         }
+
+        .more-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+            transition: 0.25s;
+        }
+
+        .add-btn:hover {
+            filter: brightness(1.15);
+            transform: translateY(-2px);
+            transition: 0.25s;
+        }
+
 
         /* info icon */
         .info-btn {
@@ -705,9 +751,11 @@
         let state = {
             products: products.slice(),
             filterCategory: null,
+            filterBrand: null,   // <-- B goes here
             sort: 'default',
-            cart: {}  // id => {product, qty}
+            cart: {}
         };
+
 
         /* ---------- Persistence (localStorage) ---------- */
         function saveCart() { localStorage.setItem('shop_cart', JSON.stringify(state.cart)); }
@@ -753,21 +801,25 @@
 
             brandList.innerHTML = '';
             brands.forEach(bn => {
-                const el = document.createElement('div');
-                el.style.padding = '6px 10px';
-                el.style.borderRadius = '8px';
-                el.style.background = 'linear-gradient(90deg,var(--s2),var(--s3))';
-                el.style.color = 'white';
-                el.style.fontSize = '0.9rem';
+                const el = document.createElement('button');
+                el.className = 'brand-btn' + (state.filterBrand === bn ? ' active' : '');
                 el.innerText = bn;
+
+                el.onclick = () => {
+                    state.filterBrand = (state.filterBrand === bn ? null : bn);
+                    render();
+                };
+
                 brandList.appendChild(el);
             });
+
         }
 
         /* ---------- Render product grid ---------- */
         function getFilteredSorted() {
             let arr = state.products.slice();
             if (state.filterCategory) arr = arr.filter(p => p.category === state.filterCategory);
+            if (state.filterBrand) arr = arr.filter(p => p.brand === state.filterBrand);
             if (state.sort === 'low') arr.sort((a, b) => a.price - b.price);
             if (state.sort === 'high') arr.sort((a, b) => b.price - a.price);
             return arr;
@@ -828,7 +880,7 @@
 
             const more = document.createElement('button');
             more.className = 'more-btn';
-            more.innerText = 'More';
+            more.innerHTML = 'Details <span style="font-weight:900;font-size:1.05em;">&raquo;</span>';
             more.onclick = (e) => {
                 e.stopPropagation();
                 openModal(product);
