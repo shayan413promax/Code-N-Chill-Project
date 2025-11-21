@@ -1,4 +1,3 @@
-<!-- Updated login page with Sapphire Veil theme + animated gradient -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,10 +23,6 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        /* =============================== */
-        /*   SAPPHIRE VEIL BACKGROUND      */
-        /* =============================== */
-
         #bg-video {
             position: fixed;
             top: 0;
@@ -39,7 +34,6 @@
             filter: brightness(0.55) saturate(1.3);
         }
 
-        /* Sapphire Veil animated gradient overlay */
         .overlay {
             position: fixed;
             top: 0;
@@ -56,7 +50,6 @@
             z-index: -1;
         }
 
-        /* Gradient Animation */
         @keyframes sapphireFlow {
             0% {
                 background-position: 0% 50%;
@@ -70,10 +63,6 @@
                 background-position: 0% 50%;
             }
         }
-
-        /* =============================== */
-        /*         LOGO STYLING            */
-        /* =============================== */
 
         .header-logo {
             position: fixed;
@@ -119,10 +108,6 @@
             }
         }
 
-        /* =============================== */
-        /*         MAIN CARD WRAPPER       */
-        /* =============================== */
-
         .container {
             position: relative;
             z-index: 1;
@@ -151,7 +136,6 @@
             width: 100%;
             height: 100%;
 
-            /* Updated Sapphire Veil Card Theme */
             background: linear-gradient(145deg,
                     rgba(18, 40, 70, 0.72),
                     rgba(32, 70, 115, 0.58),
@@ -181,9 +165,6 @@
             transform: rotateY(180deg);
         }
 
-        /* =============================== */
-        /*             FORM UI             */
-        /* =============================== */
 
         .form-group {
             margin-bottom: 18px;
@@ -254,9 +235,6 @@
             cursor: pointer;
         }
 
-        /* =============================== */
-        /*          PARTICLE EFFECTS       */
-        /* =============================== */
 
         .particles {
             position: fixed;
@@ -308,7 +286,7 @@
     <div class="container">
         <div class="card-wrapper" id="cardWrapper">
 
-            <!-- SIGNUP SIDE -->
+
             <div class="auth-card signup-side">
                 <div class="form-content">
                     <div id="successBox"
@@ -345,7 +323,7 @@
                 </div>
             </div>
 
-            <!-- LOGIN SIDE -->
+
             <div class="auth-card login-side">
                 <div class="form-content">
                     <form id="loginForm">
@@ -371,15 +349,15 @@
 
     <script>
         $(document).ready(function () {
-            // Increase video FPS feel (smoother + faster playback)
+
             const vid = document.getElementById('bg-video');
             if (vid) {
                 try { vid.playbackRate = 1.35; } catch (e) { }
-                // attempt to play (some browsers block autoplay until interaction)
+
                 try { vid.play(); } catch (e) { }
             }
 
-            // Create floating particles
+
             function createParticles() {
                 const p = $('#particles');
                 p.empty();
@@ -397,7 +375,7 @@
 
             createParticles();
 
-            // Card flip handlers
+
             $('#switchToLogin').on('click', function (e) {
                 e.preventDefault();
                 $('#cardWrapper').addClass('flipped');
@@ -408,11 +386,10 @@
                 $('#cardWrapper').removeClass('flipped');
             });
 
-            // Form feedback boxes
+
             const $success = $('#successBox');
             const $error = $('#errorBox');
 
-            // Signup form
             $('#signupForm').on('submit', function (e) {
                 e.preventDefault();
                 $success.hide();
@@ -450,17 +427,17 @@
                         $('#signupForm')[0].reset();
                         $success.fadeOut();
 
-                        // Redirect to homepage after signup success
+
                         setTimeout(function () {
-                            window.location.href = "home.html";  // ← change to your page name
-                        }, 300); // a small delay so the fade-out looks smooth
+                            window.location.href = "home.html";
+                        }, 300);
 
                     }, 1800);
 
                 }, 1200);
             });
 
-            // Login form
+
             $('#loginForm').on('submit', function (e) {
                 e.preventDefault();
                 $success.hide();
@@ -487,9 +464,9 @@
                     $success.text('Welcome back to Artisan Essentials!').fadeIn();
                     $btn.text(originalText).prop('disabled', false);
 
-                    // Redirect after 1.5 seconds
+
                     setTimeout(function () {
-                        window.location.href = "home.html";  // <-- Your homepage URL
+                        window.location.href = "home.html";
                     }, 1500);
 
                 }, 1000);
