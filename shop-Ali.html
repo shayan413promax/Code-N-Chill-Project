@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Artisan Essentials - Shop</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
@@ -22,7 +22,7 @@
         * {
             box-sizing: border-box;
             margin: 0;
-            padding: 0
+            padding: 0;
         }
 
         body {
@@ -161,11 +161,6 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
-        .filter-toggle {
-            display: none;
-            margin-bottom: 12px;
-        }
-
         .filter-section h4 {
             font-size: 1.1rem;
             margin-bottom: 12px;
@@ -181,7 +176,8 @@
             margin-top: 12px;
         }
 
-        .category-btn {
+        .category-btn,
+        .brand-btn {
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: var(--s1);
@@ -194,8 +190,9 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        .category-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
+        .category-btn:hover,
+        .brand-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
             transform: translateX(4px);
         }
 
@@ -203,26 +200,15 @@
             padding: 8px 12px;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.1);
-            color: white;
             font-size: 0.95rem;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s ease;
-            font-family: 'Cormorant Garamond', serif;
         }
 
         .brand-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
 
+        .category-btn.active,
         .brand-btn.active {
-            background: linear-gradient(90deg, var(--s3), var(--s4));
-            border: none;
-            box-shadow: 0 4px 16px rgba(46, 94, 153, 0.4);
-        }
-
-        .category-btn.active {
             background: linear-gradient(90deg, var(--s3), var(--s4));
             color: white;
             border: none;
@@ -245,12 +231,14 @@
             padding: 16px 20px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
         }
 
         .controls-left {
             display: flex;
             gap: 16px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .filter-open-btn {
@@ -289,9 +277,26 @@
             color: var(--s1);
         }
 
+        .search-input {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--s1);
+            font-size: 1rem;
+            width: 220px;
+            transition: 0.25s ease;
+        }
+
+        .search-input:focus {
+            border-color: rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.12);
+            outline: none;
+        }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding-bottom: 40px;
         }
@@ -339,9 +344,17 @@
 
         .card-image {
             height: 200px;
-            background-size: cover;
-            background-position: center;
+            background: #1a3a5c;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .card-body {
@@ -373,9 +386,8 @@
             gap: 10px;
         }
 
-        .add-btn {
-            background: linear-gradient(135deg, var(--s3), var(--s4));
-            color: var(--s1);
+        .add-btn,
+        .more-btn {
             border: none;
             padding: 12px 16px;
             border-radius: 12px;
@@ -385,16 +397,17 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
+        .add-btn {
+            background: linear-gradient(135deg, var(--s3), var(--s4));
+            color: var(--s1);
+        }
+
         .more-btn {
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 10px 14px;
-            border-radius: 12px;
             color: var(--s1);
-            cursor: pointer;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
-            font-family: 'Cormorant Garamond', serif;
         }
 
         .more-btn:hover {
@@ -416,7 +429,7 @@
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 0;
+            padding: 8px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 5;
@@ -426,6 +439,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-weight: bold;
         }
 
         .info-btn:hover {
@@ -470,17 +485,17 @@
             right: 10px;
             width: 28px;
             height: 28px;
-            object-fit: contain;
             cursor: pointer;
             z-index: 12;
-            filter: brightness(0) invert(1);
             transition: all 0.2s ease;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
         }
 
         .corner-icon:hover {
             transform: scale(1.15);
         }
-
 
         .modal {
             position: fixed;
@@ -506,27 +521,35 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
         }
 
+        .modal-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .modal-content img {
+            width: 280px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
         .cart-sidebar {
-            flex: 0 0 380px;
             width: 380px;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
             padding: 20px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
-            transform: translateX(0);
-            overflow: hidden;
-            opacity: 1;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .cart-sidebar.hidden {
-            flex: 0 0 0;
             width: 0;
             padding: 0;
             border: none;
-            transform: translateX(10px);
             opacity: 0;
+            overflow: hidden;
         }
 
         .cart-list {
@@ -575,26 +598,30 @@
             border-radius: 10px;
         }
 
-        .cart-item .ci-meta {
+        .ci-meta {
             font-size: 1rem;
             color: #dff0ff;
         }
 
-        .cart-item .ci-actions {
+        .ci-actions {
             margin-left: auto;
             display: flex;
             gap: 8px;
             align-items: center;
         }
 
-        .qty-btn {
+        .qty-btn,
+        .remove-btn {
             padding: 8px 12px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
-            color: var(--s1);
             cursor: pointer;
             transition: all 0.3s ease;
+        }
+
+        .qty-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--s1);
         }
 
         .qty-btn:hover {
@@ -605,10 +632,6 @@
             background: linear-gradient(135deg, #ff6b6b, #ff4757);
             border: none;
             color: white;
-            padding: 8px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
 
         .remove-btn:hover {
@@ -668,27 +691,15 @@
             }
         }
 
-        @media (max-width:1200px) {
+        @media (max-width: 1200px) {
             .grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .main.cart-open .grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
 
-        @media (max-width:1000px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
+        @media (max-width: 1000px) {
             .left-filter {
                 display: none;
-            }
-
-            .filter-toggle {
-                display: block;
             }
 
             .cart-sidebar {
@@ -697,21 +708,19 @@
                 top: 100px;
                 z-index: 30;
                 width: 340px;
-                flex: 0 0 auto;
-                transform: translateX(110%);
-                opacity: 1;
+                transform: translateX(0);
             }
 
             .cart-sidebar.hidden {
                 transform: translateX(110%);
-                opacity: 1;
                 width: 340px;
+                opacity: 1;
             }
         }
 
-        @media (max-width:680px) {
-            .grid {
-                grid-template-columns: 1fr;
+        @media (max-width: 680px) {
+            body {
+                padding: 10px;
             }
 
             header.topbar {
@@ -723,41 +732,38 @@
 
             .main {
                 padding: 16px;
-                flex-direction: column;
             }
 
             .cart-sidebar {
                 width: 90%;
                 right: 5%;
-                top: 100px;
             }
 
             .logo .title {
                 font-size: 1.5rem;
             }
-        }
 
-        .search-input {
-            padding: 10px 14px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.07);
-            color: var(--s1);
-            font-size: 1rem;
-            width: 220px;
-            transition: .25s ease;
-        }
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
 
-        .search-input:focus {
-            border-color: rgba(255, 255, 255, 0.45);
-            background: rgba(255, 255, 255, 0.12);
-            outline: none;
+            .search-input {
+                width: 100%;
+            }
+
+            .modal-content {
+                flex-direction: column;
+            }
+
+            .modal-content img {
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
-
     <div class="page">
         <header class="topbar">
             <div class="logo">
@@ -803,14 +809,11 @@
 
             <div class="content">
                 <div class="controls">
-
                     <div class="controls-left">
                         <button class="filter-open-btn" id="openFilterBtn">☰ Filters</button>
                         <div style="color:#e7f0fa;font-size:1rem;font-weight:600">Showing <span
                                 id="visibleCount">0</span> items</div>
                     </div>
-
-                    <!-- ⭐ NEW SEARCH BAR ⭐ -->
                     <input type="text" id="searchBar" placeholder="Search..." class="search-input">
 
                     <div style="display:flex;align-items:center;gap:12px">
@@ -821,9 +824,7 @@
                             <option value="high">Price: High to Low</option>
                         </select>
                     </div>
-
                 </div>
-
 
                 <div class="grid" id="grid"></div>
             </div>
@@ -835,7 +836,6 @@
                 </div>
 
                 <div id="cartMessage"></div>
-
                 <div class="cart-list" id="cartList"></div>
 
                 <div class="cart-summary">
@@ -853,14 +853,14 @@
     </div>
 
     <div class="modal" id="modal">
-        <div class="modal-card" id="modalCard">
+        <div class="modal-card">
             <div style="display:flex;justify-content:space-between;align-items:center">
                 <h3 id="mdTitle" style="font-size:1.5rem">Item Title</h3>
                 <button id="closeModal" class="more-btn">Close</button>
             </div>
             <hr style="margin:16px 0;border-color:rgba(255,255,255,0.15)">
-            <div style="display:flex;gap:20px;align-items:flex-start">
-                <img id="mdImg" src="" alt="" style="width:280px;height:180px;object-fit:cover;border-radius:12px">
+            <div class="modal-content">
+                <img id="mdImg" src="" alt="">
                 <div>
                     <div id="mdBrand" style="color:#cfe6ff;margin-bottom:8px;font-size:1.05rem"></div>
                     <div id="mdPrice" style="font-weight:800;margin-bottom:12px;font-size:1.3rem"></div>
@@ -874,112 +874,144 @@
     </div>
 
     <script>
-        const brands = ["Moleskine", "Leuchtturm1917", "Rhodia", "Pilot", "Faber-Castell", "Staedtler", "Tombow"];
-        const categories = ["Pens", "Markers", "Notebooks", "Brushes", "Ink", "Accessories", "Paper"];
+        const BRANDS = ["Moleskine", "Leuchtturm1917", "Rhodia", "Pilot", "Faber-Castell", "Staedtler", "Tombow"];
+        const CATEGORIES = ["Pens", "Markers", "Notebooks", "Brushes", "Ink", "Accessories", "Paper"];
 
-        function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-
-        const products = [];
-        for (let i = 1; i <= 50; i++) {
-            const brand = brands[i % brands.length];
-            const category = categories[i % categories.length];
-            const price = (rand(5, 90) + (Math.random() < 0.5 ? 0.49 : 0.99)).toFixed(2);
-            const title = `${brand} ${category} ${i}`;
-            const bgHex = encodeURIComponent('2E5E99');
-            const img = `https://via.placeholder.com/520x320/${bgHex}/ffffff?text=${encodeURIComponent(title)}`;
-            const short = `Premium ${category.toLowerCase()} by ${brand}. Exceptional quality and design.`;
-            const long = `${title} — A masterfully crafted ${category.toLowerCase()} from ${brand}. This product embodies superior craftsmanship, attention to detail, and innovative design. Perfect for professionals, artists, and enthusiasts who demand the finest tools. Features premium materials, exceptional durability, and consistent performance. Every detail has been carefully considered to provide an unparalleled user experience.`;
-            products.push({ id: i, title, brand, category, price: parseFloat(price), img, short, long });
-        }
+        const PRODUCTS = [
+            { id: 1, title: "Moleskine Classic Notebook", brand: "Moleskine", category: "Notebooks", price: 24.99, img: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500", short: "Premium notebook with classic design.", long: "Moleskine Classic Notebook — A timeless notebook featuring high-quality paper, elastic closure, and iconic design. Perfect for writers, artists, and professionals who value quality." },
+            { id: 2, title: "Pilot G2 Gel Pen", brand: "Pilot", category: "Pens", price: 12.99, img: "https://images.unsplash.com/photo-1586953208270-e7e9fb514b9e?w=500", short: "Smooth writing gel pen.", long: "Pilot G2 Gel Pen — Experience smooth, consistent writing with this premium gel pen. Features comfortable grip and vibrant ink." },
+            { id: 3, title: "Leuchtturm1917 Dotted Journal", brand: "Leuchtturm1917", category: "Notebooks", price: 29.99, img: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=500", short: "Premium dotted journal.", long: "Leuchtturm1917 Dotted Journal — High-quality journal with numbered pages, dotted grid, and premium paper. Ideal for bullet journaling and planning." },
+            { id: 4, title: "Faber-Castell Pencils Set", brand: "Faber-Castell", category: "Pens", price: 34.99, img: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=500", short: "Professional pencil set.", long: "Faber-Castell Pencils Set — Professional-grade pencils with superior graphite quality. Perfect for artists and designers." },
+            { id: 5, title: "Rhodia DotPad", brand: "Rhodia", category: "Paper", price: 18.99, img: "https://images.unsplash.com/photo-1606582896426-69cea77dae98?w=500", short: "Premium dot grid notepad.", long: "Rhodia DotPad — Exceptional quality notepad with smooth, fountain pen-friendly paper. Features dot grid for versatile use." },
+            { id: 6, title: "Tombow Dual Brush Markers", brand: "Tombow", category: "Markers", price: 45.99, img: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500", short: "Professional dual-tip markers.", long: "Tombow Dual Brush Markers — Vibrant, blendable markers with dual tips. Perfect for hand lettering, illustrations, and artwork." },
+            { id: 7, title: "Staedtler Triplus Fineliner", brand: "Staedtler", category: "Pens", price: 22.99, img: "https://images.unsplash.com/photo-1565200436267-a8f331a1d912?w=500", short: "Fine tip precision pens.", long: "Staedtler Triplus Fineliner — Ergonomic triangular barrel with superfine tip. Ideal for detailed work and technical drawing." },
+            { id: 8, title: "Moleskine Art Sketchbook", brand: "Moleskine", category: "Notebooks", price: 32.99, img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=500", short: "Premium sketchbook for artists.", long: "Moleskine Art Sketchbook — Heavy-weight, acid-free paper suitable for various media. Classic hardcover design." },
+            { id: 9, title: "Pilot Metropolitan Fountain Pen", brand: "Pilot", category: "Pens", price: 38.99, img: "https://images.unsplash.com/photo-1563751364312-f2d6b2ced2c9?w=500", short: "Elegant fountain pen.", long: "Pilot Metropolitan Fountain Pen — Sophisticated design meets smooth writing. Features quality nib and comfortable weight." },
+            { id: 10, title: "Leuchtturm1917 Pen Loop", brand: "Leuchtturm1917", category: "Accessories", price: 8.99, img: "https://images.unsplash.com/photo-1565200516003-c00ddc1b85ec?w=500", short: "Self-adhesive pen holder.", long: "Leuchtturm1917 Pen Loop — Elastic pen holder that sticks to any notebook. Keeps your favorite pen always at hand." },
+            { id: 11, title: "Faber-Castell Art Brushes", brand: "Faber-Castell", category: "Brushes", price: 42.99, img: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500", short: "Professional artist brush set.", long: "Faber-Castell Art Brushes — Premium synthetic brushes for watercolor and acrylic. Versatile set for various techniques." },
+            { id: 12, title: "Rhodia Webnotebook", brand: "Rhodia", category: "Notebooks", price: 26.99, img: "https://images.unsplash.com/photo-1517842645767-c639042777db?w=500", short: "Hardcover journal with elastic closure.", long: "Rhodia Webnotebook — Italian leatherette cover with ultra-smooth Clairefontaine paper. Includes elastic band and ribbon marker." },
+            { id: 13, title: "Tombow Mono Eraser", brand: "Tombow", category: "Accessories", price: 5.99, img: "https://images.unsplash.com/photo-1608406149753-c2446d2c25f5?w=500", short: "Premium eraser for clean removal.", long: "Tombow Mono Eraser — Non-abrasive eraser that removes marks cleanly without damaging paper. Long-lasting quality." },
+            { id: 14, title: "Staedtler Pigment Liners", brand: "Staedtler", category: "Pens", price: 19.99, img: "https://images.unsplash.com/photo-1595475884562-073c30d45670?w=500", short: "Archival quality ink pens.", long: "Staedtler Pigment Liners — Waterproof, lightfast pigment ink. Perfect for illustrations, technical drawings, and journaling." },
+            { id: 15, title: "Moleskine Leather Pen Case", brand: "Moleskine", category: "Accessories", price: 35.99, img: "https://images.unsplash.com/photo-1554990772-7f5c69f4b0b1?w=500", short: "Elegant leather storage.", long: "Moleskine Leather Pen Case — Genuine leather case with elastic closure. Stores up to 3 writing instruments." },
+            { id: 16, title: "Pilot Iroshizuku Ink", brand: "Pilot", category: "Ink", price: 28.99, img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500", short: "Premium fountain pen ink.", long: "Pilot Iroshizuku Ink — Japanese fountain pen ink inspired by nature. Rich, vibrant colors with excellent flow properties." },
+            { id: 17, title: "Leuchtturm1917 Master Notebook", brand: "Leuchtturm1917", category: "Notebooks", price: 39.99, img: "https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?w=500", short: "Large format premium notebook.", long: "Leuchtturm1917 Master Notebook — A4+ size notebook with numbered pages, index, and premium paper. Ideal for professionals." },
+            { id: 18, title: "Faber-Castell Watercolor Set", brand: "Faber-Castell", category: "Accessories", price: 52.99, img: "https://images.unsplash.com/photo-1579762594873-9f1f7e42c9e3?w=500", short: "Professional watercolor paints.", long: "Faber-Castell Watercolor Set — High-quality watercolors with excellent lightfastness. Brilliant, vivid colors." },
+            { id: 19, title: "Rhodia Meeting Book", brand: "Rhodia", category: "Notebooks", price: 22.99, img: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=500", short: "Organized meeting notebook.", long: "Rhodia Meeting Book — Structured layout for efficient meeting notes. Includes date fields and action items." },
+            { id: 20, title: "Tombow Fudenosuke Brush Pen", brand: "Tombow", category: "Pens", price: 14.99, img: "https://images.unsplash.com/photo-1513909278155-4d4303cf5ddc?w=500", short: "Flexible brush pen for calligraphy.", long: "Tombow Fudenosuke Brush Pen — Firm yet flexible brush tip for modern calligraphy and hand lettering." },
+            { id: 21, title: "Staedtler Noris Pencils", brand: "Staedtler", category: "Pens", price: 9.99, img: "https://images.unsplash.com/photo-1596484552993-aec4311d3381?w=500", short: "Classic writing pencils.", long: "Staedtler Noris Pencils — Iconic yellow and black design. Quality wood-cased pencils for everyday writing." },
+            { id: 22, title: "Moleskine Weekly Planner", brand: "Moleskine", category: "Notebooks", price: 31.99, img: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=500", short: "Elegant weekly planning.", long: "Moleskine Weekly Planner — Organize your week with style. Features weekly spreads and premium paper." },
+            { id: 23, title: "Pilot Acroball Pen", brand: "Pilot", category: "Pens", price: 16.99, img: "https://images.unsplash.com/photo-1590850979717-4d3e57c9ac3c?w=500", short: "Smooth hybrid ink pen.", long: "Pilot Acroball Pen — Advanced ink technology for smooth, skip-free writing. Combines best of gel and ballpoint." },
+            { id: 24, title: "Leuchtturm1917 Bookmark Set", brand: "Leuchtturm1917", category: "Accessories", price: 7.99, img: "https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=500", short: "Elegant magnetic bookmarks.", long: "Leuchtturm1917 Bookmark Set — Stylish magnetic bookmarks in various colors. Perfect for readers and planners." },
+            { id: 25, title: "Faber-Castell Pitt Pens", brand: "Faber-Castell", category: "Pens", price: 36.99, img: "https://images.unsplash.com/photo-1592495981873-textpens?w=500", short: "Artist quality ink pens.", long: "Faber-Castell Pitt Pens — India ink pens with excellent lightfastness. Perfect for sketching and illustration." },
+            { id: 26, title: "Rhodia Wirebound Pad", brand: "Rhodia", category: "Paper", price: 12.99, img: "https://images.unsplash.com/photo-1586806132726-e712f9b977e7?w=500", short: "Classic orange notepad.", long: "Rhodia Wirebound Pad — Iconic orange cover with ultra-smooth paper. Microperforated for easy tear-out." },
+            { id: 27, title: "Tombow Correction Tape", brand: "Tombow", category: "Accessories", price: 6.99, img: "https://images.unsplash.com/photo-1595475207225-428b62bda831?w=500", short: "Precise correction tape.", long: "Tombow Correction Tape — Instant, clean corrections. Ergonomic design for comfortable use." },
+            { id: 28, title: "Staedtler Mars Lumograph", brand: "Staedtler", category: "Pens", price: 27.99, img: "https://images.unsplash.com/photo-1590859808308-textpencils?w=500", short: "Professional drawing pencils.", long: "Staedtler Mars Lumograph — Premium quality graphite pencils for artists and designers. Excellent break resistance." },
+            { id: 29, title: "Moleskine Cahier Journal", brand: "Moleskine", category: "Notebooks", price: 14.99, img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=500", short: "Flexible cover journal set.", long: "Moleskine Cahier Journal — Lightweight journals with cardboard covers. Set of 3 for everyday notes." },
+            { id: 30, title: "Pilot Juice Gel Pen", brand: "Pilot", category: "Pens", price: 11.99, img: "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=500", short: "Vibrant gel ink pens.", long: "Pilot Juice Gel Pen — Ultra-smooth gel ink in vibrant colors. Perfect for note-taking and journaling." },
+            { id: 31, title: "Leuchtturm1917 Soft Cover", brand: "Leuchtturm1917", category: "Notebooks", price: 21.99, img: "https://images.unsplash.com/photo-1506784693919-8b3b7a12e46a?w=500", short: "Flexible soft cover notebook.", long: "Leuchtturm1917 Soft Cover — All the quality of Leuchtturm1917 in a flexible, soft cover format. Ideal for travel." }
+        ];
 
         let state = {
-            products: products.slice(),
+            allProducts: PRODUCTS,
+            filteredProducts: PRODUCTS,
             filterCategory: null,
             filterBrand: null,
             sort: 'default',
-            cart: {}
+            cart: {},
+            searchTerm: ''
         };
 
-        function saveCart() { localStorage.setItem('artisan_cart', JSON.stringify(state.cart)); }
+        const els = {
+            grid: document.getElementById('grid'),
+            categoryList: document.getElementById('categoryList'),
+            brandList: document.getElementById('brandList'),
+            cartCount: document.getElementById('cartCount'),
+            cartSidebar: document.getElementById('cartSidebar'),
+            cartList: document.getElementById('cartList'),
+            subtotal: document.getElementById('subtotal'),
+            visibleCount: document.getElementById('visibleCount'),
+            modal: document.getElementById('modal'),
+            mainArea: document.getElementById('mainArea'),
+            cartMessage: document.getElementById('cartMessage'),
+            searchBar: document.getElementById('searchBar')
+        };
+
+        function saveCart() {
+            try {
+                localStorage.setItem('artisan_cart', JSON.stringify(state.cart));
+            } catch (e) {
+                console.error('Could not save cart:', e);
+            }
+        }
+
         function loadCart() {
             try {
                 const raw = localStorage.getItem('artisan_cart');
-                if (raw) { state.cart = JSON.parse(raw); }
-            } catch (e) { state.cart = {}; }
+                if (raw) state.cart = JSON.parse(raw);
+            } catch (e) {
+                state.cart = {};
+            }
         }
-        loadCart();
-
-        const grid = document.getElementById('grid');
-        const categoryList = document.getElementById('categoryList');
-        const brandList = document.getElementById('brandList');
-        const cartCountEl = document.getElementById('cartCount');
-        const cartSidebar = document.getElementById('cartSidebar');
-        const cartListEl = document.getElementById('cartList');
-        const subtotalEl = document.getElementById('subtotal');
-        const visibleCount = document.getElementById('visibleCount');
-        const modal = document.getElementById('modal');
-        const mainArea = document.getElementById('mainArea');
-        const cartMessageEl = document.getElementById('cartMessage');
 
         function showCartMessage(message, type = 'info') {
-            cartMessageEl.innerHTML = `<div class="cart-message ${type}">${message}</div>`;
-            setTimeout(() => {
-                cartMessageEl.innerHTML = '';
-            }, 3000);
+            els.cartMessage.innerHTML = `<div class="cart-message ${type}">${message}</div>`;
+            setTimeout(() => { els.cartMessage.innerHTML = ''; }, 3000);
         }
 
         function renderFilters() {
-            categoryList.innerHTML = '';
+            els.categoryList.innerHTML = '';
             const allBtn = document.createElement('button');
             allBtn.className = 'category-btn' + (state.filterCategory === null ? ' active' : '');
-            allBtn.innerText = 'All Categories';
-            allBtn.onclick = () => { state.filterCategory = null; render(); };
-            categoryList.appendChild(allBtn);
+            allBtn.textContent = 'All Categories';
+            allBtn.onclick = () => { state.filterCategory = null; applyFilters(); };
+            els.categoryList.appendChild(allBtn);
 
-            categories.forEach(cat => {
-                const b = document.createElement('button');
-                b.className = 'category-btn' + (state.filterCategory === cat ? ' active' : '');
-                b.innerText = cat;
-                b.onclick = () => {
+            CATEGORIES.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'category-btn' + (state.filterCategory === cat ? ' active' : '');
+                btn.textContent = cat;
+                btn.onclick = () => {
                     state.filterCategory = (state.filterCategory === cat ? null : cat);
-                    render();
+                    applyFilters();
                 };
-                categoryList.appendChild(b);
+                els.categoryList.appendChild(btn);
             });
 
-            brandList.innerHTML = '';
-            brands.forEach(bn => {
-                const el = document.createElement('button');
-                el.className = 'brand-btn' + (state.filterBrand === bn ? ' active' : '');
-                el.innerText = bn;
-                el.onclick = () => {
-                    state.filterBrand = (state.filterBrand === bn ? null : bn);
-                    render();
+            els.brandList.innerHTML = '';
+            BRANDS.forEach(brand => {
+                const btn = document.createElement('button');
+                btn.className = 'brand-btn' + (state.filterBrand === brand ? ' active' : '');
+                btn.textContent = brand;
+                btn.onclick = () => {
+                    state.filterBrand = (state.filterBrand === brand ? null : brand);
+                    applyFilters();
                 };
-                brandList.appendChild(el);
+                els.brandList.appendChild(btn);
             });
         }
 
-        function getFilteredSorted() {
-            let arr = state.products.slice();
+        function applyFilters() {
+            let arr = state.allProducts;
+
+            if (state.searchTerm) {
+                const term = state.searchTerm.toLowerCase();
+                arr = arr.filter(p =>
+                    p.title.toLowerCase().includes(term) ||
+                    p.brand.toLowerCase().includes(term) ||
+                    p.category.toLowerCase().includes(term)
+                );
+            }
+
             if (state.filterCategory) arr = arr.filter(p => p.category === state.filterCategory);
             if (state.filterBrand) arr = arr.filter(p => p.brand === state.filterBrand);
+
             if (state.sort === 'low') arr.sort((a, b) => a.price - b.price);
-            if (state.sort === 'high') arr.sort((a, b) => b.price - a.price);
-            return arr;
+            else if (state.sort === 'high') arr.sort((a, b) => b.price - a.price);
+
+            state.filteredProducts = arr;
+            renderProducts();
+            renderFilters();
         }
-        document.getElementById("searchBar").addEventListener("input", function () {
-            const term = this.value.toLowerCase().trim();
-
-            // Filter products based on title, brand or category
-            state.products = products.filter(p =>
-                p.title.toLowerCase().includes(term) ||
-                p.brand.toLowerCase().includes(term) ||
-                p.category.toLowerCase().includes(term)
-            );
-
-            render();
-        });
 
         function createCard(product) {
             const card = document.createElement('div');
@@ -987,7 +1019,6 @@
 
             const inner = document.createElement('div');
             inner.className = 'card-inner';
-            inner.id = 'cardInner-' + product.id;
 
             const front = document.createElement('div');
             front.className = 'card-face card-front';
@@ -1003,91 +1034,89 @@
 
             const imgWrap = document.createElement('div');
             imgWrap.className = 'card-image';
-            imgWrap.style.backgroundImage = `url("${product.img}")`;
-            front.appendChild(imgWrap);
+            const img = document.createElement('img');
+            img.src = product.img;
+            img.alt = product.title;
+            img.onerror = function () {
+                this.src = `https://via.placeholder.com/520x320/2E5E99/ffffff?text=${encodeURIComponent(product.title)}`;
+            };
 
             const body = document.createElement('div');
             body.className = 'card-body';
 
             const title = document.createElement('div');
             title.className = 'card-title';
-            title.innerText = product.title;
-            body.appendChild(title);
+            title.textContent = product.title;
 
             const meta = document.createElement('div');
             meta.className = 'card-meta';
-            meta.innerText = `${product.brand} • ${product.category}`;
-            body.appendChild(meta);
+            meta.textContent = `${product.brand} • ${product.category}`;
 
             const bottom = document.createElement('div');
             bottom.className = 'card-bottom';
 
             const price = document.createElement('div');
-            price.style.fontWeight = '900';
-            price.style.fontSize = '1.2rem';
-            price.style.color = 'var(--s1)';
-            price.innerText = `${product.price.toFixed(2)}`;
-            bottom.appendChild(price);
+            price.style.cssText = 'font-weight:900;font-size:1.2rem;color:var(--s1)';
+            price.textContent = `${product.price.toFixed(2)}`;
 
             const actions = document.createElement('div');
-            actions.style.display = 'flex';
-            actions.style.gap = '10px';
-            actions.style.alignItems = 'center';
+            actions.style.cssText = 'display:flex;gap:10px;align-items:center';
 
-            const more = document.createElement('button');
-            more.className = 'more-btn';
-            more.innerHTML = 'Details';
-            more.onclick = (e) => {
+            const moreBtn = document.createElement('button');
+            moreBtn.className = 'more-btn';
+            moreBtn.textContent = 'Details';
+            moreBtn.onclick = (e) => {
                 e.stopPropagation();
                 openModal(product);
             };
-            actions.appendChild(more);
 
-            const add = document.createElement('button');
-            add.className = 'add-btn';
-            add.innerText = 'Add';
-            add.onclick = (e) => {
+            const addBtn = document.createElement('button');
+            addBtn.className = 'add-btn';
+            addBtn.textContent = 'Add';
+            addBtn.onclick = (e) => {
                 e.stopPropagation();
-                addToCart(product.id, 1);
+                addToCart(product.id);
             };
-            actions.appendChild(add);
-
-            bottom.appendChild(actions);
-            body.appendChild(bottom);
-            front.appendChild(body);
 
             const back = document.createElement('div');
             back.className = 'card-face card-back';
 
             const backTitle = document.createElement('div');
-            backTitle.style.fontWeight = '900';
-            backTitle.style.marginBottom = '10px';
-            backTitle.style.fontSize = '1.1rem';
-            backTitle.innerText = product.title;
-            back.appendChild(backTitle);
+            backTitle.style.cssText = 'font-weight:900;margin-bottom:10px;font-size:1.1rem';
+            backTitle.textContent = product.title;
 
-            const bmeta = document.createElement('div');
-            bmeta.style.color = '#cfe6ff';
-            bmeta.style.marginBottom = '10px';
-            bmeta.innerText = `${product.brand} • ${product.category} • ${product.price.toFixed(2)}`;
-            back.appendChild(bmeta);
+            const backMeta = document.createElement('div');
+            backMeta.style.cssText = 'color:#cfe6ff;margin-bottom:10px';
+            backMeta.textContent = `${product.brand} • ${product.category} • ${product.price.toFixed(2)}`;
 
             const desc = document.createElement('div');
             desc.className = 'back-content';
-            desc.innerText = product.long;
-            back.appendChild(desc);
+            desc.textContent = product.long;
 
-            const backCornerIcon = document.createElement('img');
-            backCornerIcon.src = "reply.png";    // yaha reply.png ko apne actual image name se replace kar dena
-            backCornerIcon.className = "corner-icon";
-
-            backCornerIcon.onclick = (e) => {
+            const backIcon = document.createElement('div');
+            backIcon.className = 'corner-icon';
+            backIcon.textContent = '↩';
+            backIcon.onclick = (e) => {
                 e.stopPropagation();
-                inner.classList.toggle("flipped");
+                inner.classList.toggle('flipped');
             };
 
-            back.appendChild(backCornerIcon);
+            imgWrap.appendChild(img);
+            front.appendChild(infoBtn);
+            front.appendChild(imgWrap);
+            actions.appendChild(moreBtn);
+            actions.appendChild(addBtn);
+            bottom.appendChild(price);
+            bottom.appendChild(actions);
+            body.appendChild(title);
+            body.appendChild(meta);
+            body.appendChild(bottom);
+            front.appendChild(body);
 
+            back.appendChild(backTitle);
+            back.appendChild(backMeta);
+            back.appendChild(desc);
+            back.appendChild(backIcon);
 
             inner.appendChild(front);
             inner.appendChild(back);
@@ -1095,33 +1124,37 @@
             return card;
         }
 
-        function render() {
-            renderFilters();
-            const arr = getFilteredSorted();
-            grid.innerHTML = '';
-            arr.forEach(p => grid.appendChild(createCard(p)));
-            visibleCount.innerText = arr.length;
-            renderCart();
+        function renderProducts() {
+            els.grid.innerHTML = '';
+            state.filteredProducts.forEach(p => els.grid.appendChild(createCard(p)));
+            els.visibleCount.textContent = state.filteredProducts.length;
         }
 
         function updateCartCount() {
-            const qty = Object.values(state.cart).reduce((s, it) => s + it.qty, 0);
+            const qty = Object.values(state.cart).reduce((sum, item) => sum + item.qty, 0);
             if (qty > 0) {
-                cartCountEl.style.display = 'block';
-                cartCountEl.innerText = qty;
+                els.cartCount.style.display = 'block';
+                els.cartCount.textContent = qty;
             } else {
-                cartCountEl.style.display = 'none';
+                els.cartCount.style.display = 'none';
             }
         }
 
-        function addToCart(id, qty = 1) {
-            const product = state.products.find(p => p.id === id);
+        function addToCart(id) {
+            const product = PRODUCTS.find(p => p.id === id);
             if (!product) return;
-            if (state.cart[id]) state.cart[id].qty += qty;
-            else state.cart[id] = { product, qty };
+
+            if (state.cart[id]) {
+                state.cart[id].qty++;
+            } else {
+                state.cart[id] = { product, qty: 1 };
+            }
+
             saveCart();
             updateCartCount();
             renderCart();
+            showCartMessage(`${product.title} added to cart!`, 'success');
+
             document.querySelector('.cart-btn').animate([
                 { transform: 'scale(1)' },
                 { transform: 'scale(1.2)' },
@@ -1134,13 +1167,15 @@
             saveCart();
             updateCartCount();
             renderCart();
+            showCartMessage('Item removed from cart', 'info');
         }
 
         function changeQty(id, delta) {
             if (!state.cart[id]) return;
             state.cart[id].qty += delta;
-            if (state.cart[id].qty <= 0) removeFromCart(id);
-            else {
+            if (state.cart[id].qty <= 0) {
+                removeFromCart(id);
+            } else {
                 saveCart();
                 updateCartCount();
                 renderCart();
@@ -1149,52 +1184,82 @@
 
         function renderCart() {
             updateCartCount();
-            cartListEl.innerHTML = '';
+            els.cartList.innerHTML = '';
             const items = Object.values(state.cart);
             let total = 0;
-            items.forEach(it => {
+
+            items.forEach(item => {
                 const row = document.createElement('div');
                 row.className = 'cart-item';
 
                 const img = document.createElement('img');
-                img.src = it.product.img;
+                img.src = item.product.img;
+                img.onerror = function () {
+                    this.src = 'https://via.placeholder.com/80x60/2E5E99/ffffff?text=Item';
+                };
 
                 const meta = document.createElement('div');
                 meta.className = 'ci-meta';
-                meta.innerHTML = `<div style="font-weight:700;margin-bottom:4px">${it.product.title}</div><div style="font-size:0.9rem;color:#cfe6ff">${it.product.brand}</div><div style="font-size:0.95rem;margin-top:8px;font-weight:600">${(it.product.price * it.qty).toFixed(2)} <span style="font-weight:400;color:#bfe0ff">(${it.qty} × ${it.product.price.toFixed(2)})</span></div>`;
+                meta.innerHTML = `<div style="font-weight:700;margin-bottom:4px">${item.product.title}</div><div style="font-size:0.9rem;color:#cfe6ff">${item.product.brand}</div><div style="font-size:0.95rem;margin-top:8px;font-weight:600">${(item.product.price * item.qty).toFixed(2)} <span style="font-weight:400;color:#bfe0ff">(${item.qty} × ${item.product.price.toFixed(2)})</span></div>`;
 
                 const actions = document.createElement('div');
                 actions.className = 'ci-actions';
 
-                const minus = document.createElement('button');
-                minus.className = 'qty-btn';
-                minus.innerText = '-';
-                minus.onclick = () => changeQty(it.product.id, -1);
+                const minusBtn = document.createElement('button');
+                minusBtn.className = 'qty-btn';
+                minusBtn.textContent = '-';
+                minusBtn.onclick = () => changeQty(item.product.id, -1);
 
-                const plus = document.createElement('button');
-                plus.className = 'qty-btn';
-                plus.innerText = '+';
-                plus.onclick = () => changeQty(it.product.id, +1);
+                const plusBtn = document.createElement('button');
+                plusBtn.className = 'qty-btn';
+                plusBtn.textContent = '+';
+                plusBtn.onclick = () => changeQty(item.product.id, 1);
 
-                const rm = document.createElement('button');
-                rm.className = 'remove-btn';
-                rm.innerText = '×';
-                rm.onclick = () => removeFromCart(it.product.id);
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-btn';
+                removeBtn.textContent = '×';
+                removeBtn.onclick = () => removeFromCart(item.product.id);
 
-                actions.appendChild(minus);
-                actions.appendChild(plus);
-                actions.appendChild(rm);
+                actions.appendChild(minusBtn);
+                actions.appendChild(plusBtn);
+                actions.appendChild(removeBtn);
 
                 row.appendChild(img);
                 row.appendChild(meta);
                 row.appendChild(actions);
-                cartListEl.appendChild(row);
+                els.cartList.appendChild(row);
 
-                total += it.product.price * it.qty;
+                total += item.product.price * item.qty;
             });
 
-            subtotalEl.innerText = `${total.toFixed(2)}`;
+            els.subtotal.textContent = `${total.toFixed(2)}`;
         }
+
+        function openModal(product) {
+            els.modal.classList.add('show');
+            document.getElementById('mdTitle').textContent = product.title;
+
+            const mdImg = document.getElementById('mdImg');
+            mdImg.src = product.img;
+            mdImg.onerror = function () {
+                this.src = `https://via.placeholder.com/280x180/2E5E99/ffffff?text=${encodeURIComponent(product.title)}`;
+            };
+
+            document.getElementById('mdBrand').textContent = `${product.brand} • ${product.category}`;
+            document.getElementById('mdPrice').textContent = `${product.price.toFixed(2)}`;
+            document.getElementById('mdDesc').textContent = product.long;
+
+            const mdAdd = document.getElementById('mdAdd');
+            mdAdd.onclick = () => {
+                addToCart(product.id);
+                els.modal.classList.remove('show');
+            };
+        }
+
+        els.searchBar.addEventListener('input', (e) => {
+            state.searchTerm = e.target.value.trim();
+            applyFilters();
+        });
 
         document.getElementById('openFilterBtn').addEventListener('click', () => {
             const lf = document.getElementById('leftFilter');
@@ -1202,18 +1267,17 @@
         });
 
         document.getElementById('cartBtn').addEventListener('click', () => {
-            const nowHidden = cartSidebar.classList.toggle('hidden');
-            mainArea.classList.toggle('cart-open', !nowHidden);
+            const nowHidden = els.cartSidebar.classList.toggle('hidden');
+            els.mainArea.classList.toggle('cart-open', !nowHidden);
         });
 
         document.getElementById('closeCart').addEventListener('click', () => {
-            cartSidebar.classList.add('hidden');
-            mainArea.classList.remove('cart-open');
+            els.cartSidebar.classList.add('hidden');
+            els.mainArea.classList.remove('cart-open');
         });
 
         document.getElementById('clearCart').addEventListener('click', () => {
-            const items = Object.values(state.cart);
-            if (items.length === 0) {
+            if (Object.keys(state.cart).length === 0) {
                 showCartMessage('Cart is already empty!', 'info');
                 return;
             }
@@ -1224,49 +1288,37 @@
         });
 
         document.getElementById('checkout').addEventListener('click', () => {
-            const items = Object.values(state.cart);
-            if (items.length === 0) {
+            if (Object.keys(state.cart).length === 0) {
                 showCartMessage('Your cart is empty!', 'info');
                 return;
             }
-            showCartMessage('Checkout coming soon! Total: ' + subtotalEl.innerText, 'info');
+            showCartMessage('Checkout coming soon! Total: ' + els.subtotal.textContent, 'info');
         });
 
         document.getElementById('sortSelect').addEventListener('change', (e) => {
             state.sort = e.target.value;
-            render();
+            applyFilters();
         });
 
-        function openModal(product) {
-            modal.classList.add('show');
-            document.getElementById('mdTitle').innerText = product.title;
-            document.getElementById('mdImg').src = product.img;
-            document.getElementById('mdBrand').innerText = `${product.brand} • ${product.category}`;
-            document.getElementById('mdPrice').innerText = `${product.price.toFixed(2)}`;
-            document.getElementById('mdDesc').innerText = product.long;
-            const mdAdd = document.getElementById('mdAdd');
-            mdAdd.onclick = () => {
-                addToCart(product.id, 1);
-                modal.classList.remove('show');
-            };
-        }
+        document.getElementById('closeModal').addEventListener('click', () => {
+            els.modal.classList.remove('show');
+        });
 
-        document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('show'));
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.classList.remove('show');
+        els.modal.addEventListener('click', (e) => {
+            if (e.target === els.modal) els.modal.classList.remove('show');
         });
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                modal.classList.remove('show');
-                cartSidebar.classList.add('hidden');
-                mainArea.classList.remove('cart-open');
+                els.modal.classList.remove('show');
+                els.cartSidebar.classList.add('hidden');
+                els.mainArea.classList.remove('cart-open');
             }
         });
 
-        render();
+        loadCart();
+        applyFilters();
         renderCart();
-        updateCartCount();
     </script>
 </body>
 
