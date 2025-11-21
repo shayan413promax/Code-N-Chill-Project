@@ -1038,7 +1038,7 @@
             img.src = product.img;
             img.alt = product.title;
             img.onerror = function () {
-                this.src = `https://via.placeholder.com/520x320/2E5E99/ffffff?text=${encodeURIComponent(product.title)}`;
+                this.src = `https://dummyimage.com/520x320/2E5E99/ffffff&text=${encodeURIComponent(product.title)}`;
             };
 
             const body = document.createElement('div');
