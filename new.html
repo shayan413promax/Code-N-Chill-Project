@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Artisan Essentials - Shop</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --sapphire-darkest: #0a0e1a;
+            --sapphire-deep: #141b2e;
+            --sapphire-dark: #1a2642;
+            --sapphire-mid: #243656;
+            --sapphire-light: #2d4a7c;
+            --sapphire-accent: #3d5a99;
+            --sapphire-bright: #4d6fb3;
+            --veil-glow: #6b8dd6;
+            --veil-shimmer: #8ba9e8;
+            --accent-gold: #c9a66b;
+            --soft-white: #e8f1ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--sapphire-darkest) 0%, var(--sapphire-deep) 40%, var(--sapphire-dark) 100%);
+            color: var(--soft-white);
+            -webkit-font-smoothing: antialiased;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUpFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .page {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, rgba(20, 27, 46, 0.95), rgba(26, 38, 66, 0.8));
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 80px rgba(107, 141, 214, 0.1);
+            min-height: 90vh;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        header.topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 32px;
+            background: linear-gradient(135deg, var(--sapphire-mid) 0%, var(--sapphire-dark) 100%);
+            gap: 20px;
+            border-bottom: 1px solid rgba(107, 141, 214, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .logo .title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            background: linear-gradient(135deg, var(--soft-white) 0%, var(--veil-shimmer) 50%, var(--veil-glow) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo .sub {
+            font-family: 'Cormorant Garamond';
+            font-size: 1rem;
+            color: var(--veil-shimmer);
+            margin-top: -6px;
+            letter-spacing: 2px;
+        }
+
+        nav.topnav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .topnav a {
+            text-decoration: none;
+            color: var(--soft-white);
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .topnav a:hover {
+            background: rgba(107, 141, 214, 0.15);
+            transform: translateY(-2px);
+            color: var(--veil-shimmer);
+        }
+
+        .cart-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-btn {
+            background: linear-gradient(135deg, var(--sapphire-dark), var(--sapphire-darkest));
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid rgba(107, 141, 214, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(107, 141, 214, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 30px rgba(107, 141, 214, 0.6);
+            border-color: var(--veil-glow);
+        }
+
+        .cart-badge {
+            position: absolute;
+            right: -8px;
+            top: -8px;
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            min-width: 22px;
+            text-align: center;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.6);
+        }
+
+        .main {
+            display: flex;
+            gap: 20px;
+            padding: 24px;
+            position: relative;
+            background: var(--sapphire-deep);
+            align-items: flex-start;
+        }
+
+        .left-filter {
+            width: 280px;
+            background: linear-gradient(180deg, rgba(26, 38, 66, 0.6), rgba(20, 27, 46, 0.8));
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(107, 141, 214, 0.2);
+            transition: all 0.35s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            animation: slideInFromLeft 0.8s ease forwards;
+        }
+
+        .filter-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--veil-shimmer);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .category-btn,
+        .brand-btn {
+            background: transparent;
+            border: 1px solid rgba(107, 141, 214, 0.25);
+            color: var(--soft-white);
+            padding: 10px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .category-btn:hover,
+        .brand-btn:hover {
+            background: rgba(107, 141, 214, 0.15);
+            transform: translateX(4px);
+            border-color: var(--veil-glow);
+        }
+
+        .brand-btn {
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: rgba(26, 38, 66, 0.4);
+            font-size: 0.95rem;
+        }
+
+        .brand-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .category-btn.active,
+        .brand-btn.active {
+            background: linear-gradient(90deg, var(--sapphire-light), var(--sapphire-accent));
+            color: white;
+            border: none;
+            box-shadow: 0 6px 20px rgba(107, 141, 214, 0.4);
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            background: linear-gradient(135deg, rgba(26, 38, 66, 0.7), rgba(20, 27, 46, 0.9));
+            padding: 16px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(107, 141, 214, 0.2);
+            flex-wrap: wrap;
+        }
+
+        .controls-left {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .controls> :last-child {
+            opacity: 0;
+            animation: slideInFromRight 0.8s ease forwards;
+        }
+
+        .filter-open-btn {
+            background: rgba(26, 38, 66, 0.6);
+            border: 1px solid rgba(107, 141, 214, 0.25);
+            padding: 10px 16px;
+            border-radius: 12px;
+            color: var(--soft-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .filter-open-btn:hover {
+            background: rgba(107, 141, 214, 0.2);
+            transform: translateY(-2px);
+            border-color: var(--veil-glow);
+        }
+
+        .sort-select {
+            background: var(--sapphire-mid);
+            border: 1px solid rgba(107, 141, 214, 0.25);
+            padding: 10px 14px;
+            border-radius: 12px;
+            color: var(--soft-white);
+            font-family: 'Cormorant Garamond', serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sort-select:hover {
+            background: var(--sapphire-light);
+            border-color: var(--veil-glow);
+        }
+
+        .sort-select option {
+            background: var(--sapphire-dark);
+            color: var(--soft-white);
+        }
+
+        .search-input {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(107, 141, 214, 0.25);
+            background: rgba(26, 38, 66, 0.6);
+            color: var(--soft-white);
+            font-size: 1rem;
+            width: 220px;
+            transition: 0.25s ease;
+        }
+
+        .search-input::placeholder {
+            color: rgba(232, 241, 255, 0.5);
+        }
+
+        .search-input:focus {
+            border-color: var(--veil-glow);
+            background: rgba(26, 38, 66, 0.8);
+            outline: none;
+            box-shadow: 0 0 20px rgba(107, 141, 214, 0.3);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding-bottom: 40px;
+        }
+
+        .main.cart-open .grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .card {
+            perspective: 2000px;
+            opacity: 0;
+            animation: slideUpFromBottom 0.6s ease forwards;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .card:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .card:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .card:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        .card:nth-child(n+10) {
+            animation-delay: 1s;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 360px;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            backface-visibility: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .card-face:hover {
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(107, 141, 214, 0.3);
+        }
+
+        .card-front {
+            background: linear-gradient(180deg, rgba(26, 38, 66, 0.8), rgba(20, 27, 46, 0.9));
+            border: 1px solid rgba(107, 141, 214, 0.2);
+        }
+
+        .card-image {
+            height: 200px;
+            background: var(--sapphire-darkest);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: var(--soft-white);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .card-meta {
+            color: var(--veil-shimmer);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .card-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .add-btn,
+        .more-btn {
+            border: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, var(--sapphire-accent), var(--sapphire-light));
+            color: white;
+            box-shadow: 0 4px 15px rgba(107, 141, 214, 0.3);
+        }
+
+        .more-btn {
+            background: transparent;
+            border: 1px solid rgba(107, 141, 214, 0.3);
+            padding: 10px 14px;
+            color: var(--soft-white);
+            font-size: 0.95rem;
+        }
+
+        .more-btn:hover {
+            background: rgba(107, 141, 214, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+            border-color: var(--veil-glow);
+        }
+
+        .add-btn:hover {
+            filter: brightness(1.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(107, 141, 214, 0.5);
+        }
+
+        .info-btn {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            background: rgba(26, 38, 66, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(107, 141, 214, 0.4);
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.3s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .info-btn:hover {
+            background: rgba(107, 141, 214, 0.4);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(107, 141, 214, 0.5);
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            padding: 20px;
+            background: linear-gradient(145deg, rgba(20, 27, 46, 0.98), rgba(26, 38, 66, 0.95));
+            color: var(--soft-white);
+            border: 1px solid rgba(107, 141, 214, 0.2);
+        }
+
+        .back-content {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--veil-shimmer);
+            overflow: auto;
+            padding-right: 10px;
+            max-height: 280px;
+        }
+
+        .back-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .back-content::-webkit-scrollbar-track {
+            background: rgba(26, 38, 66, 0.3);
+            border-radius: 10px;
+        }
+
+        .back-content::-webkit-scrollbar-thumb {
+            background: rgba(107, 141, 214, 0.5);
+            border-radius: 10px;
+        }
+
+        .corner-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            z-index: 12;
+            transition: all 0.2s ease;
+            color: var(--veil-shimmer);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .corner-icon:hover {
+            transform: scale(1.15);
+            color: var(--veil-glow);
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            place-items: center;
+            background: rgba(10, 14, 26, 0.92);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+        }
+
+        .modal.show {
+            display: grid;
+        }
+
+        .modal-card {
+            width: min(800px, 94%);
+            background: linear-gradient(145deg, rgba(26, 38, 66, 0.95), rgba(20, 27, 46, 0.98));
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid rgba(107, 141, 214, 0.3);
+            color: var(--soft-white);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 80px rgba(107, 141, 214, 0.2);
+        }
+
+        .modal-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .modal-content img {
+            width: 280px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(107, 141, 214, 0.2);
+        }
+
+        .cart-sidebar {
+            width: 380px;
+            background: linear-gradient(180deg, rgba(26, 38, 66, 0.9), rgba(20, 27, 46, 0.95));
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(107, 141, 214, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .cart-sidebar.hidden {
+            width: 0;
+            padding: 0;
+            border: none;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .cart-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 16px;
+            max-height: 65vh;
+            overflow: auto;
+            padding-right: 8px;
+        }
+
+        .cart-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .cart-list::-webkit-scrollbar-track {
+            background: rgba(26, 38, 66, 0.3);
+            border-radius: 10px;
+        }
+
+        .cart-list::-webkit-scrollbar-thumb {
+            background: rgba(107, 141, 214, 0.5);
+            border-radius: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: rgba(26, 38, 66, 0.5);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(107, 141, 214, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cart-item:hover {
+            background: rgba(26, 38, 66, 0.7);
+            border-color: var(--veil-glow);
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .ci-meta {
+            font-size: 1rem;
+            color: var(--veil-shimmer);
+        }
+
+        .ci-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .qty-btn,
+        .remove-btn {
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .qty-btn {
+            background: transparent;
+            border: 1px solid rgba(107, 141, 214, 0.3);
+            color: var(--soft-white);
+        }
+
+        .qty-btn:hover {
+            background: rgba(107, 141, 214, 0.2);
+            border-color: var(--veil-glow);
+        }
+
+        .remove-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            border: none;
+            color: white;
+        }
+
+        .remove-btn:hover {
+            filter: brightness(1.2);
+            transform: translateY(-2px);
+        }
+
+        .cart-summary {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-top: 1px solid rgba(107, 141, 214, 0.2);
+            padding-top: 16px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            color: var(--soft-white);
+            font-size: 1.2rem;
+        }
+
+        .cart-message {
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+            animation: slideIn 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .cart-message.success {
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.2), rgba(46, 213, 115, 0.1));
+            border: 1px solid rgba(46, 213, 115, 0.3);
+            color: #a8e6cf;
+        }
+
+        .cart-message.info {
+            background: linear-gradient(135deg, rgba(107, 141, 214, 0.2), rgba(107, 141, 214, 0.1));
+            border: 1px solid rgba(107, 141, 214, 0.3);
+            color: var(--veil-shimmer);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .left-filter {
+                display: none;
+            }
+
+            .cart-sidebar {
+                position: fixed;
+                right: 12px;
+                top: 100px;
+                z-index: 30;
+                width: 340px;
+                transform: translateX(0);
+            }
+
+            .cart-sidebar.hidden {
+                transform: translateX(110%);
+                width: 340px;
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 10px;
+            }
+
+            header.topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 20px;
+            }
+
+            .main {
+                padding: 16px;
+            }
+
+            .cart-sidebar {
+                width: 90%;
+                right: 5%;
+            }
+
+            .logo .title {
+                font-size: 1.5rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .modal-content {
+                flex-direction: column;
+            }
+
+            .modal-content img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="topbar">
+            <div class="logo">
+                <div>
+                    <div class="title">ARTISAN</div>
+                    <div class="sub">essentials</div>
+                </div>
+                <div style="margin-left:12px;color:var(--soft-white);font-size:1rem;align-self:flex-end">shop</div>
+            </div>
+
+            <nav class="topnav">
+                <a href="#catalog">Catalog</a>
+                <a href="#about">About</a>
+                <a href="#login">Login</a>
+
+                <div class="cart-wrap" style="margin-left:12px">
+                    <button id="cartBtn" class="cart-btn" title="View cart">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            style="filter: drop-shadow(0 2px 8px rgba(0,0,0,0.45));">
+                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4" stroke="#fff" stroke-width="1.6"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="10" cy="20" r="1.8" fill="#fff" />
+                            <circle cx="18" cy="20" r="1.8" fill="#fff" />
+                        </svg>
+                    </button>
+                    <div id="cartCount" class="cart-badge" style="display:none">0</div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="main" id="mainArea">
+            <aside class="left-filter" id="leftFilter">
+                <div class="filter-section">
+                    <h4>Categories</h4>
+                    <div class="category-list" id="categoryList"></div>
+                </div>
+
+                <div style="margin-top:24px" class="filter-section">
+                    <h4>Brands</h4>
+                    <div id="brandList" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px"></div>
+                </div>
+            </aside>
+
+            <div class="content">
+                <div class="controls">
+                    <div class="controls-left">
+                        <button class="filter-open-btn" id="openFilterBtn">☰ Filters</button>
+                        <div style="color:var(--soft-white);font-size:1rem;font-weight:600">Showing <span
+                                id="visibleCount">0</span> items</div>
+                    </div>
+                    <input type="text" id="searchBar" placeholder="Search..." class="search-input">
+
+                    <div style="display:flex;align-items:center;gap:12px">
+                        <label for="sortSelect" style="color:var(--soft-white);font-weight:600">Sort:</label>
+                        <select id="sortSelect" class="sort-select">
+                            <option value="default">Default</option>
+                            <option value="low">Price: Low to High</option>
+                            <option value="high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid" id="grid"></div>
+            </div>
+
+            <aside class="cart-sidebar hidden" id="cartSidebar">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                    <h3 style="margin:0;color:var(--soft-white);font-size:1.4rem">Your Cart</h3>
+                    <button id="closeCart" class="filter-open-btn">Close</button>
+                </div>
+
+                <div id="cartMessage"></div>
+                <div class="cart-list" id="cartList"></div>
+
+                <div class="cart-summary">
+                    <div class="total-row">
+                        <div>Total</div>
+                        <div id="subtotal">$0.00</div>
+                    </div>
+                    <div style="display:flex;gap:10px">
+                        <button id="clearCart" class="more-btn" style="flex:1">Clear</button>
+                        <button id="checkout" class="add-btn" style="flex:1">Checkout</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3 id="mdTitle" style="font-size:1.5rem">Item Title</h3>
+                <button id="closeModal" class="more-btn">Close</button>
+            </div>
+            <hr style="margin:16px 0;border-color:rgba(107,141,214,0.2)">
+            <div class="modal-content">
+                <img id="mdImg" src="" alt="">
+                <div>
+                    <div id="mdBrand" style="color:var(--veil-shimmer);margin-bottom:8px;font-size:1.05rem"></div>
+                    <div id="mdPrice" style="font-weight:800;margin-bottom:12px;font-size:1.3rem"></div>
+                    <div id="mdDesc" style="line-height:1.5;color:var(--veil-shimmer)"></div>
+                    <div style="margin-top:20px">
+                        <button id="mdAdd" class="add-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const BRANDS = ["Moleskine", "Leuchtturm1917", "Rhodia", "Pilot", "Faber-Castell", "Staedtler", "Tombow"];
+        const CATEGORIES = ["Pens", "Markers", "Notebooks", "Brushes", "Ink", "Accessories", "Paper"];
+
+        const PRODUCTS = [
+            { id: 1, title: "Moleskine Classic Notebook", brand: "Moleskine", category: "Notebooks", price: 24.99, img: "item images/images brands/moleskine/moleskine note book.jpg", short: "Premium notebook with classic design.", long: "Moleskine Classic Notebook — A timeless notebook featuring high-quality paper, elastic closure, and iconic design. Perfect for writers, artists, and professionals who value quality." },
+            { id: 2, title: "Pilot G2 Gel Pen", brand: "Pilot", category: "Accessories", price: 12.99, img: "item images/images brands/pilot/pilot accesories.webp", short: "Smooth writing gel pen.", long: "Pilot G2 Gel Pen — Experience smooth, consistent writing with this premium gel pen. Features comfortable grip and vibrant ink." },
+            { id: 3, title: "Leuchtturm1917 Dotted Journal", brand: "Leuchtturm1917", category: "Notebooks", price: 29.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 notebook.jpg", short: "Premium dotted journal.", long: "Leuchtturm1917 Dotted Journal — High-quality journal with numbered pages, dotted grid, and premium paper. Ideal for bullet journaling and planning." },
+            { id: 4, title: "Faber-Castell Pencils Set", brand: "Faber-Castell", category: "Pens", price: 34.99, img: "item images/images brands/faber/faber pen.jpg", short: "Professional pencil set.", long: "Faber-Castell Pencils Set — Professional-grade pencils with superior graphite quality. Perfect for artists and designers." },
+            { id: 5, title: "Rhodia DotPad", brand: "Rhodia", category: "Notebooks", price: 18.99, img: "item images/images brands/rhodia/Rhodia Notebooks 2.jpg", short: "Premium dot grid notepad.", long: "Rhodia DotPad — Exceptional quality notepad with smooth, fountain pen-friendly paper. Features dot grid for versatile use." },
+            { id: 6, title: "Tombow Dual Brush Markers", brand: "Tombow", category: "Markers", price: 45.99, img: "item images/images brands/tombow/tombow marker.jpg", short: "Professional dual-tip markers.", long: "Tombow Dual Brush Markers — Vibrant, blendable markers with dual tips. Perfect for hand lettering, illustrations, and artwork." },
+            { id: 7, title: "Staedtler Triplus Fineliner", brand: "Staedtler", category: "Pens", price: 22.99, img: "item images/images brands/steadler/Staedtler pen.webp", short: "Fine tip precision pens.", long: "Staedtler Triplus Fineliner — Ergonomic triangular barrel with superfine tip. Ideal for detailed work and technical drawing." },
+            { id: 8, title: "Moleskine Art Sketchbook", brand: "Moleskine", category: "Pens", price: 32.99, img: "item images/images brands/moleskine/Moleskine Pens 7.webp", short: "Premium sketchbook for artists.", long: "Moleskine Art Sketchbook — Heavy-weight, acid-free paper suitable for various media. Classic hardcover design." },
+            { id: 9, title: "Pilot Metropolitan Fountain Pen", brand: "Pilot", category: "Ink", price: 38.99, img: "item images/images brands/pilot/pilot blue ink.jpg", short: "Elegant fountain pen.", long: "Pilot Metropolitan Fountain Pen — Sophisticated design meets smooth writing. Features quality nib and comfortable weight." },
+            { id: 10, title: "Leuchtturm1917 Pen Loop", brand: "Leuchtturm1917", category: "Accessories", price: 8.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917  accesaries.jpg", short: "Self-adhesive pen holder.", long: "Leuchtturm1917 Pen Loop — Elastic pen holder that sticks to any notebook. Keeps your favorite pen always at hand." },
+            { id: 11, title: "Faber-Castell Art Brushes", brand: "Faber-Castell", category: "Markers", price: 42.99, img: "item images/images brands/faber/faber marker.jpg", short: "Professional artist brush set.", long: "Faber-Castell Art Brushes — Premium synthetic brushes for watercolor and acrylic. Versatile set for various techniques." },
+            { id: 12, title: "Rhodia Webnotebook", brand: "Rhodia", category: "Notebooks", price: 26.99, img: "item images/images brands/rhodia/rhodia note book.webp", short: "Hardcover journal with elastic closure.", long: "Rhodia Webnotebook — Italian leatherette cover with ultra-smooth Clairefontaine paper. Includes elastic band and ribbon marker." },
+            { id: 13, title: "Tombow Mono Eraser", brand: "Tombow", category: "Accessories", price: 5.99, img: "item images/images brands/tombow/tombow accesaries 1.jpg", short: "Premium eraser for clean removal.", long: "Tombow Mono Eraser — Non-abrasive eraser that removes marks cleanly without damaging paper. Long-lasting quality." },
+            { id: 14, title: "Staedtler Pigment Liners", brand: "Staedtler", category: "Pens", price: 19.99, img: "https://images.unsplash.com/photo-1595475884562-073c30d45670?w=500", short: "Archival quality ink pens.", long: "Staedtler Pigment Liners — Waterproof, lightfast pigment ink. Perfect for illustrations, technical drawings, and journaling." },
+            { id: 15, title: "Moleskine Leather Pen Case", brand: "Moleskine", category: "Accessories", price: 35.99, img: "item images/images brands/moleskine/moleskine accesioray.jpg", short: "Elegant leather storage.", long: "Moleskine Leather Pen Case — Genuine leather case with elastic closure. Stores up to 3 writing instruments." },
+            { id: 16, title: "Pilot Iroshizuku Ink", brand: "Pilot", category: "Ink", price: 28.99, img: "item images/images brands/pilot/pilot black ink.webp", short: "Premium fountain pen ink.", long: "Pilot Iroshizuku Ink — Japanese fountain pen ink inspired by nature. Rich, vibrant colors with excellent flow properties." },
+            { id: 17, title: "Leuchtturm1917 Master Notebook", brand: "Leuchtturm1917", category: "Markers", price: 39.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 Markers 1.jpg", short: "Large format premium notebook.", long: "Leuchtturm1917 Master Notebook — A4+ size notebook with numbered pages, index, and premium paper. Ideal for professionals." },
+            { id: 18, title: "Faber-Castell Watercolor Set", brand: "Faber-Castell", category: "Accessories", price: 52.99, img: "item images/images brands/faber/faber accesarioes.jpg", short: "Professional watercolor paints.", long: "Faber-Castell Watercolor Set — High-quality watercolors with excellent lightfastness. Brilliant, vivid colors." },
+            { id: 19, title: "Rhodia Meeting Book", brand: "Rhodia", category: "Notebooks", price: 22.99, img: "item images/images brands/rhodia/rhodia notebook 1.jpg", short: "Organized meeting notebook.", long: "Rhodia Meeting Book — Structured layout for efficient meeting notes. Includes date fields and action items." },
+            { id: 20, title: "Tombow Fudenosuke Brush Pen", brand: "Tombow", category: "Brushes", price: 14.99, img: "item images/images brands/tombow/tombow brush.jpg", short: "Flexible brush pen for calligraphy.", long: "Tombow Fudenosuke Brush Pen — Firm yet flexible brush tip for modern calligraphy and hand lettering." },
+            { id: 21, title: "Staedtler Noris Pencils", brand: "Staedtler", category: "Pens", price: 9.99, img: "https://images.unsplash.com/photo-1596484552993-aec4311d3381?w=500", short: "Classic writing pencils.", long: "Staedtler Noris Pencils — Iconic yellow and black design. Quality wood-cased pencils for everyday writing." },
+            { id: 22, title: "Pilot Weekly Planner", brand: "Pilot", category: "Notebooks", price: 31.99, img: "item images/images brands/pilot/pilot notebook.webp", short: "Elegant weekly planning.", long: "Moleskine Weekly Planner — Organize your week with style. Features weekly spreads and premium paper." },
+            { id: 23, title: "Pilot Acroball Pen", brand: "Pilot", category: "Brushes", price: 16.99, img: "item images/images brands/pilot/Pilot Brushes 3.jpg", short: "Smooth hybrid ink pen.", long: "Pilot Acroball Pen — Advanced ink technology for smooth, skip-free writing. Combines best of gel and ballpoint." },
+            { id: 24, title: "Leuchtturm1917 Bookmark Set", brand: "Leuchtturm1917", category: "Accessories", price: 7.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 accescaries.webp", short: "Elegant magnetic bookmarks.", long: "Leuchtturm1917 Bookmark Set — Stylish magnetic bookmarks in various colors. Perfect for readers and planners." },
+            { id: 25, title: "Faber-Castell Pitt Pens", brand: "Faber-Castell", category: "Notebooks", price: 36.99, img: "item images/images brands/faber/faber notebook.webp", short: "Artist quality ink pens.", long: "Faber-Castell Pitt Pens — India ink pens with excellent lightfastness. Perfect for sketching and illustration." },
+            { id: 26, title: "Faber-Castell Wirebound Pad", brand: "Faber-Castell", category: "Notebooks", price: 12.99, img: "item images/images brands/faber/faber notebook2.webp", short: "Classic orange notepad.", long: "Rhodia Wirebound Pad — Iconic orange cover with ultra-smooth paper. Microperforated for easy tear-out." },
+            { id: 27, title: "Tombow Correction Tape", brand: "Tombow", category: "Accessories", price: 6.99, img: "item images/images brands/tombow/tombow accesaries.webp", short: "Precise correction tape.", long: "Tombow Correction Tape — Instant, clean corrections. Ergonomic design for comfortable use." },
+            { id: 28, title: "Staedtler Mars Lumograph", brand: "Staedtler", category: "Pens", price: 27.99, img: "https://images.unsplash.com/photo-1590859808308-textpencils?w=500", short: "Professional drawing pencils.", long: "Staedtler Mars Lumograph — Premium quality graphite pencils for artists and designers. Excellent break resistance." },
+            { id: 29, title: "Moleskine Cahier Journal", brand: "Moleskine", category: "Notebooks", price: 14.99, img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=500", short: "Flexible cover journal set.", long: "Moleskine Cahier Journal — Lightweight journals with cardboard covers. Set of 3 for everyday notes." },
+            { id: 30, title: "Pilot Juice Gel Pen", brand: "Pilot", category: "Markers", price: 11.99, img: "item images/images brands/pilot/pilot marker 1.jpg", short: "Vibrant gel ink pens.", long: "Pilot Juice Gel Pen — Ultra-smooth gel ink in vibrant colors. Perfect for note-taking and journaling." },
+            { id: 31, title: "Leuchtturm1917 Soft Cover", brand: "Leuchtturm1917", category: "Pens", price: 21.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 pen.webp", short: "Flexible soft cover notebook.", long: "Leuchtturm1917 Soft Cover — All the quality of Leuchtturm1917 in a flexible, soft cover format. Ideal for travel." }
+        ];
+
+        let state = {
+            allProducts: PRODUCTS,
+            filteredProducts: PRODUCTS,
+            filterCategory: null,
+            filterBrand: null,
+            sort: 'default',
+            cart: {},
+            searchTerm: ''
+        };
+
+        const els = {
+            grid: document.getElementById('grid'),
+            categoryList: document.getElementById('categoryList'),
+            brandList: document.getElementById('brandList'),
+            cartCount: document.getElementById('cartCount'),
+            cartSidebar: document.getElementById('cartSidebar'),
+            cartList: document.getElementById('cartList'),
+            subtotal: document.getElementById('subtotal'),
+            visibleCount: document.getElementById('visibleCount'),
+            modal: document.getElementById('modal'),
+            mainArea: document.getElementById('mainArea'),
+            cartMessage: document.getElementById('cartMessage'),
+            searchBar: document.getElementById('searchBar')
+        };
+
+        function saveCart() {
+            try {
+                localStorage.setItem('artisan_cart', JSON.stringify(state.cart));
+            } catch (e) {
+                console.error('Could not save cart:', e);
+            }
+        }
+
+        function loadCart() {
+            try {
+                const raw = localStorage.getItem('artisan_cart');
+                if (raw) state.cart = JSON.parse(raw);
+            } catch (e) {
+                state.cart = {};
+            }
+        }
+
+        function showCartMessage(message, type = 'info') {
+            els.cartMessage.innerHTML = `<div class="cart-message ${type}">${message}</div>`;
+            setTimeout(() => { els.cartMessage.innerHTML = ''; }, 3000);
+        }
+
+        function renderFilters() {
+            els.categoryList.innerHTML = '';
+            const allBtn = document.createElement('button');
+            allBtn.className = 'category-btn' + (state.filterCategory === null ? ' active' : '');
+            allBtn.textContent = 'All Categories';
+            allBtn.onclick = () => { state.filterCategory = null; applyFilters(); };
+            els.categoryList.appendChild(allBtn);
+
+            CATEGORIES.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'category-btn' + (state.filterCategory === cat ? ' active' : '');
+                btn.textContent = cat;
+                btn.onclick = () => {
+                    state.filterCategory = (state.filterCategory === cat ? null : cat);
+                    applyFilters();
+                };
+                els.categoryList.appendChild(btn);
+            });
+
+            els.brandList.innerHTML = '';
+            BRANDS.forEach(brand => {
+                const btn = document.createElement('button');
+                btn.className = 'brand-btn' + (state.filterBrand === brand ? ' active' : '');
+                btn.textContent = brand;
+                btn.onclick = () => {
+                    state.filterBrand = (state.filterBrand === brand ? null : brand);
+                    applyFilters();
+                };
+                els.brandList.appendChild(btn);
+            });
+        }
+
+        function applyFilters() {
+            let arr = state.allProducts;
+
+            if (state.searchTerm) {
+                const term = state.searchTerm.toLowerCase();
+                arr = arr.filter(p =>
+                    p.title.toLowerCase().includes(term) ||
+                    p.brand.toLowerCase().includes(term) ||
+                    p.category.toLowerCase().includes(term)
+                );
+            }
+
+            if (state.filterCategory) arr = arr.filter(p => p.category === state.filterCategory);
+            if (state.filterBrand) arr = arr.filter(p => p.brand === state.filterBrand);
+
+            if (state.sort === 'low') arr.sort((a, b) => a.price - b.price);
+            else if (state.sort === 'high') arr.sort((a, b) => b.price - a.price);
+
+            state.filteredProducts = arr;
+            renderProducts();
+            renderFilters();
+        }
+
+        function createCard(product) {
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            const inner = document.createElement('div');
+            inner.className = 'card-inner';
+
+            const front = document.createElement('div');
+            front.className = 'card-face card-front';
+
+            const infoBtn = document.createElement('button');
+            infoBtn.className = 'info-btn';
+            infoBtn.textContent = 'i';
+            infoBtn.onclick = (e) => {
+                e.stopPropagation();
+                inner.classList.toggle('flipped');
+            };
+            front.appendChild(infoBtn);
+
+            const imgWrap = document.createElement('div');
+            imgWrap.className = 'card-image';
+            const img = document.createElement('img');
+            img.src = product.img;
+            img.alt = product.title;
+            img.onerror = function () {
+                this.src = `https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500`;
+            };
+
+            const body = document.createElement('div');
+            body.className = 'card-body';
+
+            const title = document.createElement('div');
+            title.className = 'card-title';
+            title.textContent = product.title;
+
+            const meta = document.createElement('div');
+            meta.className = 'card-meta';
+            meta.textContent = `${product.brand} • ${product.category}`;
+
+            const bottom = document.createElement('div');
+            bottom.className = 'card-bottom';
+
+            const price = document.createElement('div');
+            price.style.cssText = 'font-weight:900;font-size:1.2rem;color:var(--soft-white)';
+            price.textContent = `${product.price.toFixed(2)}`;
+
+            const actions = document.createElement('div');
+            actions.style.cssText = 'display:flex;gap:10px;align-items:center';
+
+            const moreBtn = document.createElement('button');
+            moreBtn.className = 'more-btn';
+            moreBtn.textContent = 'Details';
+            moreBtn.onclick = (e) => {
+                e.stopPropagation();
+                openModal(product);
+            };
+
+            const addBtn = document.createElement('button');
+            addBtn.className = 'add-btn';
+            addBtn.textContent = 'Add';
+            addBtn.onclick = (e) => {
+                e.stopPropagation();
+                addToCart(product.id);
+            };
+
+            const back = document.createElement('div');
+            back.className = 'card-face card-back';
+
+            const backTitle = document.createElement('div');
+            backTitle.style.cssText = 'font-weight:900;margin-bottom:10px;font-size:1.1rem';
+            backTitle.textContent = product.title;
+
+            const backMeta = document.createElement('div');
+            backMeta.style.cssText = 'color:var(--veil-shimmer);margin-bottom:10px';
+            backMeta.textContent = `${product.brand} • ${product.category} • ${product.price.toFixed(2)}`;
+
+            const desc = document.createElement('div');
+            desc.className = 'back-content';
+            desc.textContent = product.long;
+
+            const backIcon = document.createElement('div');
+            backIcon.className = 'corner-icon';
+            backIcon.textContent = '↩';
+            backIcon.onclick = (e) => {
+                e.stopPropagation();
+                inner.classList.toggle('flipped');
+            };
+
+            imgWrap.appendChild(img);
+            front.appendChild(imgWrap);
+            actions.appendChild(moreBtn);
+            actions.appendChild(addBtn);
+            bottom.appendChild(price);
+            bottom.appendChild(actions);
+            body.appendChild(title);
+            body.appendChild(meta);
+            body.appendChild(bottom);
+            front.appendChild(body);
+
+            back.appendChild(backTitle);
+            back.appendChild(backMeta);
+            back.appendChild(desc);
+            back.appendChild(backIcon);
+
+            inner.appendChild(front);
+            inner.appendChild(back);
+            card.appendChild(inner);
+            return card;
+        }
+
+        function renderProducts() {
+            els.grid.innerHTML = '';
+            state.filteredProducts.forEach(p => els.grid.appendChild(createCard(p)));
+            els.visibleCount.textContent = state.filteredProducts.length;
+        }
+
+        function updateCartCount() {
+            const qty = Object.values(state.cart).reduce((sum, item) => sum + item.qty, 0);
+            if (qty > 0) {
+                els.cartCount.style.display = 'block';
+                els.cartCount.textContent = qty;
+            } else {
+                els.cartCount.style.display = 'none';
+            }
+        }
+
+        function addToCart(id) {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+
+            if (state.cart[id]) {
+                state.cart[id].qty++;
+            } else {
+                state.cart[id] = { product, qty: 1 };
+            }
+
+            saveCart();
+            updateCartCount();
+            renderCart();
+            showCartMessage(`${product.title} added to cart!`, 'success');
+
+            document.querySelector('.cart-btn').animate([
+                { transform: 'scale(1)' },
+                { transform: 'scale(1.2)' },
+                { transform: 'scale(1)' }
+            ], { duration: 400 });
+        }
+
+        function removeFromCart(id) {
+            delete state.cart[id];
+            saveCart();
+            updateCartCount();
+            renderCart();
+            showCartMessage('Item removed from cart', 'info');
+        }
+
+        function changeQty(id, delta) {
+            if (!state.cart[id]) return;
+            state.cart[id].qty += delta;
+            if (state.cart[id].qty <= 0) {
+                removeFromCart(id);
+            } else {
+                saveCart();
+                updateCartCount();
+                renderCart();
+            }
+        }
+
+        function renderCart() {
+            updateCartCount();
+            els.cartList.innerHTML = '';
+            const items = Object.values(state.cart);
+            let total = 0;
+
+            items.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'cart-item';
+
+                const img = document.createElement('img');
+                img.src = item.product.img;
+                img.onerror = function () {
+                    this.src = 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500';
+                };
+
+                const meta = document.createElement('div');
+                meta.className = 'ci-meta';
+                meta.innerHTML = `<div style="font-weight:700;margin-bottom:4px">${item.product.title}</div><div style="font-size:0.9rem;color:var(--veil-shimmer)">${item.product.brand}</div><div style="font-size:0.95rem;margin-top:8px;font-weight:600">${(item.product.price * item.qty).toFixed(2)} <span style="font-weight:400;color:var(--veil-shimmer)">(${item.qty} × ${item.product.price.toFixed(2)})</span></div>`;
+
+                const actions = document.createElement('div');
+                actions.className = 'ci-actions';
+
+                const minusBtn = document.createElement('button');
+                minusBtn.className = 'qty-btn';
+                minusBtn.textContent = '-';
+                minusBtn.onclick = () => changeQty(item.product.id, -1);
+
+                const plusBtn = document.createElement('button');
+                plusBtn.className = 'qty-btn';
+                plusBtn.textContent = '+';
+                plusBtn.onclick = () => changeQty(item.product.id, 1);
+
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-btn';
+                removeBtn.textContent = '×';
+                removeBtn.onclick = () => removeFromCart(item.product.id);
+
+                actions.appendChild(minusBtn);
+                actions.appendChild(plusBtn);
+                actions.appendChild(removeBtn);
+
+                row.appendChild(img);
+                row.appendChild(meta);
+                row.appendChild(actions);
+                els.cartList.appendChild(row);
+
+                total += item.product.price * item.qty;
+            });
+
+            els.subtotal.textContent = `${total.toFixed(2)}`;
+        }
+
+        function openModal(product) {
+            els.modal.classList.add('show');
+            document.getElementById('mdTitle').textContent = product.title;
+
+            const mdImg = document.getElementById('mdImg');
+            mdImg.src = product.img;
+            mdImg.onerror = function () {
+                this.src = 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500';
+            };
+
+            document.getElementById('mdBrand').textContent = `${product.brand} • ${product.category}`;
+            document.getElementById('mdPrice').textContent = `${product.price.toFixed(2)}`;
+            document.getElementById('mdDesc').textContent = product.long;
+
+            const mdAdd = document.getElementById('mdAdd');
+            mdAdd.onclick = () => {
+                addToCart(product.id);
+                els.modal.classList.remove('show');
+            };
+        }
+
+        els.searchBar.addEventListener('input', (e) => {
+            state.searchTerm = e.target.value.trim();
+            applyFilters();
+        });
+
+        document.getElementById('openFilterBtn').addEventListener('click', () => {
+            const lf = document.getElementById('leftFilter');
+            lf.style.display = lf.style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.getElementById('cartBtn').addEventListener('click', () => {
+            const nowHidden = els.cartSidebar.classList.toggle('hidden');
+            els.mainArea.classList.toggle('cart-open', !nowHidden);
+        });
+
+        document.getElementById('closeCart').addEventListener('click', () => {
+            els.cartSidebar.classList.add('hidden');
+            els.mainArea.classList.remove('cart-open');
+        });
+
+        document.getElementById('clearCart').addEventListener('click', () => {
+            if (Object.keys(state.cart).length === 0) {
+                showCartMessage('Cart is already empty!', 'info');
+                return;
+            }
+            state.cart = {};
+            saveCart();
+            renderCart();
+            showCartMessage('Cart cleared successfully!', 'success');
+        });
+
+        document.getElementById('checkout').addEventListener('click', () => {
+            if (Object.keys(state.cart).length === 0) {
+                showCartMessage('Your cart is empty!', 'info');
+                return;
+            }
+            showCartMessage('Checkout coming soon! Total: ' + els.subtotal.textContent, 'info');
+        });
+
+        document.getElementById('sortSelect').addEventListener('change', (e) => {
+            state.sort = e.target.value;
+            applyFilters();
+        });
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            els.modal.classList.remove('show');
+        });
+
+        els.modal.addEventListener('click', (e) => {
+            if (e.target === els.modal) els.modal.classList.remove('show');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                els.modal.classList.remove('show');
+                els.cartSidebar.classList.add('hidden');
+                els.mainArea.classList.remove('cart-open');
+            }
+        });
+
+        loadCart();
+        applyFilters();
+        renderCart();
+    </script>
+</body>
+
+</html>
