@@ -9,20 +9,6 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
         rel="stylesheet">
     <style>
-        :root {
-            --sapphire-darkest: #0a0e1a;
-            --sapphire-deep: #141b2e;
-            --sapphire-dark: #1a2642;
-            --sapphire-mid: #243656;
-            --sapphire-light: #2d4a7c;
-            --sapphire-accent: #3d5a99;
-            --sapphire-bright: #4d6fb3;
-            --veil-glow: #6b8dd6;
-            --veil-shimmer: #8ba9e8;
-            --accent-gold: #c9a66b;
-            --soft-white: #e8f1ff;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -30,10 +16,10 @@
         }
 
         body {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Georgia', serif;
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--sapphire-darkest) 0%, var(--sapphire-deep) 40%, var(--sapphire-dark) 100%);
-            color: var(--soft-white);
+            background: linear-gradient(135deg, #1a2332 0%, #2d4563 50%, #4a6fa5 100%);
+            color: #e8f1ff;
             -webkit-font-smoothing: antialiased;
             padding: 20px;
             overflow-x: hidden;
@@ -88,10 +74,10 @@
         .page {
             max-width: 1600px;
             margin: 0 auto;
-            background: linear-gradient(145deg, rgba(20, 27, 46, 0.95), rgba(26, 38, 66, 0.8));
-            border-radius: 24px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a7b 50%, #4a7ba7 100%);
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 80px rgba(107, 141, 214, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
             min-height: 90vh;
             opacity: 0;
             animation: fadeIn 0.8s ease forwards;
@@ -103,10 +89,10 @@
             align-items: center;
             justify-content: space-between;
             padding: 24px 32px;
-            background: linear-gradient(135deg, var(--sapphire-mid) 0%, var(--sapphire-dark) 100%);
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.8) 0%, rgba(26, 38, 66, 0.9) 100%);
             gap: 20px;
-            border-bottom: 1px solid rgba(107, 141, 214, 0.15);
-            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(107, 141, 214, 0.3);
+            backdrop-filter: blur(15px);
         }
 
         .logo {
@@ -119,42 +105,81 @@
             font-family: 'Cinzel', serif;
             font-size: 1.8rem;
             font-weight: 900;
-            letter-spacing: 5px;
-            background: linear-gradient(135deg, var(--soft-white) 0%, var(--veil-shimmer) 50%, var(--veil-glow) 100%);
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #d4a574 0%, #f5e6d3 50%, #d4a574 100%);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            animation: shimmer 3s infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         .logo .sub {
             font-family: 'Cormorant Garamond';
-            font-size: 1rem;
-            color: var(--veil-shimmer);
-            margin-top: -6px;
-            letter-spacing: 2px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #a8c5e0;
+            text-transform: lowercase;
+            font-style: italic;
+            margin-top: -5px;
         }
 
         nav.topnav {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
+            background: rgba(26, 38, 66, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(107, 141, 214, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 20px rgba(107, 141, 214, 0.2);
         }
 
         .topnav a {
             text-decoration: none;
-            color: var(--soft-white);
-            padding: 10px 16px;
-            border-radius: 12px;
-            font-size: 1rem;
-            background: transparent;
+            color: #e8f1ff;
+            padding: 8px 18px;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .topnav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #8bbdf7;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
         }
 
         .topnav a:hover {
-            background: rgba(107, 141, 214, 0.15);
+            background: rgba(107, 141, 214, 0.2);
+            color: #8bbdf7;
             transform: translateY(-2px);
-            color: var(--veil-shimmer);
+        }
+
+        .topnav a:hover::after {
+            width: 60%;
         }
 
         .cart-wrap {
@@ -164,7 +189,7 @@
         }
 
         .cart-btn {
-            background: linear-gradient(135deg, var(--sapphire-dark), var(--sapphire-darkest));
+            background: linear-gradient(135deg, #3d5a99, #2d4a7c);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -172,15 +197,15 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            border: 2px solid rgba(107, 141, 214, 0.3);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(107, 141, 214, 0.2);
+            border: 2px solid rgba(107, 141, 214, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
         }
 
         .cart-btn:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 30px rgba(107, 141, 214, 0.6);
-            border-color: var(--veil-glow);
+            background: linear-gradient(135deg, #4d6fb3, #3d5a99);
+            transform: scale(1.15) translateY(-2px);
+            box-shadow: 0 0 25px rgba(107, 141, 214, 0.6);
         }
 
         .cart-badge {
@@ -203,13 +228,13 @@
             gap: 20px;
             padding: 24px;
             position: relative;
-            background: var(--sapphire-deep);
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.6), rgba(45, 90, 123, 0.4));
             align-items: flex-start;
         }
 
         .left-filter {
             width: 280px;
-            background: linear-gradient(180deg, rgba(26, 38, 66, 0.6), rgba(20, 27, 46, 0.8));
+            background: linear-gradient(180deg, rgba(30, 58, 95, 0.7), rgba(26, 38, 66, 0.9));
             border-radius: 16px;
             padding: 20px;
             border: 1px solid rgba(107, 141, 214, 0.2);
@@ -222,7 +247,7 @@
         .filter-section h4 {
             font-size: 1.1rem;
             margin-bottom: 12px;
-            color: var(--veil-shimmer);
+            color: #8bbdf7;
             font-weight: 700;
             letter-spacing: 1px;
         }
@@ -238,7 +263,7 @@
         .brand-btn {
             background: transparent;
             border: 1px solid rgba(107, 141, 214, 0.25);
-            color: var(--soft-white);
+            color: #e8f1ff;
             padding: 10px 14px;
             border-radius: 12px;
             cursor: pointer;
@@ -252,13 +277,13 @@
         .brand-btn:hover {
             background: rgba(107, 141, 214, 0.15);
             transform: translateX(4px);
-            border-color: var(--veil-glow);
+            border-color: #8bbdf7;
         }
 
         .brand-btn {
             padding: 8px 12px;
             border-radius: 10px;
-            background: rgba(26, 38, 66, 0.4);
+            background: rgba(30, 58, 95, 0.4);
             font-size: 0.95rem;
         }
 
@@ -268,7 +293,7 @@
 
         .category-btn.active,
         .brand-btn.active {
-            background: linear-gradient(90deg, var(--sapphire-light), var(--sapphire-accent));
+            background: linear-gradient(90deg, #3d5a99, #4d6fb3);
             color: white;
             border: none;
             box-shadow: 0 6px 20px rgba(107, 141, 214, 0.4);
@@ -286,7 +311,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 16px;
-            background: linear-gradient(135deg, rgba(26, 38, 66, 0.7), rgba(20, 27, 46, 0.9));
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.8), rgba(26, 38, 66, 0.9));
             padding: 16px 20px;
             border-radius: 16px;
             border: 1px solid rgba(107, 141, 214, 0.2);
@@ -306,11 +331,11 @@
         }
 
         .filter-open-btn {
-            background: rgba(26, 38, 66, 0.6);
+            background: rgba(30, 58, 95, 0.6);
             border: 1px solid rgba(107, 141, 214, 0.25);
             padding: 10px 16px;
             border-radius: 12px;
-            color: var(--soft-white);
+            color: #e8f1ff;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Cormorant Garamond', serif;
@@ -319,36 +344,36 @@
         .filter-open-btn:hover {
             background: rgba(107, 141, 214, 0.2);
             transform: translateY(-2px);
-            border-color: var(--veil-glow);
+            border-color: #8bbdf7;
         }
 
         .sort-select {
-            background: var(--sapphire-mid);
+            background: rgba(45, 90, 123, 0.6);
             border: 1px solid rgba(107, 141, 214, 0.25);
             padding: 10px 14px;
             border-radius: 12px;
-            color: var(--soft-white);
+            color: #e8f1ff;
             font-family: 'Cormorant Garamond', serif;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .sort-select:hover {
-            background: var(--sapphire-light);
-            border-color: var(--veil-glow);
+            background: rgba(61, 90, 153, 0.8);
+            border-color: #8bbdf7;
         }
 
         .sort-select option {
-            background: var(--sapphire-dark);
-            color: var(--soft-white);
+            background: #2d4a7c;
+            color: #e8f1ff;
         }
 
         .search-input {
             padding: 10px 14px;
             border-radius: 12px;
             border: 1px solid rgba(107, 141, 214, 0.25);
-            background: rgba(26, 38, 66, 0.6);
-            color: var(--soft-white);
+            background: rgba(30, 58, 95, 0.6);
+            color: #e8f1ff;
             font-size: 1rem;
             width: 220px;
             transition: 0.25s ease;
@@ -359,8 +384,8 @@
         }
 
         .search-input:focus {
-            border-color: var(--veil-glow);
-            background: rgba(26, 38, 66, 0.8);
+            border-color: #8bbdf7;
+            background: rgba(30, 58, 95, 0.8);
             outline: none;
             box-shadow: 0 0 20px rgba(107, 141, 214, 0.3);
         }
@@ -447,17 +472,17 @@
         }
 
         .card-face:hover {
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(107, 141, 214, 0.3);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(139, 189, 247, 0.3);
         }
 
         .card-front {
-            background: linear-gradient(180deg, rgba(26, 38, 66, 0.8), rgba(20, 27, 46, 0.9));
+            background: linear-gradient(180deg, rgba(30, 58, 95, 0.9), rgba(26, 38, 66, 0.95));
             border: 1px solid rgba(107, 141, 214, 0.2);
         }
 
         .card-image {
             height: 200px;
-            background: var(--sapphire-darkest);
+            background: rgba(26, 35, 50, 0.8);
             position: relative;
             display: flex;
             align-items: center;
@@ -480,14 +505,14 @@
 
         .card-title {
             font-weight: 700;
-            color: var(--soft-white);
+            color: #e8f1ff;
             font-size: 1.1rem;
             margin-bottom: 8px;
             letter-spacing: 0.5px;
         }
 
         .card-meta {
-            color: var(--veil-shimmer);
+            color: #a8c5e0;
             font-size: 0.9rem;
             margin-bottom: 10px;
         }
@@ -511,16 +536,16 @@
         }
 
         .add-btn {
-            background: linear-gradient(135deg, var(--sapphire-accent), var(--sapphire-light));
-            color: white;
-            box-shadow: 0 4px 15px rgba(107, 141, 214, 0.3);
+            background: linear-gradient(135deg, #8bbdf7, #6ba7e6);
+            color: #0e223d;
+            box-shadow: 0 4px 15px rgba(139, 189, 247, 0.3);
         }
 
         .more-btn {
             background: transparent;
             border: 1px solid rgba(107, 141, 214, 0.3);
             padding: 10px 14px;
-            color: var(--soft-white);
+            color: #e8f1ff;
             font-size: 0.95rem;
         }
 
@@ -528,20 +553,20 @@
             background: rgba(107, 141, 214, 0.2);
             transform: translateY(-3px);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-            border-color: var(--veil-glow);
+            border-color: #8bbdf7;
         }
 
         .add-btn:hover {
             filter: brightness(1.2);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(107, 141, 214, 0.5);
+            box-shadow: 0 8px 20px rgba(139, 189, 247, 0.5);
         }
 
         .info-btn {
             position: absolute;
             left: 12px;
             top: 12px;
-            background: rgba(26, 38, 66, 0.8);
+            background: rgba(30, 58, 95, 0.9);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(107, 141, 214, 0.4);
             padding: 8px;
@@ -561,21 +586,21 @@
         .info-btn:hover {
             background: rgba(107, 141, 214, 0.4);
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(107, 141, 214, 0.5);
+            box-shadow: 0 0 20px rgba(139, 189, 247, 0.5);
         }
 
         .card-back {
             transform: rotateY(180deg);
             padding: 20px;
-            background: linear-gradient(145deg, rgba(20, 27, 46, 0.98), rgba(26, 38, 66, 0.95));
-            color: var(--soft-white);
+            background: linear-gradient(145deg, rgba(30, 58, 95, 0.98), rgba(26, 38, 66, 0.95));
+            color: #e8f1ff;
             border: 1px solid rgba(107, 141, 214, 0.2);
         }
 
         .back-content {
             font-size: 1rem;
             line-height: 1.5;
-            color: var(--veil-shimmer);
+            color: #a8c5e0;
             overflow: auto;
             padding-right: 10px;
             max-height: 280px;
@@ -586,12 +611,12 @@
         }
 
         .back-content::-webkit-scrollbar-track {
-            background: rgba(26, 38, 66, 0.3);
+            background: rgba(30, 58, 95, 0.3);
             border-radius: 10px;
         }
 
         .back-content::-webkit-scrollbar-thumb {
-            background: rgba(107, 141, 214, 0.5);
+            background: rgba(139, 189, 247, 0.5);
             border-radius: 10px;
         }
 
@@ -604,14 +629,14 @@
             cursor: pointer;
             z-index: 12;
             transition: all 0.2s ease;
-            color: var(--veil-shimmer);
+            color: #8bbdf7;
             font-size: 24px;
             font-weight: bold;
         }
 
         .corner-icon:hover {
             transform: scale(1.15);
-            color: var(--veil-glow);
+            color: #a8c5e0;
         }
 
         .modal {
@@ -630,12 +655,12 @@
 
         .modal-card {
             width: min(800px, 94%);
-            background: linear-gradient(145deg, rgba(26, 38, 66, 0.95), rgba(20, 27, 46, 0.98));
+            background: linear-gradient(145deg, rgba(30, 58, 95, 0.95), rgba(26, 38, 66, 0.98));
             border-radius: 20px;
             padding: 24px;
             border: 1px solid rgba(107, 141, 214, 0.3);
-            color: var(--soft-white);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 80px rgba(107, 141, 214, 0.2);
+            color: #e8f1ff;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 80px rgba(139, 189, 247, 0.2);
         }
 
         .modal-content {
@@ -654,7 +679,7 @@
 
         .cart-sidebar {
             width: 380px;
-            background: linear-gradient(180deg, rgba(26, 38, 66, 0.9), rgba(20, 27, 46, 0.95));
+            background: linear-gradient(180deg, rgba(30, 58, 95, 0.9), rgba(26, 38, 66, 0.95));
             padding: 20px;
             border-radius: 16px;
             border: 1px solid rgba(107, 141, 214, 0.2);
@@ -685,12 +710,12 @@
         }
 
         .cart-list::-webkit-scrollbar-track {
-            background: rgba(26, 38, 66, 0.3);
+            background: rgba(30, 58, 95, 0.3);
             border-radius: 10px;
         }
 
         .cart-list::-webkit-scrollbar-thumb {
-            background: rgba(107, 141, 214, 0.5);
+            background: rgba(139, 189, 247, 0.5);
             border-radius: 10px;
         }
 
@@ -698,7 +723,7 @@
             display: flex;
             gap: 12px;
             align-items: center;
-            background: rgba(26, 38, 66, 0.5);
+            background: rgba(30, 58, 95, 0.5);
             padding: 12px;
             border-radius: 12px;
             border: 1px solid rgba(107, 141, 214, 0.2);
@@ -706,8 +731,8 @@
         }
 
         .cart-item:hover {
-            background: rgba(26, 38, 66, 0.7);
-            border-color: var(--veil-glow);
+            background: rgba(30, 58, 95, 0.7);
+            border-color: #8bbdf7;
         }
 
         .cart-item img {
@@ -719,7 +744,7 @@
 
         .ci-meta {
             font-size: 1rem;
-            color: var(--veil-shimmer);
+            color: #a8c5e0;
         }
 
         .ci-actions {
@@ -740,12 +765,12 @@
         .qty-btn {
             background: transparent;
             border: 1px solid rgba(107, 141, 214, 0.3);
-            color: var(--soft-white);
+            color: #e8f1ff;
         }
 
         .qty-btn:hover {
             background: rgba(107, 141, 214, 0.2);
-            border-color: var(--veil-glow);
+            border-color: #8bbdf7;
         }
 
         .remove-btn {
@@ -773,7 +798,7 @@
             justify-content: space-between;
             align-items: center;
             font-weight: 700;
-            color: var(--soft-white);
+            color: #e8f1ff;
             font-size: 1.2rem;
         }
 
@@ -794,9 +819,9 @@
         }
 
         .cart-message.info {
-            background: linear-gradient(135deg, rgba(107, 141, 214, 0.2), rgba(107, 141, 214, 0.1));
-            border: 1px solid rgba(107, 141, 214, 0.3);
-            color: var(--veil-shimmer);
+            background: linear-gradient(135deg, rgba(139, 189, 247, 0.2), rgba(139, 189, 247, 0.1));
+            border: 1px solid rgba(139, 189, 247, 0.3);
+            color: #8bbdf7;
         }
 
         @keyframes slideIn {
@@ -930,13 +955,13 @@
                 <div class="controls">
                     <div class="controls-left">
                         <button class="filter-open-btn" id="openFilterBtn">☰ Filters</button>
-                        <div style="color:var(--soft-white);font-size:1rem;font-weight:600">Showing <span
+                        <div style="color:#e8f1ff;font-size:1rem;font-weight:600">Showing <span
                                 id="visibleCount">0</span> items</div>
                     </div>
                     <input type="text" id="searchBar" placeholder="Search..." class="search-input">
 
                     <div style="display:flex;align-items:center;gap:12px">
-                        <label for="sortSelect" style="color:var(--soft-white);font-weight:600">Sort:</label>
+                        <label for="sortSelect" style="color:#e8f1ff;font-weight:600">Sort:</label>
                         <select id="sortSelect" class="sort-select">
                             <option value="default">Default</option>
                             <option value="low">Price: Low to High</option>
@@ -950,7 +975,7 @@
 
             <aside class="cart-sidebar hidden" id="cartSidebar">
                 <div style="display:flex;align-items:center;justify-content:space-between">
-                    <h3 style="margin:0;color:var(--soft-white);font-size:1.4rem">Your Cart</h3>
+                    <h3 style="margin:0;color:#e8f1ff;font-size:1.4rem">Your Cart</h3>
                     <button id="closeCart" class="filter-open-btn">Close</button>
                 </div>
 
@@ -981,9 +1006,9 @@
             <div class="modal-content">
                 <img id="mdImg" src="" alt="">
                 <div>
-                    <div id="mdBrand" style="color:var(--veil-shimmer);margin-bottom:8px;font-size:1.05rem"></div>
+                    <div id="mdBrand" style="color:#a8c5e0;margin-bottom:8px;font-size:1.05rem"></div>
                     <div id="mdPrice" style="font-weight:800;margin-bottom:12px;font-size:1.3rem"></div>
-                    <div id="mdDesc" style="line-height:1.5;color:var(--veil-shimmer)"></div>
+                    <div id="mdDesc" style="line-height:1.5;color:#a8c5e0"></div>
                     <div style="margin-top:20px">
                         <button id="mdAdd" class="add-btn">Add to Cart</button>
                     </div>
@@ -997,37 +1022,37 @@
         const CATEGORIES = ["Pens", "Markers", "Notebooks", "Brushes", "Ink", "Accessories", "Paper"];
 
         const PRODUCTS = [
-            { id: 1, title: "Moleskine Classic Hardcover Notebook", brand: "Moleskine", category: "Notebooks", price: 24.99, img: "item images/images brands/moleskine/moleskine note book.jpg", short: "Iconic Italian hardcover with elastic band.", long: "Moleskine Classic Notebook — The legendary notebook of artists and thinkers. Features ivory-colored paper, elastic closure band, ribbon bookmark, and expandable inner pocket. Perfect for writers, artists, and professionals." },
-            { id: 2, title: "Pilot Premium Pen box", brand: "Pilot", category: "Accessories", price: 12.99, img: "item images/images brands/pilot/pilot accesories.webp", short: "Elegant pen storage box.", long: "Pilot Accessories Set — Premium refills, clips, and pen care essentials. Everything you need to maintain your Pilot writing instruments in perfect condition." },
-            { id: 3, title: "Leuchtturm1917 Bullet Journal", brand: "Leuchtturm1917", category: "Notebooks", price: 29.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 notebook.jpg", short: "Numbered pages bullet journal system.", long: "Leuchtturm1917 Dotted Journal — Premium bullet journal with 249 numbered pages, 8 perforated sheets, gusseted pocket, blank table of contents, and page marker. Ink-proof 80gsm paper." },
-            { id: 4, title: "Faber-Castell Graphite Sketch Set", brand: "Faber-Castell", category: "Pens", price: 34.99, img: "item images/images brands/faber/faber pen.jpg", short: "Professional graphite pencil range.", long: "Faber-Castell Graphite Set — Premium quality graphite pencils ranging from 2H to 8B. Superior break-resistant leads with consistent laydown. Essential for artists and designers." },
-            { id: 5, title: "Rhodia Dot Grid Notepad", brand: "Rhodia", category: "Notebooks", price: 18.99, img: "item images/images brands/rhodia/Rhodia Notebooks 2.jpg", short: "French dot grid with orange cover.", long: "Rhodia DotPad — Legendary French paper quality with 5mm dot grid. Smooth 80g Clairefontaine paper, microperforated sheets. The orange cover that professionals recognize worldwide." },
-            { id: 6, title: "Tombow ABT Dual Brush Pen Set", brand: "Tombow", category: "Markers", price: 45.99, img: "item images/images brands/tombow/tombow marker.jpg", short: "Dual-tip blendable art markers.", long: "Tombow Dual Brush Markers — Water-based ink markers with flexible brush tip and fine tip. Blendable, odorless, and perfect for hand lettering, manga, illustrations, and mixed media art." },
-            { id: 7, title: "Staedtler Triplus Fineliner Set", brand: "Staedtler", category: "Pens", price: 22.99, img: "item images/images brands/steadler/Staedtler pen.webp", short: "Triangular 0.3mm fineliner pens.", long: "Staedtler Triplus Fineliner — German-engineered superfine 0.3mm metal-clad tip. Ergonomic triangular barrel prevents hand fatigue. DRY SAFE technology allows days uncapped without drying." },
-            { id: 8, title: "Moleskine Premium Pen", brand: "Moleskine", category: "Pens", price: 32.99, img: "item images/images brands/moleskine/Moleskine Pens 7.webp", short: "Italian-designed premium writing pen.", long: "Moleskine Art Sketchbook — 165gsm heavy-weight, acid-free paper suitable for pencil, charcoal, and light wet media. Hard cover protection with thread-bound binding that lies flat." },
-            { id: 9, title: "Pilot Iroshizuku Blue Ink Bottle", brand: "Pilot", category: "Ink", price: 38.99, img: "item images/images brands/pilot/pilot blue ink.jpg", short: "50ml blue fountain pen ink.", long: "Pilot Iroshizuku Ink — 'Dew on Leaves' collection. Smooth-flowing fountain pen ink in stunning blue shade. 50ml bottle with built-in ink reservoir for easy filling." },
-            { id: 10, title: "Leuchtturm1917 Graphite Leads", brand: "Leuchtturm1917", category: "Accessories", price: 8.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917  accesaries.jpg", short: "Premium replacement graphite leads.", long: "Leuchtturm1917 Pen Loop — Self-adhesive elastic pen holder that attaches to any notebook. Fits most pen sizes. Available in multiple colors to match your notebook." },
-            { id: 11, title: "Faber-Castell Watercolor Brush Set", brand: "Faber-Castell", category: "Markers", price: 42.99, img: "item images/images brands/faber/faber marker.jpg", short: "Professional watercolor brushes.", long: "Faber-Castell Art Brushes — Professional-grade synthetic bristles for watercolor and acrylic. Includes round, flat, and filbert brushes. Spring-tempered handles with seamless ferrules." },
-            { id: 12, title: "Rhodia Webnotebook A5", brand: "Rhodia", category: "Notebooks", price: 26.99, img: "item images/images brands/rhodia/rhodia note book.webp", short: "A5 leatherette bound journal.", long: "Rhodia Webnotebook — Premium bound journal with Italian leatherette cover. Contains 192 pages of 90g Clairefontaine paper. Features elastic closure, ribbon marker, and inner pocket." },
-            { id: 13, title: "Tombow Mono Zero Precision Eraser", brand: "Tombow", category: "Accessories", price: 5.99, img: "item images/images brands/tombow/tombow accesaries 1.jpg", short: "Pin-point precision eraser.", long: "Tombow Mono Eraser — Japan's legendary non-abrasive eraser. Removes graphite cleanly without tearing or ghosting. Minimal residue and long-lasting performance." },
-            { id: 14, title: "Staedtler Pigment Liner Set", brand: "Staedtler", category: "Pens", price: 19.99, img: "item images/images brands/steadler/staedtler pen set.webp", short: "Waterproof pigment liner collection.", long: "Staedtler Pigment Liners — Waterproof, lightfast pigment ink for permanent results. Multiple tip sizes from 0.05mm to 0.8mm. Ideal for illustrations, journaling, and technical work." },
-            { id: 15, title: "Moleskine Leather Bussines card holder", brand: "Moleskine", category: "Accessories", price: 35.99, img: "item images/images brands/moleskine/moleskine accesioray.jpg", short: "Italian leather card holder.", long: "Moleskine Pen Case — Crafted from genuine Italian leather with elastic closure. Elegant storage for up to 3 writing instruments. Compact size fits in bags and pockets." },
-            { id: 16, title: "Pilot Iroshizuku Black Ink Bottle", brand: "Pilot", category: "Ink", price: 28.99, img: "item images/images brands/pilot/pilot black ink.webp", short: "Bamboo charcoal black ink 50ml.", long: "Pilot Iroshizuku Ink — 'Take-sumi' bamboo charcoal black. Deep, rich black with subtle undertones. Smooth flow and quick-drying formula in elegant 50ml glass bottle." },
-            { id: 17, title: "Leuchtturm1917 Premium ball pen ", brand: "Leuchtturm1917", category: "Pens", price: 39.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 Markers 1.jpg", short: "German-engineered ballpoint pen.", long: "Leuchtturm1917 Master — A4+ format (225 x 315mm) with 233 numbered pages. Includes index, 8 perforated sheets, page marker, and gusseted pocket. Perfect for architects and designers." },
-            { id: 18, title: "Faber-Castell Creative Studio Set", brand: "Faber-Castell", category: "Accessories", price: 52.99, img: "item images/images brands/faber/faber accesarioes.jpg", short: "Complete art accessory kit.", long: "Faber-Castell Studio Set — Comprehensive art supplies including erasers, sharpeners, blending stumps, and rulers. Professional-grade tools in elegant storage tin." },
-            { id: 19, title: "Rhodia Meeting Pad A5+", brand: "Rhodia", category: "Notebooks", price: 22.99, img: "item images/images brands/rhodia/rhodia notebook 1.jpg", short: "Pre-printed meeting notepad.", long: "Rhodia Meeting Book — Pre-printed pages with date fields, attendees list, action items, and notes section. Perforated for easy sharing. Premium Clairefontaine paper." },
-            { id: 20, title: "Tombow Fudenosuke Brush Pen", brand: "Tombow", category: "Brushes", price: 14.99, img: "item images/images brands/tombow/tombow brush.jpg", short: "Flexible calligraphy brush pen.", long: "Tombow Fudenosuke — Flexible yet firm brush tip perfect for modern calligraphy and hand lettering. Water-based pigment ink. Available in hard and soft tip variants." },
-            { id: 21, title: "Faber-Castell Artist Pen", brand: "Faber-Castell", category: "Pens", price: 9.99, img: "item images/images brands/faber/download.jpg", short: "Professional fine art pen.", long: "Faber-Castell Grip — Ergonomic triangular shape with patented Soft-Grip zone. Break-resistant leads in multiple grades. Perfect for extended writing and drawing sessions." },
-            { id: 22, title: "Pilot Planner Notebook", brand: "Pilot", category: "Notebooks", price: 31.99, img: "item images/images brands/pilot/pilot notebook.webp", short: "Weekly layout planner system.", long: "Pilot Weekly Planner — Functional weekly layout with time blocks, to-do lists, and notes sections. High-quality paper suitable for all pen types. Compact yet spacious design." },
-            { id: 23, title: "Pilot Calligraphy Brush Pen", brand: "Pilot", category: "Brushes", price: 16.99, img: "item images/images brands/pilot/Pilot Brushes 3.jpg", short: "Refillable calligraphy brush.", long: "Pilot Brush Pen — Authentic brush calligraphy experience with modern convenience. Refillable cartridge system. Flexible synthetic bristles respond like traditional brushes." },
-            { id: 24, title: "Leuchtturm1917 Pencil Loop", brand: "Leuchtturm1917", category: "Accessories", price: 7.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 accescaries.webp", short: "Self-adhesive pencil holder.", long: "Leuchtturm1917 Bookmark Set — Elegant metal bookmarks with magnetic closure. Ultra-thin design won't damage pages. Set of 3 in coordinating colors." },
-            { id: 25, title: "Faber-Castell Art Notebook A4", brand: "Faber-Castell", category: "Notebooks", price: 36.99, img: "item images/images brands/faber/faber notebook.webp", short: "A4 mixed media spiral notebook.", long: "Faber-Castell Art Notebook — 200gsm heavyweight paper suitable for wet and dry media. Spiral-bound for easy page-turning. Acid-free archival quality paper." },
-            { id: 26, title: "Faber-Castell Sketch Pad A5", brand: "Faber-Castell", category: "Notebooks", price: 12.99, img: "item images/images brands/faber/faber notebook2.webp", short: "A5 spiral-bound sketch pad.", long: "Faber-Castell Sketch Pad — 120gsm fine-grain paper ideal for pencil, charcoal, and ink. Spiral-bound with micro-perforated sheets. Sturdy backing board." },
-            { id: 27, title: "Tombow Mono Air Touch Tape", brand: "Tombow", category: "Accessories", price: 6.99, img: "item images/images brands/tombow/tombow accesaries.webp", short: "Refillable correction tape.", long: "Tombow Correction Tape — Instant, clean corrections with ergonomic design. Smooth application with no dry time needed. Compact refillable dispenser." },
-            { id: 28, title: "Tombow Mixed Media Paper Pad", brand: "Tombow", category: "Paper", price: 27.99, img: "item images/images brands/tombow/tombow paper.webp", short: "250gsm heavyweight paper pad.", long: "Tombow Paper Pad — 250gsm heavyweight paper designed for markers, watercolors, and mixed media. Minimal bleed-through. Cold-press texture." },
-            { id: 29, title: "Pilot Pocket Brush Pen", brand: "Pilot", category: "Brushes", price: 14.99, img: "item images/images brands/pilot/pilot brushes.jpg", short: "Compact portable brush pen.", long: "Pilot Pocket Brush — Compact brush pen with protective cap. Authentic brush feel with modern convenience. Refillable ink cartridge system." },
-            { id: 30, title: "Pilot Juice Gel Ink Pens", brand: "Pilot", category: "Markers", price: 11.99, img: "item images/images brands/pilot/pilot marker 1.jpg", short: "0.5mm gel pens in vivid colors.", long: "Pilot Juice — Ultra-smooth 0.5mm gel ink in brilliant colors. Quick-drying, fade-resistant formula. Comfortable rubber grip for extended writing." },
-            { id: 31, title: "Leuchtturm1917 Pen loop", brand: "Leuchtturm1917", category: "Accessories", price: 21.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 pen.webp", short: "Elastic pen holder accessory.", long: "Leuchtturm1917 Soft Cover — All the quality features of the hardcover in a flexible format. Numbered pages, table of contents, and premium 80gsm paper. Perfect for travel." }
+            { id: 1, title: "Moleskine Classic Hardcover Notebook", brand: "Moleskine", category: "Notebooks", price: 24.99, img: "item images/images brands/moleskine/moleskine note book.jpg", short: "Iconic Italian hardcover with elastic band.", long: "Moleskine Classic Notebook – The legendary notebook of artists and thinkers. Features ivory-colored paper, elastic closure band, ribbon bookmark, and expandable inner pocket. Perfect for writers, artists, and professionals." },
+            { id: 2, title: "Pilot Premium Pen box", brand: "Pilot", category: "Accessories", price: 12.99, img: "item images/images brands/pilot/pilot accesories.webp", short: "Elegant pen storage box.", long: "Pilot Accessories Set – Premium refills, clips, and pen care essentials. Everything you need to maintain your Pilot writing instruments in perfect condition." },
+            { id: 3, title: "Leuchtturm1917 Bullet Journal", brand: "Leuchtturm1917", category: "Notebooks", price: 29.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 notebook.jpg", short: "Numbered pages bullet journal system.", long: "Leuchtturm1917 Dotted Journal – Premium bullet journal with 249 numbered pages, 8 perforated sheets, gusseted pocket, blank table of contents, and page marker. Ink-proof 80gsm paper." },
+            { id: 4, title: "Faber-Castell Graphite Sketch Set", brand: "Faber-Castell", category: "Pens", price: 34.99, img: "item images/images brands/faber/faber pen.jpg", short: "Professional graphite pencil range.", long: "Faber-Castell Graphite Set – Premium quality graphite pencils ranging from 2H to 8B. Superior break-resistant leads with consistent laydown. Essential for artists and designers." },
+            { id: 5, title: "Rhodia Dot Grid Notepad", brand: "Rhodia", category: "Notebooks", price: 18.99, img: "item images/images brands/rhodia/Rhodia Notebooks 2.jpg", short: "French dot grid with orange cover.", long: "Rhodia DotPad – Legendary French paper quality with 5mm dot grid. Smooth 80g Clairefontaine paper, microperforated sheets. The orange cover that professionals recognize worldwide." },
+            { id: 6, title: "Tombow ABT Dual Brush Pen Set", brand: "Tombow", category: "Markers", price: 45.99, img: "item images/images brands/tombow/tombow marker.jpg", short: "Dual-tip blendable art markers.", long: "Tombow Dual Brush Markers – Water-based ink markers with flexible brush tip and fine tip. Blendable, odorless, and perfect for hand lettering, manga, illustrations, and mixed media art." },
+            { id: 7, title: "Staedtler Triplus Fineliner Set", brand: "Staedtler", category: "Pens", price: 22.99, img: "item images/images brands/steadler/Staedtler pen.webp", short: "Triangular 0.3mm fineliner pens.", long: "Staedtler Triplus Fineliner – German-engineered superfine 0.3mm metal-clad tip. Ergonomic triangular barrel prevents hand fatigue. DRY SAFE technology allows days uncapped without drying." },
+            { id: 8, title: "Moleskine Premium Pen", brand: "Moleskine", category: "Pens", price: 32.99, img: "item images/images brands/moleskine/Moleskine Pens 7.webp", short: "Italian-designed premium writing pen.", long: "Moleskine Art Sketchbook – 165gsm heavy-weight, acid-free paper suitable for pencil, charcoal, and light wet media. Hard cover protection with thread-bound binding that lies flat." },
+            { id: 9, title: "Pilot Iroshizuku Blue Ink Bottle", brand: "Pilot", category: "Ink", price: 38.99, img: "item images/images brands/pilot/pilot blue ink.jpg", short: "50ml blue fountain pen ink.", long: "Pilot Iroshizuku Ink – 'Dew on Leaves' collection. Smooth-flowing fountain pen ink in stunning blue shade. 50ml bottle with built-in ink reservoir for easy filling." },
+            { id: 10, title: "Leuchtturm1917 Graphite Leads", brand: "Leuchtturm1917", category: "Accessories", price: 8.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917  accesaries.jpg", short: "Premium replacement graphite leads.", long: "Leuchtturm1917 Pen Loop – Self-adhesive elastic pen holder that attaches to any notebook. Fits most pen sizes. Available in multiple colors to match your notebook." },
+            { id: 11, title: "Faber-Castell Watercolor Brush Set", brand: "Faber-Castell", category: "Markers", price: 42.99, img: "item images/images brands/faber/faber marker.jpg", short: "Professional watercolor brushes.", long: "Faber-Castell Art Brushes – Professional-grade synthetic bristles for watercolor and acrylic. Includes round, flat, and filbert brushes. Spring-tempered handles with seamless ferrules." },
+            { id: 12, title: "Rhodia Webnotebook A5", brand: "Rhodia", category: "Notebooks", price: 26.99, img: "item images/images brands/rhodia/rhodia note book.webp", short: "A5 leatherette bound journal.", long: "Rhodia Webnotebook – Premium bound journal with Italian leatherette cover. Contains 192 pages of 90g Clairefontaine paper. Features elastic closure, ribbon marker, and inner pocket." },
+            { id: 13, title: "Tombow Mono Zero Precision Eraser", brand: "Tombow", category: "Accessories", price: 5.99, img: "item images/images brands/tombow/tombow accesaries 1.jpg", short: "Pin-point precision eraser.", long: "Tombow Mono Eraser – Japan's legendary non-abrasive eraser. Removes graphite cleanly without tearing or ghosting. Minimal residue and long-lasting performance." },
+            { id: 14, title: "Staedtler Pigment Liner Set", brand: "Staedtler", category: "Pens", price: 19.99, img: "item images/images brands/steadler/staedtler pen set.webp", short: "Waterproof pigment liner collection.", long: "Staedtler Pigment Liners – Waterproof, lightfast pigment ink for permanent results. Multiple tip sizes from 0.05mm to 0.8mm. Ideal for illustrations, journaling, and technical work." },
+            { id: 15, title: "Moleskine Leather Bussines card holder", brand: "Moleskine", category: "Accessories", price: 35.99, img: "item images/images brands/moleskine/moleskine accesioray.jpg", short: "Italian leather card holder.", long: "Moleskine Pen Case – Crafted from genuine Italian leather with elastic closure. Elegant storage for up to 3 writing instruments. Compact size fits in bags and pockets." },
+            { id: 16, title: "Pilot Iroshizuku Black Ink Bottle", brand: "Pilot", category: "Ink", price: 28.99, img: "item images/images brands/pilot/pilot black ink.webp", short: "Bamboo charcoal black ink 50ml.", long: "Pilot Iroshizuku Ink – 'Take-sumi' bamboo charcoal black. Deep, rich black with subtle undertones. Smooth flow and quick-drying formula in elegant 50ml glass bottle." },
+            { id: 17, title: "Leuchtturm1917 Premium ball pen ", brand: "Leuchtturm1917", category: "Pens", price: 39.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 Markers 1.jpg", short: "German-engineered ballpoint pen.", long: "Leuchtturm1917 Master – A4+ format (225 x 315mm) with 233 numbered pages. Includes index, 8 perforated sheets, page marker, and gusseted pocket. Perfect for architects and designers." },
+            { id: 18, title: "Faber-Castell Creative Studio Set", brand: "Faber-Castell", category: "Accessories", price: 52.99, img: "item images/images brands/faber/faber accesarioes.jpg", short: "Complete art accessory kit.", long: "Faber-Castell Studio Set – Comprehensive art supplies including erasers, sharpeners, blending stumps, and rulers. Professional-grade tools in elegant storage tin." },
+            { id: 19, title: "Rhodia Meeting Pad A5+", brand: "Rhodia", category: "Notebooks", price: 22.99, img: "item images/images brands/rhodia/rhodia notebook 1.jpg", short: "Pre-printed meeting notepad.", long: "Rhodia Meeting Book – Pre-printed pages with date fields, attendees list, action items, and notes section. Perforated for easy sharing. Premium Clairefontaine paper." },
+            { id: 20, title: "Tombow Fudenosuke Brush Pen", brand: "Tombow", category: "Brushes", price: 14.99, img: "item images/images brands/tombow/tombow brush.jpg", short: "Flexible calligraphy brush pen.", long: "Tombow Fudenosuke – Flexible yet firm brush tip perfect for modern calligraphy and hand lettering. Water-based pigment ink. Available in hard and soft tip variants." },
+            { id: 21, title: "Faber-Castell Artist Pen", brand: "Faber-Castell", category: "Pens", price: 9.99, img: "item images/images brands/faber/download.jpg", short: "Professional fine art pen.", long: "Faber-Castell Grip – Ergonomic triangular shape with patented Soft-Grip zone. Break-resistant leads in multiple grades. Perfect for extended writing and drawing sessions." },
+            { id: 22, title: "Pilot Planner Notebook", brand: "Pilot", category: "Notebooks", price: 31.99, img: "item images/images brands/pilot/pilot notebook.webp", short: "Weekly layout planner system.", long: "Pilot Weekly Planner – Functional weekly layout with time blocks, to-do lists, and notes sections. High-quality paper suitable for all pen types. Compact yet spacious design." },
+            { id: 23, title: "Pilot Calligraphy Brush Pen", brand: "Pilot", category: "Brushes", price: 16.99, img: "item images/images brands/pilot/Pilot Brushes 3.jpg", short: "Refillable calligraphy brush.", long: "Pilot Brush Pen – Authentic brush calligraphy experience with modern convenience. Refillable cartridge system. Flexible synthetic bristles respond like traditional brushes." },
+            { id: 24, title: "Leuchtturm1917 Pencil Loop", brand: "Leuchtturm1917", category: "Accessories", price: 7.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 accescaries.webp", short: "Self-adhesive pencil holder.", long: "Leuchtturm1917 Bookmark Set – Elegant metal bookmarks with magnetic closure. Ultra-thin design won't damage pages. Set of 3 in coordinating colors." },
+            { id: 25, title: "Faber-Castell Art Notebook A4", brand: "Faber-Castell", category: "Notebooks", price: 36.99, img: "item images/images brands/faber/faber notebook.webp", short: "A4 mixed media spiral notebook.", long: "Faber-Castell Art Notebook – 200gsm heavyweight paper suitable for wet and dry media. Spiral-bound for easy page-turning. Acid-free archival quality paper." },
+            { id: 26, title: "Faber-Castell Sketch Pad A5", brand: "Faber-Castell", category: "Notebooks", price: 12.99, img: "item images/images brands/faber/faber notebook2.webp", short: "A5 spiral-bound sketch pad.", long: "Faber-Castell Sketch Pad – 120gsm fine-grain paper ideal for pencil, charcoal, and ink. Spiral-bound with micro-perforated sheets. Sturdy backing board." },
+            { id: 27, title: "Tombow Mono Air Touch Tape", brand: "Tombow", category: "Accessories", price: 6.99, img: "item images/images brands/tombow/tombow accesaries.webp", short: "Refillable correction tape.", long: "Tombow Correction Tape – Instant, clean corrections with ergonomic design. Smooth application with no dry time needed. Compact refillable dispenser." },
+            { id: 28, title: "Tombow Mixed Media Paper Pad", brand: "Tombow", category: "Paper", price: 27.99, img: "item images/images brands/tombow/tombow paper.webp", short: "250gsm heavyweight paper pad.", long: "Tombow Paper Pad – 250gsm heavyweight paper designed for markers, watercolors, and mixed media. Minimal bleed-through. Cold-press texture." },
+            { id: 29, title: "Pilot Pocket Brush Pen", brand: "Pilot", category: "Brushes", price: 14.99, img: "item images/images brands/pilot/pilot brushes.jpg", short: "Compact portable brush pen.", long: "Pilot Pocket Brush – Compact brush pen with protective cap. Authentic brush feel with modern convenience. Refillable ink cartridge system." },
+            { id: 30, title: "Pilot Juice Gel Ink Pens", brand: "Pilot", category: "Markers", price: 11.99, img: "item images/images brands/pilot/pilot marker 1.jpg", short: "0.5mm gel pens in vivid colors.", long: "Pilot Juice – Ultra-smooth 0.5mm gel ink in brilliant colors. Quick-drying, fade-resistant formula. Comfortable rubber grip for extended writing." },
+            { id: 31, title: "Leuchtturm1917 Pen loop", brand: "Leuchtturm1917", category: "Accessories", price: 21.99, img: "item images/images brands/Leuchtturm1917/Leuchtturm1917 pen.webp", short: "Elastic pen holder accessory.", long: "Leuchtturm1917 Soft Cover – All the quality features of the hardcover in a flexible format. Numbered pages, table of contents, and premium 80gsm paper. Perfect for travel." }
         ];
 
         let state = {
@@ -1175,7 +1200,7 @@
             bottom.className = 'card-bottom';
 
             const price = document.createElement('div');
-            price.style.cssText = 'font-weight:900;font-size:1.2rem;color:var(--soft-white)';
+            price.style.cssText = 'font-weight:900;font-size:1.2rem;color:#e8f1ff';
             price.textContent = `${product.price.toFixed(2)}`;
 
             const actions = document.createElement('div');
@@ -1205,7 +1230,7 @@
             backTitle.textContent = product.title;
 
             const backMeta = document.createElement('div');
-            backMeta.style.cssText = 'color:var(--veil-shimmer);margin-bottom:10px';
+            backMeta.style.cssText = 'color:#a8c5e0;margin-bottom:10px';
             backMeta.textContent = `${product.brand} • ${product.category} • ${product.price.toFixed(2)}`;
 
             const desc = document.createElement('div');
@@ -1318,7 +1343,7 @@
 
                 const meta = document.createElement('div');
                 meta.className = 'ci-meta';
-                meta.innerHTML = `<div style="font-weight:700;margin-bottom:4px">${item.product.title}</div><div style="font-size:0.9rem;color:var(--veil-shimmer)">${item.product.brand}</div><div style="font-size:0.95rem;margin-top:8px;font-weight:600">${(item.product.price * item.qty).toFixed(2)} <span style="font-weight:400;color:var(--veil-shimmer)">(${item.qty} × ${item.product.price.toFixed(2)})</span></div>`;
+                meta.innerHTML = `<div style="font-weight:700;margin-bottom:4px">${item.product.title}</div><div style="font-size:0.9rem;color:#a8c5e0">${item.product.brand}</div><div style="font-size:0.95rem;margin-top:8px;font-weight:600">${(item.product.price * item.qty).toFixed(2)} <span style="font-weight:400;color:#a8c5e0">(${item.qty} × ${item.product.price.toFixed(2)})</span></div>`;
 
                 const actions = document.createElement('div');
                 actions.className = 'ci-actions';
