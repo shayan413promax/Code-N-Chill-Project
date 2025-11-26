@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -7,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | ARTISAN Essentials</title>
 
-    ```
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:wght@300;400&family=Poppins:wght@300;400;600&display=swap"
@@ -64,6 +62,13 @@
         .slide-right.active {
             opacity: 1;
             transform: translateX(0);
+        }
+
+        /* REMOVE ANIMATION EFFECT ONLY FOR HEADER */
+        header.reveal,
+        header.slide-left {
+            opacity: 1 !important;
+            transform: none !important;
         }
 
         /* LOGO */
@@ -161,14 +166,13 @@
         .icon-box,
         .feature-box {
             width: 260px;
-            background: rgb(255, 255, 255);
+            background: white;
             padding: 25px;
             border-radius: 12px;
             border: 1px solid #5981af;
             transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
 
-        /* LIGHT ZOOM + GLOW */
         .icon-box:hover,
         .feature-box:hover {
             transform: scale(1.06);
@@ -187,7 +191,7 @@
         .feature-section {
             padding: 70px 20px;
             background: var(--secondary);
-            color: #0D2440;
+            color: #2E5E99;
             text-align: center;
             margin-top: 50px;
         }
@@ -235,13 +239,11 @@
             color: var(--secondary);
         }
     </style>
-    ```
 
 </head>
 
 <body>
 
-    ```
     <!-- HEADER -->
     <header class="slide-left reveal">
         <div class="logo">
@@ -299,15 +301,13 @@
             <div class="feature-box reveal">
                 <i class="fa-solid fa-bolt"></i>
                 <h3>Reliable & Long-Lasting</h3>
-                <p>Designed with durability in mind. Every product is built to handle daily use while maintaining smooth
-                    performance over time.</p>
+                <p>Designed for durability. Built to handle daily use while staying smooth over time.</p>
             </div>
 
             <div class="feature-box reveal">
                 <i class="fa-solid fa-handshake-angle"></i>
                 <h3>We Listen to You</h3>
-                <p>Feedback shapes our design. We refine every detail based on what users need, ensuring our tools
-                    remain practical and purposeful.</p>
+                <p>Feedback shapes our design. We refine every detail based on what users need.</p>
             </div>
         </div>
     </section>
@@ -326,7 +326,7 @@
         <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="#">Products</a>
-            <a href="#">Privacy Policy</a>
+            <a href="privacy.html">Privacy Policy</a>
             <a href="contact.html">Contact</a>
         </div>
 
@@ -351,7 +351,6 @@
         window.addEventListener("scroll", reveal);
         window.onload = reveal;
     </script>
-    ```
 
 </body>
 

@@ -7,43 +7,81 @@
     <title>Privacy Policy | ARTISAN Essentials</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:wght@300;400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:wght@300;400&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        body {
-            margin: 0;
-            font-family: "Poppins", sans-serif;
-            background: url('https://i.imgur.com/O2dJQ4A.jpg') repeat;
-            background-size: cover;
-            color: #0f2b3c;
-            line-height: 1.7;
+        :root {
+            --bg: #E7F0FA;
+            --secondary: #7BA4D0;
+            --primary: #2E5E99;
+            --dark: #0D2440;
         }
 
-        /* HEADER */
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: Poppins, sans-serif;
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+
+        /* ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 1s ease;
+        }
+
+        .slide-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* FIX: Prevent header shifting (removes upper gap) */
         header {
-            background: #0e3a55;
-            padding: 20px 40px;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* HEADER DESIGN */
+        header {
+            background: var(--dark);
+            padding: 20px 45px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: white;
         }
 
-        nav a {
-            color: #e3f3ff;
-            margin-left: 25px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #ffdd57;
-        }
-
         /* LOGO */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         .artisan {
             font-family: 'Cinzel', serif;
             font-size: 1.8rem;
@@ -52,68 +90,130 @@
             background: linear-gradient(135deg, #d4a574 0%, #f5e6d3 50%, #d4a574 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            line-height: 1;
+            animation: shimmer 3s infinite;
+            background-size: 200% 200%;
         }
 
         .essentials {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.1rem;
+            font-weight: 300;
             letter-spacing: 6px;
             color: #a8c5e0;
+            text-transform: lowercase;
+            font-style: italic;
             margin-top: -5px;
         }
 
-        .logo-text {
-            display: flex;
-            flex-direction: column;
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
         }
 
-        /* PRIVACY CONTENT */
-        .policy-container {
+        nav a {
+            color: #d8e8f8;
+            margin-left: 25px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* PRIVACY SECTION */
+        .privacy-section {
+            padding: 70px 20px;
             max-width: 900px;
-            margin: 50px auto;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            backdrop-filter: blur(8px);
+            margin: 0 auto;
+            line-height: 1.8;
         }
 
-        .policy-container h1 {
-            font-family: 'Cinzel', serif;
+        .privacy-section h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 30px;
             text-align: center;
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #0e3a55;
+            font-weight: 600;
         }
 
-        .policy-container h2 {
-            margin-top: 30px;
-            color: #0e3a55;
+        .privacy-section h3 {
+            margin-top: 25px;
+            font-size: 1.3rem;
+            color: var(--secondary);
+        }
+
+        .privacy-section a {
+            color: var(--primary);
+            text-decoration: underline;
+            transition: 0.3s;
+        }
+
+        .privacy-section a:hover {
+            color: var(--secondary);
         }
 
         /* FOOTER */
         footer {
-            background: #0e3a55;
+            background: var(--dark);
             color: white;
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 40px;
+            padding: 45px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-social a {
+            color: var(--secondary);
+            font-size: 26px;
+            margin: 0 12px;
+            transition: 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: white;
         }
 
         .footer-links a {
             color: #cfeaff;
-            margin: 0 15px;
             text-decoration: none;
+            margin: 0 15px;
+            transition: 0.3s;
         }
 
         .footer-links a:hover {
-            color: #ffdd57;
+            color: var(--secondary);
         }
 
-        .footer-social a {
-            color: #ffdd57;
-            font-size: 26px;
-            margin: 0 12px;
+        /* BACK TO TOP */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        #backToTop:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
         }
     </style>
 </head>
@@ -122,9 +222,11 @@
 
     <!-- HEADER -->
     <header>
-        <div class="logo-text">
-            <div class="artisan">ARTISAN</div>
-            <div class="essentials">essentials</div>
+        <div class="logo">
+            <div class="logo-text">
+                <div class="artisan">ARTISAN</div>
+                <div class="essentials">ESSENTIALS</div>
+            </div>
         </div>
 
         <nav>
@@ -136,59 +238,45 @@
     </header>
 
     <!-- PRIVACY POLICY -->
-    <div class="policy-container">
-        <h1>Privacy Policy</h1>
-        <p>At <strong>ARTISAN Essentials</strong>, we are committed to protecting your personal information and ensuring a safe and enjoyable experience when browsing or shopping for stationery products through our website.</p>
+    <section class="privacy-section reveal">
+        <h2>Privacy Policy</h2>
 
-        <h2>1. Information We Collect</h2>
-        <p>We may collect the following information when you use our website:</p>
-        <ul>
-            <li>Personal details such as name, email, and phone number (only when you contact us).</li>
-            <li>Order-related information if you purchase any products.</li>
-            <li>Basic device and browser details for analytics and performance.</li>
-        </ul>
+        <p>At ARTISAN Essentials, your privacy is our priority. We are committed to protecting any information you
+            provide while using our website and services.</p>
 
-        <h2>2. How We Use Your Information</h2>
-        <p>Your data helps us provide a smooth, personalized experience. We use it for:</p>
-        <ul>
-            <li>Responding to your contact requests.</li>
-            <li>Processing and delivering your orders.</li>
-            <li>Improving our products and website performance.</li>
-            <li>Providing customer support and updates.</li>
-        </ul>
-
-        <h2>3. Sharing Your Information</h2>
-        <p>We do <strong>not</strong> sell, trade, or rent your personal information. Your data is only shared with:</p>
-        <ul>
-            <li>Trusted delivery or payment partners (only if you place an order).</li>
-            <li>Legal authorities if required by law.</li>
-        </ul>
-
-        <h2>4. Cookies & Tracking</h2>
-        <p>Our website may use cookies to improve loading speed and user experience. You can disable cookies anytime through your browser settings.</p>
-
-        <h2>5. Keeping Your Data Safe</h2>
-        <p>We use modern website security practices to protect your data. Although no online platform is 100% attack-proof, we actively safeguard your information from misuse.</p>
-
-        <h2>6. Your Rights</h2>
-        <p>You have the right to request:</p>
-        <ul>
-            <li>Removal of your saved data.</li>
-            <li>Details of what information we store.</li>
-            <li>Corrections to inaccurate information.</li>
-        </ul>
-
-        <h2>7. Contact Us</h2>
-        <p>If you have any questions regarding this Privacy Policy, you can contact us at:</p>
-        <p><strong>Email:</strong> support@artisanessentials.com  
-            <br><strong>Phone:</strong> 0000-0000000
+        <h3>1. Information We Collect</h3>
+        <p>We may collect personal information such as your name, email address, and any messages you send through our
+            contact form. We also collect non-personal information like device type, browser version, and visited pages.
         </p>
 
-        <p><em>Last Updated: January 2025</em></p>
-    </div>
+        <h3>2. How We Use Your Information</h3>
+        <p>Your information is used to improve user experience, respond to inquiries, enhance our products, and develop
+            better services. We never sell or trade your personal data.</p>
+
+        <h3>3. Cookies</h3>
+        <p>Our website uses cookies to understand your preferences and improve website performance. You can disable
+            cookies anytime in your browser settings.</p>
+
+        <h3>4. Data Security</h3>
+        <p>We take data protection seriously and use standard security measures to protect your information. However, no
+            digital system is completely foolproof.</p>
+
+        <h3>5. Third-Party Links</h3>
+        <p>Our site may contain links to external websites. We are not responsible for the privacy practices of other
+            platforms.</p>
+
+        <h3>6. Updates to This Policy</h3>
+        <p>This Privacy Policy may be updated occasionally. Any changes will appear on this page.</p>
+
+        <h3>Contact Us</h3>
+        <p>If you have any questions, feel free to <a href="contact.html">contact us</a>.</p>
+    </section>
+
+    <!-- BACK TO TOP -->
+    <button id="backToTop"><i class="fa fa-arrow-up"></i></button>
 
     <!-- FOOTER -->
-    <footer>
+    <footer class="reveal">
         <h3>ARTISAN Essentials</h3>
 
         <div class="footer-social">
@@ -205,8 +293,36 @@
             <a href="contact.html">Contact</a>
         </div>
 
-        <p style="margin-top:20px; font-size:14px;">© 2025 ARTISAN Essentials. All Rights Reserved.</p>
+        <p style="margin-top:20px; font-size:14px;">© 2025 ARTISAN Essentials. All rights reserved.</p>
     </footer>
 
+    <!-- SCRIPT -->
+    <script>
+        // Scroll reveal
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach((el) => {
+                let windowHeight = window.innerHeight;
+                let elTop = el.getBoundingClientRect().top;
+                if (elTop < windowHeight - 100) {
+                    el.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+
+        // Back to Top Button
+        const btn = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            btn.style.display = (window.scrollY > 200) ? "block" : "none";
+        });
+
+        btn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+
 </body>
+
 </html>
