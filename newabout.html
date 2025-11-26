@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | ARTISAN Essentials</title>
+
+    ```
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:wght@300;400&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* THEME COLORS */
+        :root {
+            --bg: #E7F0FA;
+            --secondary: #7BA4D0;
+            --primary: #2E5E99;
+            --dark: #0D2440;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: Poppins, sans-serif;
+            color: var(--dark);
+        }
+
+        /* ANIMATION BASE */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 1s ease;
+        }
+
+        .slide-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 1s ease;
+        }
+
+        .slide-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* LOGO */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .artisan {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #d4a574 0%, #f5e6d3 50%, #d4a574 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            line-height: 1;
+            animation: shimmer 3s infinite;
+            background-size: 200% 200%;
+        }
+
+        .essentials {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #a8c5e0;
+            text-transform: lowercase;
+            font-style: italic;
+            margin-top: -5px;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* HEADER */
+        header {
+            background: var(--dark);
+            padding: 20px 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        nav a {
+            color: #d8e8f8;
+            margin-left: 25px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* TOP SECTION */
+        .top-section {
+            padding: 70px 20px 40px;
+            text-align: center;
+        }
+
+        .top-section h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .icons-row {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+
+        /* BOX STYLING */
+        .icon-box,
+        .feature-box {
+            width: 260px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #d5e1ef;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        /* LIGHT ZOOM + GLOW */
+        .icon-box:hover,
+        .feature-box:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18),
+                0 0 20px rgba(255, 255, 255, 0.35);
+        }
+
+        .icon-box i,
+        .feature-box i {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* FEATURES SECTION */
+        .feature-section {
+            padding: 70px 20px;
+            background: var(--secondary);
+            color: #fff;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .feature-section h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .feature-row {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-social a {
+            color: var(--secondary);
+            font-size: 26px;
+            margin: 0 12px;
+            transition: 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: white;
+        }
+
+        .footer-links a {
+            color: #cfeaff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+    </style>
+    ```
+
+</head>
+
+<body>
+
+    ```
+    <!-- HEADER -->
+    <header class="slide-left reveal">
+        <div class="logo">
+            <div class="logo-text">
+                <div class="artisan">ARTISAN</div>
+                <div class="essentials">ESSENTIALS</div>
+            </div>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- TOP SECTION -->
+    <section class="top-section reveal">
+        <h2>Who We Are</h2>
+
+        <div class="icons-row">
+            <div class="icon-box reveal">
+                <i class="fa-solid fa-feather"></i>
+                <h3>Quality Materials</h3>
+                <p>We focus on paper, pens, and tools that feel right in your hands—simple, reliable, and durable.</p>
+            </div>
+
+            <div class="icon-box reveal">
+                <i class="fa-solid fa-lightbulb"></i>
+                <h3>Thoughtful Design</h3>
+                <p>Each product is made to support everyday work—students, artists, planners, and creators.</p>
+            </div>
+
+            <div class="icon-box reveal">
+                <i class="fa-solid fa-award"></i>
+                <h3>A Trusted Brand</h3>
+                <p>Thousands use ARTISAN tools daily, valuing consistency and honest craftsmanship.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="feature-section slide-right">
+        <h2>Why People Choose ARTISAN</h2>
+
+        <div class="feature-row">
+            <div class="feature-box reveal">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>Made for Creativity</h3>
+                <p>Crafted to inspire clear thinking and free-flowing ideas—ideal for sketching, journaling, planning,
+                    and everyday creativity.</p>
+            </div>
+
+            <div class="feature-box reveal">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Reliable & Long-Lasting</h3>
+                <p>Designed with durability in mind. Every product is built to handle daily use while maintaining smooth
+                    performance over time.</p>
+            </div>
+
+            <div class="feature-box reveal">
+                <i class="fa-solid fa-handshake-angle"></i>
+                <h3>We Listen to You</h3>
+                <p>Feedback shapes our design. We refine every detail based on what users need, ensuring our tools
+                    remain practical and purposeful.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="reveal">
+        <h3>ARTISAN Essentials</h3>
+
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Privacy Policy</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <p style="margin-top:20px; font-size:14px;">© 2025 ARTISAN Essentials. All rights reserved.</p>
+    </footer>
+
+    <!-- SCROLL ANIMATION SCRIPT -->
+    <script>
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal, .slide-left, .slide-right");
+
+            reveals.forEach((el) => {
+                let windowHeight = window.innerHeight;
+                let elementTop = el.getBoundingClientRect().top;
+
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
+    </script>
+    ```
+
+</body>
+
+</html>
