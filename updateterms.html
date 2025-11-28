@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Contact Us | Artisan Essentials</title>
+    <title>Terms & Conditions | Artisan Essentials</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
         rel="stylesheet">
@@ -168,126 +168,36 @@
             font-style: italic;
         }
 
-        .contact-container {
-            max-width: 1200px;
+        .content-section {
+            max-width: 1000px;
             margin: 60px auto;
             padding: 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
             animation: slideUp 1s ease forwards;
         }
 
-        .contact-card {
-            background: linear-gradient(145deg, rgba(30, 58, 95, 0.8), rgba(26, 38, 66, 0.9));
-            padding: 40px;
-            border-radius: 18px;
-            border: 1px solid rgba(107, 141, 214, 0.2);
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
-            transition: 0.4s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-8px);
-            border-color: #8bbdf7;
-            box-shadow: 0px 15px 40px rgba(139, 189, 247, 0.4);
-        }
-
-        .contact-title {
+        .section-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
             color: #8bbdf7;
+            margin-bottom: 20px;
         }
 
-        .contact-text {
+        .section-text {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.15rem;
+            line-height: 1.8;
             margin-bottom: 20px;
-            line-height: 1.7;
             color: #e8f1ff;
         }
 
-        form input,
-        form textarea {
-            width: 100%;
-            padding: 16px;
-            margin-bottom: 16px;
-            border-radius: 12px;
-            border: 1px solid rgba(139, 189, 247, 0.3);
-            background: rgba(26, 38, 66, 0.6);
-            color: #e8f1ff;
-            font-family: 'Cormorant Garamond';
-            font-size: 1.1rem;
-        }
-
-        form input:focus,
-        form textarea:focus {
-            outline: none;
-            border-color: #8bbdf7;
-            box-shadow: 0px 0px 10px rgba(139, 189, 247, 0.5);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #8bbdf7, #6ba7e6);
-            color: #0e223d;
-            font-weight: 700;
-            font-family: 'Cinzel';
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0px 6px 20px rgba(139, 189, 247, 0.4);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.15);
-        }
-
-        .cta-section {
-            text-align: center;
-            padding: 60px 40px;
-            margin-top: 40px;
-            background: linear-gradient(135deg, rgba(30, 58, 95, 0.8), rgba(26, 38, 66, 0.9));
-            border-top: 1px solid rgba(107, 141, 214, 0.2);
-        }
-
-        .cta-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            color: #e8f1ff;
-            margin-bottom: 20px;
-        }
-
-        .cta-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            color: #a8c5e0;
-            margin-bottom: 30px;
-        }
-
-        .cta-button {
-            text-decoration: none;
-            padding: 16px 40px;
-            background: linear-gradient(135deg, #8bbdf7, #6ba7e6);
-            color: #0e223d;
-            border-radius: 12px;
-            font-family: 'Cinzel';
-            font-weight: 700;
-            box-shadow: 0px 6px 20px rgba(139, 189, 247, 0.4);
-            transition: 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
+        .highlight {
+            color: #f5e6d3;
+            font-weight: 600;
         }
 
         @media(max-width:900px) {
-            .contact-container {
-                grid-template-columns: 1fr;
+            .content-section {
+                padding: 20px;
             }
         }
     </style>
@@ -305,49 +215,51 @@
                 </div>
             </div>
             <nav class="topnav">
+                <a href="index.html">Home</a>
                 <a href="shopnow.html">Shop</a>
-                <a href="updatecontact.html">Contact Us</a>
                 <a href="updateabout.html">About</a>
-                <a href="login.html">Login</a>
+                <a href="updatecontact.html">Contact</a>
             </nav>
         </header>
 
         ```
         <section class="hero-section">
-            <h1 class="hero-title">Contact Us</h1>
+            <h1 class="hero-title">Terms & Conditions</h1>
             <p class="hero-subtitle">
-                Questions, feedback, or assistance—our team is always ready to help you. Reach out and we'll respond
-                promptly.
+                Please read these terms carefully before using our stationery products and website.
             </p>
         </section>
 
-        <div class="contact-container">
-            <div class="contact-card">
-                <h2 class="contact-title">Get in Touch</h2>
-                <p class="contact-text">We're available to help with product inquiries, order assistance, or general
-                    questions about Artisan Essentials.</p>
-                <p class="contact-text"><strong>Email:</strong> artisanessentials@gmail.com</p>
-                <p class="contact-text"><strong>Phone:</strong> +92 317 288 2848</p>
-                <p class="contact-text"><strong>Address:</strong> North Nazimabad, Karachi, Pakistan</p>
-            </div>
+        <div class="content-section">
+            <h2 class="section-title">1. General</h2>
+            <p class="section-text">By using <span class="highlight">Artisan Essentials</span> products or website, you
+                agree to comply with our terms. These terms apply to all purchases, visits, and communications.</p>
 
-            <div class="contact-card">
-                <h2 class="contact-title">Send a Message</h2>
-                <form id="contactForm">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea rows="6" placeholder="Your Message" required></textarea>
-                    <button class="submit-btn" type="submit">Send Message</button>
-                </form>
-            </div>
+            <h2 class="section-title">2. Product Use</h2>
+            <p class="section-text">All stationery items are intended for personal or office use. Misuse, resale without
+                permission, or commercial reproduction is prohibited.</p>
+
+            <h2 class="section-title">3. Orders & Payment</h2>
+            <p class="section-text">Orders must be placed through our website. Payment is processed securely. We reserve
+                the right to refuse or cancel orders in case of fraud, incorrect details, or stock issues.</p>
+
+            <h2 class="section-title">4. Shipping & Delivery</h2>
+            <p class="section-text">We aim to deliver products within the stated timeframes. Artisan Essentials is not
+                liable for delays caused by external carriers or unforeseen events.</p>
+
+            <h2 class="section-title">5. Returns & Refunds</h2>
+            <p class="section-text">If you are unsatisfied with a product, please refer to our return policy. Refunds
+                are issued after inspection of returned items.</p>
+
+            <h2 class="section-title">6. Intellectual Property</h2>
+            <p class="section-text">All designs, images, and content are the property of <span class="highlight">Artisan
+                    Essentials</span>. Unauthorized use is prohibited.</p>
+
+            <h2 class="section-title">7. Limitation of Liability</h2>
+            <p class="section-text">We are not liable for any indirect, incidental, or consequential damages arising
+                from use of our products or website.</p>
         </div>
-
-        <section class="cta-section">
-            <h2 class="cta-title">Need Assistance?</h2>
-            <p class="cta-text">Whether browsing our collection or tracking an order, we're here for you every step of
-                the way.</p>
-            <a href="shopnow.html" class="cta-button">Explore Products</a>
-        </section>
+    </div>
     </div>
 
     <!-- Footer -->

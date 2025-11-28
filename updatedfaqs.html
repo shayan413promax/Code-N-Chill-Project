@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Contact Us | Artisan Essentials</title>
+    <title>FAQ | Artisan Essentials</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
         rel="stylesheet">
@@ -168,127 +168,39 @@
             font-style: italic;
         }
 
-        .contact-container {
-            max-width: 1200px;
+        .faq-section {
+            max-width: 1000px;
             margin: 60px auto;
             padding: 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
             animation: slideUp 1s ease forwards;
         }
 
-        .contact-card {
-            background: linear-gradient(145deg, rgba(30, 58, 95, 0.8), rgba(26, 38, 66, 0.9));
-            padding: 40px;
-            border-radius: 18px;
-            border: 1px solid rgba(107, 141, 214, 0.2);
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
-            transition: 0.4s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-8px);
-            border-color: #8bbdf7;
-            box-shadow: 0px 15px 40px rgba(139, 189, 247, 0.4);
-        }
-
-        .contact-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #8bbdf7;
-        }
-
-        .contact-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.15rem;
-            margin-bottom: 20px;
-            line-height: 1.7;
-            color: #e8f1ff;
-        }
-
-        form input,
-        form textarea {
-            width: 100%;
-            padding: 16px;
-            margin-bottom: 16px;
-            border-radius: 12px;
-            border: 1px solid rgba(139, 189, 247, 0.3);
-            background: rgba(26, 38, 66, 0.6);
-            color: #e8f1ff;
-            font-family: 'Cormorant Garamond';
-            font-size: 1.1rem;
-        }
-
-        form input:focus,
-        form textarea:focus {
-            outline: none;
-            border-color: #8bbdf7;
-            box-shadow: 0px 0px 10px rgba(139, 189, 247, 0.5);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #8bbdf7, #6ba7e6);
-            color: #0e223d;
-            font-weight: 700;
-            font-family: 'Cinzel';
-            border: none;
+        .faq-item {
+            margin-bottom: 25px;
+            border-radius: 15px;
+            background: rgba(26, 38, 66, 0.7);
+            padding: 20px;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0px 6px 20px rgba(139, 189, 247, 0.4);
         }
 
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.15);
+        .faq-item:hover {
+            background: rgba(107, 141, 214, 0.2);
         }
 
-        .cta-section {
-            text-align: center;
-            padding: 60px 40px;
-            margin-top: 40px;
-            background: linear-gradient(135deg, rgba(30, 58, 95, 0.8), rgba(26, 38, 66, 0.9));
-            border-top: 1px solid rgba(107, 141, 214, 0.2);
-        }
-
-        .cta-title {
+        .question {
             font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            color: #e8f1ff;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #8bbdf7;
+            margin-bottom: 10px;
         }
 
-        .cta-text {
+        .answer {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            color: #a8c5e0;
-            margin-bottom: 30px;
-        }
-
-        .cta-button {
-            text-decoration: none;
-            padding: 16px 40px;
-            background: linear-gradient(135deg, #8bbdf7, #6ba7e6);
-            color: #0e223d;
-            border-radius: 12px;
-            font-family: 'Cinzel';
-            font-weight: 700;
-            box-shadow: 0px 6px 20px rgba(139, 189, 247, 0.4);
-            transition: 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-        }
-
-        @media(max-width:900px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
+            font-size: 1.15rem;
+            color: #e8f1ff;
+            display: none;
+            line-height: 1.7;
         }
     </style>
     ```
@@ -305,49 +217,64 @@
                 </div>
             </div>
             <nav class="topnav">
+                <a href="index.html">Home</a>
                 <a href="shopnow.html">Shop</a>
-                <a href="updatecontact.html">Contact Us</a>
                 <a href="updateabout.html">About</a>
-                <a href="login.html">Login</a>
+                <a href="updatecontact.html">Contact</a>
             </nav>
         </header>
 
         ```
         <section class="hero-section">
-            <h1 class="hero-title">Contact Us</h1>
+            <h1 class="hero-title">Frequently Asked Questions</h1>
             <p class="hero-subtitle">
-                Questions, feedback, or assistance—our team is always ready to help you. Reach out and we'll respond
-                promptly.
+                Answers to the most common questions about our stationery products, shipping, and orders.
             </p>
         </section>
 
-        <div class="contact-container">
-            <div class="contact-card">
-                <h2 class="contact-title">Get in Touch</h2>
-                <p class="contact-text">We're available to help with product inquiries, order assistance, or general
-                    questions about Artisan Essentials.</p>
-                <p class="contact-text"><strong>Email:</strong> artisanessentials@gmail.com</p>
-                <p class="contact-text"><strong>Phone:</strong> +92 317 288 2848</p>
-                <p class="contact-text"><strong>Address:</strong> North Nazimabad, Karachi, Pakistan</p>
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="question">Q1: What types of stationery products do you offer?</div>
+                <div class="answer">We offer high-quality notebooks, journals, pens, markers, brushes, ink and premium
+                    writing accessories.</div>
             </div>
-
-            <div class="contact-card">
-                <h2 class="contact-title">Send a Message</h2>
-                <form id="contactForm">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea rows="6" placeholder="Your Message" required></textarea>
-                    <button class="submit-btn" type="submit">Send Message</button>
-                </form>
+            <div class="faq-item">
+                <div class="question">Q2: Do you ship internationally?</div>
+                <div class="answer">Yes, we ship worldwide. Shipping costs and delivery times vary depending on the
+                    destination.</div>
+            </div>
+            <div class="faq-item">
+                <div class="question">Q3: How can I track my order?</div>
+                <div class="answer">Once your order is shipped, you will receive a tracking number via email.</div>
+            </div>
+            <div class="faq-item">
+                <div class="question">Q4: What is your return policy?</div>
+                <div class="answer">We accept returns within 7 days of delivery for unused and undamaged products.
+                    Contact support for return instructions.</div>
+            </div>
+            <div class="faq-item">
+                <div class="question">Q5: Can I customize my stationery?</div>
+                <div class="answer">Yes! We offer customization for all of our products.</div>
+            </div>
+            <div class="faq-item">
+                <div class="question">Q6: How do I contact customer support?</div>
+                <div class="answer">You can reach us via email at support@artisanessentials.com or call +92 3172882848.
+                    We aim to respond within 24 hours.</div>
             </div>
         </div>
+    </div>
 
-        <section class="cta-section">
-            <h2 class="cta-title">Need Assistance?</h2>
-            <p class="cta-text">Whether browsing our collection or tracking an order, we're here for you every step of
-                the way.</p>
-            <a href="shopnow.html" class="cta-button">Explore Products</a>
-        </section>
+    <script>
+        const items = document.querySelectorAll('.faq-item');
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const ans = item.querySelector('.answer');
+                const currentlyVisible = ans.style.display === 'block';
+                document.querySelectorAll('.answer').forEach(a => a.style.display = 'none');
+                ans.style.display = currentlyVisible ? 'none' : 'block';
+            });
+        });
+    </script>
     </div>
 
     <!-- Footer -->
@@ -511,7 +438,6 @@
         });
     </script>
     ```
-
 </body>
 
 </html>
