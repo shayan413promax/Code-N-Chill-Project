@@ -1157,7 +1157,8 @@
                 <h3 id="docTitle" style="font-size:1.5rem">Product Documentation</h3>
                 <div style="display:flex;gap:12px;align-items:center">
                     <button id="downloadDoc" class="download-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                             <polyline points="7 10 12 15 17 10"></polyline>
                             <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -1176,7 +1177,7 @@
     <script>
         const BRANDS = ["Moleskine", "Leuchtturm1917", "Rhodia", "Pilot", "Faber-Castell", "Staedtler", "Tombow"];
         const CATEGORIES = ["Pens", "Markers", "Notebooks", "Brushes", "Ink", "Accessories", "Paper"];
-        
+
         // Products with document file paths
         const PRODUCTS = [
             { id: 1, title: "Moleskine Classic Hardcover Notebook", brand: "Moleskine", category: "Notebooks", price: 24.99, img: "item images/images brands/moleskine/moleskine note book.jpg", short: "Iconic Italian hardcover with elastic band.", long: "Moleskine Classic Notebook – The legendary notebook of artists and thinkers. Features ivory-colored paper, elastic closure band, ribbon bookmark, and expandable inner pocket. Perfect for writers, artists, and professionals.", rating: 4.5, reviews: 1200, sold: 5500, docFile: "1.docx" },
@@ -1260,12 +1261,12 @@
                 }
 
                 const arrayBuffer = await response.arrayBuffer();
-                
+
                 // Convert DOCX to HTML using mammoth.js
                 const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
-                
+
                 els.docContent.innerHTML = `<div class="doc-viewer">${result.value}</div>`;
-                
+
                 if (result.messages.length > 0) {
                     console.log('Conversion messages:', result.messages);
                 }
@@ -1283,8 +1284,8 @@
 
         function downloadDocument() {
             if (!state.currentDocProduct) return;
-            
-            const link =document.createElement('a');
+
+            const link = document.createElement('a');
             link.href = state.currentDocProduct.docFile;
             link.download = state.currentDocProduct.docFile.split('/').pop();
             link.click();
@@ -1298,7 +1299,7 @@
         // Event Listeners for Document Modal
         document.getElementById('closeDocModal').addEventListener('click', closeDocumentViewer);
         document.getElementById('downloadDoc').addEventListener('click', downloadDocument);
-        
+
         els.docModal.addEventListener('click', (e) => {
             if (e.target === els.docModal) closeDocumentViewer();
         });
@@ -1702,4 +1703,5 @@
         renderCart();
     </script>
 </body>
+
 </html>
