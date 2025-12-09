@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artisan Essentials - Account</title>
+    <title>Artisan Essentials - Login</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
         rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -109,169 +111,85 @@
         }
 
         .container {
-            position: relative;
-            z-index: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 102.5vh;
+            height: 102vh;
             padding: 20px;
-            perspective: 2000px;
         }
 
-        .card-wrapper {
-            position: relative;
-            width: 480px;
-            height: 500px;
-            transform-style: preserve-3d;
-            transition: transform 1.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-        }
-
-        .card-wrapper.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .auth-card {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-
-            background: linear-gradient(145deg,
-                    rgba(18, 40, 70, 0.72),
-                    rgba(32, 70, 115, 0.58),
-                    rgba(60, 110, 165, 0.68));
-
-            backdrop-filter: blur(25px);
-            border-radius: 24px;
+        .login-card {
+            width: 420px;
+            background: rgba(30, 60, 110, 0.65);
             padding: 40px 35px;
-
+            border-radius: 22px;
+            backdrop-filter: blur(20px);
             box-shadow:
                 0 0 25px rgba(120, 180, 255, 0.5),
-                0 0 45px rgba(80, 140, 210, 0.4),
-                0 0 70px rgba(60, 110, 165, 0.5),
-                inset 0 0 12px rgba(150, 200, 255, 0.6);
-
-            backface-visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+                0 0 70px rgba(60, 110, 165, 0.5);
         }
-
-        .signup-side {
-            transform: rotateY(0deg);
-        }
-
-        .login-side {
-            transform: rotateY(180deg);
-        }
-
 
         .form-group {
             margin-bottom: 18px;
-            position: relative;
         }
 
         .form-group label {
-            display: block;
             color: rgba(255, 255, 255, 0.95);
-            font-size: 13px;
             margin-bottom: 6px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+            font-size: 13px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(150, 200, 255, 0.4);
+            padding: 12px;
             border-radius: 12px;
-            color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(150, 200, 255, 0.4);
+            color: white;
             font-size: 14px;
-            transition: all 0.3s ease;
             outline: none;
+            transition: 0.3s;
         }
 
         .form-group input:focus {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(120, 180, 255, 1);
-            box-shadow:
-                0 0 12px rgba(120, 180, 255, 0.8),
-                0 0 22px rgba(80, 140, 210, 0.7);
-            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.28);
+            border-color: rgb(120, 180, 255);
+            transform: scale(1.03);
         }
 
         .submit-btn {
             width: 100%;
-            padding: 13px;
+            padding: 12px;
+            border-radius: 12px;
             background: linear-gradient(135deg, #8bbdf7, #6ba7e6);
             border: none;
-            border-radius: 12px;
-            color: #0e223d;
-            font-size: 15px;
-            font-weight: 600;
-            font-family: 'Cinzel', serif;
-            letter-spacing: 1.5px;
+            font-family: 'Cinzel';
+            font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 4px 18px rgba(120, 180, 255, 0.5);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
+            transition: 0.3s;
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(120, 180, 255, 0.7);
+            box-shadow: 0 4px 20px rgba(120, 180, 255, 0.7);
         }
 
         .switch-link {
-            margin-top: 15px;
+            margin-top: 12px;
             text-align: center;
-            color: rgba(255, 255, 255, 0.8);
+            color: #bdd7ff;
         }
 
         .switch-link a {
-            color: #8bbdf7;
+            color: #9fc9ff;
             font-weight: 600;
-            cursor: pointer;
-        }
-
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(120, 180, 255, 0.55);
-            border-radius: 50%;
-            animation: float 3s infinite ease-in-out;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                opacity: 0;
-                transform: translateY(0) translateX(0);
-            }
-
-            50% {
-                opacity: 1;
-            }
         }
     </style>
 </head>
 
 <body>
-    <video id="bg-video" autoplay muted loop playsinline>
+
+    <video id="bg-video" autoplay muted loop>
         <source src="login1-vmake.mp4" type="video/mp4">
     </video>
 
@@ -281,280 +199,68 @@
     </div>
 
     <div class="overlay"></div>
-    <div class="particles" id="particles"></div>
 
     <div class="container">
-        <div class="card-wrapper" id="cardWrapper">
+        <div class="login-card">
 
-
-            <div class="auth-card signup-side">
-                <div class="form-content">
-                    <div id="successBox"
-                        style="display:none; background:rgba(120,180,255,0.25); border:1px solid rgba(150,200,255,0.4); color:#b5d9ff; padding:10px; border-radius:10px; margin-bottom:12px; text-align:center; font-size:14px;">
-                    </div>
-                    <div id="errorBox"
-                        style="display:none; background:rgba(255,120,120,0.25); border:1px solid rgba(255,150,150,0.4); color:#ffbcbc; padding:10px; border-radius:10px; margin-bottom:12px; text-align:center; font-size:14px;">
-                    </div>
-                    <form id="signupForm">
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" id="fullname" placeholder="Enter your full name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" id="signupEmail" placeholder="Enter your email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" id="signupPassword" placeholder="Create a password" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Create Account</button>
-                    </form>
-
-                    <div class="switch-link">Already have an account? <a id="switchToLogin">Log In</a></div>
-                </div>
+            <div id="errorBox"
+                style="display:none; background:rgba(255,120,120,0.25); border:1px solid rgba(255,150,150,0.4); color:#ffbcbc; padding:10px; border-radius:10px; margin-bottom:12px; text-align:center; font-size:14px;">
             </div>
 
+            <form id="loginForm">
 
-            <div class="auth-card login-side">
-                <div class="form-content">
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" id="loginEmail" placeholder="Enter your email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" id="loginPassword" placeholder="Enter your password" required>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Log In</button>
-                    </form>
-
-                    <div class="switch-link">Don't have an account? <a id="switchToSignup">Sign Up</a></div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
                 </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+
+            <div class="switch-link">
+                Don't have an account?
+                <a href="Signup.html">Sign Up</a>
             </div>
 
         </div>
     </div>
+
     <script>
+        // AUTO-REDIRECT IF ALREADY LOGGED IN
+        if (sessionStorage.getItem("loggedInUser")) {
+            window.location.href = "home.html";
+        }
+
         $(document).ready(function () {
 
-            // ==============================
-            // SIGNUP WITH SESSION STORAGE
-            // ==============================
-            $('#signupForm').on('submit', function (e) {
+            $("#loginForm").on("submit", function (e) {
                 e.preventDefault();
 
-                const fullname = $('#fullname').val().trim();
-                const email = $('#signupEmail').val().trim();
-                const password = $('#signupPassword').val();
-                const confirmPassword = $('#confirmPassword').val();
+                const email = $("#loginEmail").val().trim();
+                const pass = $("#loginPassword").val().trim();
 
-                const $success = $('#successBox');
-                const $error = $('#errorBox');
-
-                $success.hide();
-                $error.hide();
-
-                if (!fullname || !email || !password) {
-                    $error.text('Please fill all fields.').fadeIn();
+                if (!email || !pass) {
+                    $("#errorBox").text("Please enter email & password!").fadeIn();
                     return;
                 }
 
-                if (password !== confirmPassword) {
-                    $error.text('Passwords do not match!').fadeIn();
+                if (pass.length < 6) {
+                    $("#errorBox").text("Password must be at least 6 characters!").fadeIn();
                     return;
                 }
 
-                // 🔥 Save user to session storage
-                sessionStorage.setItem("userFullname", fullname);
-                sessionStorage.setItem("userEmail", email);
-                sessionStorage.setItem("userPassword", password);
+                // STORE LOGIN SESSION
+                sessionStorage.setItem("loggedInUser", email);
 
-                sessionStorage.setItem("isLoggedIn", "true");
-
-                $success.text("Account Created Successfully!").fadeIn();
-
+                // REDIRECT
                 setTimeout(() => {
                     window.location.href = "home.html";
-                }, 1200);
-            });
-
-            // ==============================
-            // LOGIN WITH SESSION STORAGE
-            // ==============================
-            $('#loginForm').on('submit', function (e) {
-                e.preventDefault();
-
-                const loginEmail = $('#loginEmail').val().trim();
-                const loginPassword = $('#loginPassword').val();
-
-                const storedEmail = sessionStorage.getItem("userEmail");
-                const storedPassword = sessionStorage.getItem("userPassword");
-
-                const $success = $('#successBox');
-                const $error = $('#errorBox');
-
-                $success.hide();
-                $error.hide();
-
-                if (!loginEmail || !loginPassword) {
-                    $error.text('Enter both fields.').fadeIn();
-                    return;
-                }
-
-                // 🔥 login check
-                if (loginEmail === storedEmail && loginPassword === storedPassword) {
-
-                    sessionStorage.setItem("isLoggedIn", "true");
-
-                    $success.text("Login Successful!").fadeIn();
-
-                    setTimeout(() => {
-                        window.location.href = "home.html";
-                    }, 1000);
-
-                } else {
-                    $error.text("Invalid email or password!").fadeIn();
-                }
-            });
-
-        });
-
-
-        $(document).ready(function () {
-
-            const vid = document.getElementById('bg-video');
-            if (vid) {
-                try { vid.playbackRate = 1.35; } catch (e) { }
-
-                try { vid.play(); } catch (e) { }
-            }
-
-
-            function createParticles() {
-                const p = $('#particles');
-                p.empty();
-                for (let i = 0; i < 30; i++) {
-                    const d = $('<div class="particle"></div>');
-                    d.css({
-                        left: (Math.random() * 100) + '%',
-                        top: (Math.random() * 100) + '%',
-                        animationDelay: (Math.random() * 3) + 's',
-                        animationDuration: (3 + Math.random() * 4) + 's'
-                    });
-                    p.append(d);
-                }
-            }
-
-            createParticles();
-
-
-            $('#switchToLogin').on('click', function (e) {
-                e.preventDefault();
-                $('#cardWrapper').addClass('flipped');
-            });
-
-            $('#switchToSignup').on('click', function (e) {
-                e.preventDefault();
-                $('#cardWrapper').removeClass('flipped');
-            });
-
-
-            const $success = $('#successBox');
-            const $error = $('#errorBox');
-
-            $('#signupForm').on('submit', function (e) {
-                e.preventDefault();
-                $success.hide();
-                $error.hide();
-
-                const fullname = $('#fullname').val().trim();
-                const email = $('#signupEmail').val().trim();
-                const password = $('#signupPassword').val();
-                const confirmPassword = $('#confirmPassword').val();
-                const $btn = $(this).find('.submit-btn');
-                const originalText = $btn.text();
-
-                if (!fullname || !email) {
-                    $error.text('Please fill all required fields.').fadeIn();
-                    return;
-                }
-
-                if (password !== confirmPassword) {
-                    $error.text('Passwords do not match!').fadeIn();
-                    return;
-                }
-
-                if (password.length < 6) {
-                    $error.text('Password must be at least 6 characters!').fadeIn();
-                    return;
-                }
-
-                $btn.text('Creating Account...').prop('disabled', true);
-
-                setTimeout(function () {
-                    $success.text('Welcome to Artisan Essentials, ' + fullname + '!').fadeIn();
-                    $btn.text(originalText).prop('disabled', false);
-
-                    setTimeout(function () {
-                        $('#signupForm')[0].reset();
-                        $success.fadeOut();
-
-
-                        setTimeout(function () {
-                            window.location.href = "home.html";
-                        }, 300);
-
-                    }, 1800);
-
-                }, 1200);
-            });
-
-
-            $('#loginForm').on('submit', function (e) {
-                e.preventDefault();
-                $success.hide();
-                $error.hide();
-
-                const email = $('#loginEmail').val().trim();
-                const password = $('#loginPassword').val();
-                const $btn = $(this).find('.submit-btn');
-                const originalText = $btn.text();
-
-                if (!email || !password) {
-                    $error.text('Please enter email and password.').fadeIn();
-                    return;
-                }
-
-                if (password.length < 6) {
-                    $error.text('Invalid password!').fadeIn();
-                    return;
-                }
-
-                $btn.text('Logging In...').prop('disabled', true);
-
-                setTimeout(function () {
-                    $success.text('Welcome back to Artisan Essentials!').fadeIn();
-                    $btn.text(originalText).prop('disabled', false);
-
-
-                    setTimeout(function () {
-                        window.location.href = "home.html";
-                    }, 1500);
-
-                }, 1000);
-
+                }, 800);
             });
 
         });
