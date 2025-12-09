@@ -224,6 +224,29 @@
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.6);
         }
 
+        /* Compare Button Style */
+        .compare-btn {
+            background: linear-gradient(135deg, #7c2d99, #5a2d99);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 45, 153, 0.4);
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .compare-btn:hover {
+            filter: brightness(1.2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 45, 153, 0.6);
+        }
+
         .main {
             display: flex;
             gap: 20px;
@@ -583,6 +606,39 @@
             box-shadow: 0 0 20px rgba(139, 189, 247, 0.5);
         }
 
+        /* Compare Button on Card */
+        .compare-card-btn {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            background: rgba(30, 58, 95, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 45, 153, 0.5);
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.3s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a8c5e0;
+        }
+
+        .compare-card-btn:hover {
+            background: rgba(124, 45, 153, 0.4);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(124, 45, 153, 0.5);
+        }
+
+        .compare-card-btn.active {
+            background: linear-gradient(135deg, #7c2d99, #5a2d99);
+            border-color: #f5e6d3;
+            color: #f5e6d3;
+        }
+
         .card-back {
             transform: rotateY(180deg);
             padding: 20px;
@@ -659,6 +715,60 @@
             display: flex;
             flex-direction: column;
         }
+
+        /* Comparison Table Style */
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 5px;
+            font-size: 0.95rem;
+            table-layout: fixed;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(107, 141, 214, 0.2);
+            vertical-align: top;
+        }
+
+        .comparison-table th {
+            background: rgba(45, 90, 123, 0.6);
+            color: #f5e6d3;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .comparison-table td:first-child {
+            background: rgba(30, 58, 95, 0.9);
+            color: #8bbdf7;
+            font-weight: 600;
+            width: 150px;
+            position: sticky;
+            left: 0;
+            z-index: 5;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(45, 90, 123, 0.3);
+        }
+
+        .comparison-table .spec-cell {
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .comparison-table .star-cell {
+            color: #FFD700;
+            letter-spacing: 1px;
+        }
+
 
         .modal-header {
             display: flex;
@@ -1122,6 +1232,15 @@
                             <option value="low">Sort By: Price (Low to High)</option>
                             <option value="high">Sort By: Price (High to Low)</option>
                         </select>
+                        <button class="compare-btn" id="compareBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M3 3v18h18" />
+                                <path d="M18.7 8l-3 3-2-2-3 3-3-3" />
+                                <path d="M15 15l2 2 3-3-3-3" />
+                            </svg> Compare (<span id="compareBadge">0</span>)
+                        </button>
                     </div>
                     <input type="search" class="search-input" id="searchInput" placeholder="Search products...">
                 </div>
@@ -1150,14 +1269,14 @@
         </div>
     </div>
 
-    <!-- Document Viewer Modal -->
     <div class="modal" id="docModal">
         <div class="modal-card">
             <div class="modal-header">
                 <h3 id="docTitle" style="font-size:1.5rem">Product Documentation</h3>
                 <div style="display:flex;gap:12px;align-items:center">
                     <button id="downloadDoc" class="download-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                             <polyline points="7 10 12 15 17 10"></polyline>
                             <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -1173,10 +1292,22 @@
         </div>
     </div>
 
+    <div class="modal" id="compareModal">
+        <div class="modal-card" style="width: min(1200px, 98%);">
+            <div class="modal-header">
+                <h2 style="color:white;">Product Comparison</h2>
+                <button class="corner-icon" id="closeCompareModal"
+                    style="position:static; transform:none; color:#ff6b6b; font-size: 30px;">&times;</button>
+            </div>
+            <div class="modal-content" id="compareContent">
+            </div>
+        </div>
+    </div>
+
     <script>
         const BRANDS = ["Moleskine", "Leuchtturm1917", "Rhodia", "Pilot", "Faber-Castell", "Staedtler", "Tombow"];
         const CATEGORIES = ["Pens", "Markers", "Notebooks", "Brushes", "Ink", "Accessories", "Paper"];
-        
+
         // Products with document file paths
         const PRODUCTS = [
             { id: 1, title: "Moleskine Classic Hardcover Notebook", brand: "Moleskine", category: "Notebooks", price: 24.99, img: "item images/images brands/moleskine/moleskine note book.jpg", short: "Iconic Italian hardcover with elastic band.", long: "Moleskine Classic Notebook – The legendary notebook of artists and thinkers. Features ivory-colored paper, elastic closure band, ribbon bookmark, and expandable inner pocket. Perfect for writers, artists, and professionals.", rating: 4.5, reviews: 1200, sold: 5500, docFile: "1.docx" },
@@ -1220,6 +1351,7 @@
             searchTerm: '',
             sort: 'default',
             cart: {},
+            compareList: [], // NEW: List of product IDs for comparison
             currentDocProduct: null
         };
 
@@ -1243,7 +1375,12 @@
             docModal: document.getElementById('docModal'),
             docTitle: document.getElementById('docTitle'),
             docContent: document.getElementById('docContent'),
-            downloadDoc: document.getElementById('downloadDoc')
+            downloadDoc: document.getElementById('downloadDoc'),
+            compareBtn: document.getElementById('compareBtn'), // NEW
+            compareBadge: document.getElementById('compareBadge'), // NEW
+            compareModal: document.getElementById('compareModal'), // NEW
+            closeCompareModal: document.getElementById('closeCompareModal'), // NEW
+            compareContent: document.getElementById('compareContent'), // NEW
         };
 
         // Document Viewer Functions
@@ -1260,12 +1397,12 @@
                 }
 
                 const arrayBuffer = await response.arrayBuffer();
-                
+
                 // Convert DOCX to HTML using mammoth.js
                 const result = await mammoth.convertToHtml({ arrayBuffer: arrayBuffer });
-                
+
                 els.docContent.innerHTML = `<div class="doc-viewer">${result.value}</div>`;
-                
+
                 if (result.messages.length > 0) {
                     console.log('Conversion messages:', result.messages);
                 }
@@ -1283,8 +1420,8 @@
 
         function downloadDocument() {
             if (!state.currentDocProduct) return;
-            
-            const link =document.createElement('a');
+
+            const link = document.createElement('a');
             link.href = state.currentDocProduct.docFile;
             link.download = state.currentDocProduct.docFile.split('/').pop();
             link.click();
@@ -1298,7 +1435,7 @@
         // Event Listeners for Document Modal
         document.getElementById('closeDocModal').addEventListener('click', closeDocumentViewer);
         document.getElementById('downloadDoc').addEventListener('click', downloadDocument);
-        
+
         els.docModal.addEventListener('click', (e) => {
             if (e.target === els.docModal) closeDocumentViewer();
         });
@@ -1307,6 +1444,72 @@
         function openModal(product) {
             // Open document viewer instead of the old modal
             openDocumentViewer(product);
+        }
+
+        // --- COMPARISON LOGIC (NEW) ---
+        function toggleCompare(productId) {
+            const index = state.compareList.indexOf(productId);
+            if (index > -1) {
+                state.compareList.splice(index, 1);
+            } else {
+                if (state.compareList.length >= 4) {
+                    showCartMessage("Maximum 4 items can be compared.", 'error');
+                    return false;
+                }
+                state.compareList.push(productId);
+            }
+            updateCompareButtonText();
+            // Re-render products to update card compare button state
+            renderProducts();
+            return true;
+        }
+
+        function updateCompareButtonText() {
+            const count = state.compareList.length;
+            els.compareBadge.textContent = count;
+            // els.compareBtn.textContent = `Compare (${count})`;
+        }
+
+        function openCompareModal() {
+            if (state.compareList.length < 2) {
+                els.compareContent.innerHTML = `<div class="error-message" style="color:#8bbdf7;">Please select at least 2 items (max 4) to compare.</div>`;
+                els.compareModal.classList.add('show');
+                return;
+            }
+
+            const productsToCompare = state.compareList.map(id => state.allProducts.find(p => p.id === id));
+
+            // Create the Comparison Table
+            let tableHTML = `<table class="comparison-table"><thead><tr><th>Feature</th>`;
+            // Column headers (Product Titles)
+            productsToCompare.forEach(p => {
+                tableHTML += `<th>${p.title} (${p.brand})</th>`;
+            });
+            tableHTML += `</tr></thead><tbody>`;
+
+            // Comparison data rows (Rating, Sold, Price, Specification)
+            const comparisonFeatures = [
+                { key: 'rating', label: 'Rating', formatter: getStarHTML, class: 'star-cell' },
+                { key: 'sold', label: 'Units Sold', formatter: (val) => val.toLocaleString() },
+                { key: 'price', label: 'Price', formatter: (val) => `$${val.toFixed(2)}` },
+                { key: 'category', label: 'Category' },
+                { key: 'long', label: 'Specification', class: 'spec-cell' }
+            ];
+
+            comparisonFeatures.forEach(feature => {
+                tableHTML += `<tr><td><strong>${feature.label}</strong></td>`;
+                productsToCompare.forEach(p => {
+                    const value = p[feature.key];
+                    const formattedValue = feature.formatter ? feature.formatter(value) : value;
+                    const cellClass = feature.class ? `class="${feature.class}"` : '';
+                    tableHTML += `<td ${cellClass}>${formattedValue}</td>`;
+                });
+                tableHTML += `</tr>`;
+            });
+
+            tableHTML += `</tbody></table>`;
+            els.compareContent.innerHTML = tableHTML;
+            els.compareModal.classList.add('show');
         }
 
         // --- FILTER & SORT LOGIC ---
@@ -1383,6 +1586,19 @@
             infoBtn.onclick = (e) => {
                 e.stopPropagation();
                 inner.classList.toggle('flipped');
+            };
+
+            // NEW: Compare Button on Card
+            const compareBtn = document.createElement('button');
+            compareBtn.className = 'compare-card-btn' + (state.compareList.includes(product.id) ? ' active' : '');
+            compareBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.99H20M4 9.01H20M12 4v16"/></svg>`;
+
+            compareBtn.onclick = (e) => {
+                e.stopPropagation();
+                const wasAdded = toggleCompare(product.id);
+                if (wasAdded) {
+                    compareBtn.classList.toggle('active', state.compareList.includes(product.id));
+                }
             };
 
             const imgWrap = document.createElement('div');
@@ -1470,6 +1686,7 @@
             imgWrap.appendChild(img);
             front.appendChild(imgWrap);
             front.appendChild(infoBtn);
+            front.appendChild(compareBtn); // NEW: Compare button on the card
 
             actions.appendChild(moreBtn);
             actions.appendChild(addBtn);
@@ -1686,9 +1903,22 @@
             });
         }
 
+        // Compare Button Listener (NEW)
+        if (els.compareBtn) {
+            els.compareBtn.addEventListener('click', openCompareModal);
+        }
+
+        // Close Compare Modal Listener (NEW)
+        if (els.closeCompareModal) {
+            els.closeCompareModal.addEventListener('click', () => {
+                els.compareModal.classList.remove('show');
+            });
+        }
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeDocumentViewer();
+                els.compareModal.classList.remove('show'); // NEW: Close comparison modal
                 els.cartSidebar.classList.add('hidden');
                 els.mainArea.classList.remove('cart-open');
                 els.leftFilter.classList.remove('active');
@@ -1700,6 +1930,8 @@
         loadCart();
         applyFilters();
         renderCart();
+        updateCompareButtonText(); // NEW: Initialize compare button text
     </script>
 </body>
+
 </html>

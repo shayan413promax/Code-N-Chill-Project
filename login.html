@@ -346,8 +346,92 @@
 
         </div>
     </div>
-
     <script>
+        $(document).ready(function () {
+
+            // ==============================
+            // SIGNUP WITH SESSION STORAGE
+            // ==============================
+            $('#signupForm').on('submit', function (e) {
+                e.preventDefault();
+
+                const fullname = $('#fullname').val().trim();
+                const email = $('#signupEmail').val().trim();
+                const password = $('#signupPassword').val();
+                const confirmPassword = $('#confirmPassword').val();
+
+                const $success = $('#successBox');
+                const $error = $('#errorBox');
+
+                $success.hide();
+                $error.hide();
+
+                if (!fullname || !email || !password) {
+                    $error.text('Please fill all fields.').fadeIn();
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    $error.text('Passwords do not match!').fadeIn();
+                    return;
+                }
+
+                // 🔥 Save user to session storage
+                sessionStorage.setItem("userFullname", fullname);
+                sessionStorage.setItem("userEmail", email);
+                sessionStorage.setItem("userPassword", password);
+
+                sessionStorage.setItem("isLoggedIn", "true");
+
+                $success.text("Account Created Successfully!").fadeIn();
+
+                setTimeout(() => {
+                    window.location.href = "home.html";
+                }, 1200);
+            });
+
+            // ==============================
+            // LOGIN WITH SESSION STORAGE
+            // ==============================
+            $('#loginForm').on('submit', function (e) {
+                e.preventDefault();
+
+                const loginEmail = $('#loginEmail').val().trim();
+                const loginPassword = $('#loginPassword').val();
+
+                const storedEmail = sessionStorage.getItem("userEmail");
+                const storedPassword = sessionStorage.getItem("userPassword");
+
+                const $success = $('#successBox');
+                const $error = $('#errorBox');
+
+                $success.hide();
+                $error.hide();
+
+                if (!loginEmail || !loginPassword) {
+                    $error.text('Enter both fields.').fadeIn();
+                    return;
+                }
+
+                // 🔥 login check
+                if (loginEmail === storedEmail && loginPassword === storedPassword) {
+
+                    sessionStorage.setItem("isLoggedIn", "true");
+
+                    $success.text("Login Successful!").fadeIn();
+
+                    setTimeout(() => {
+                        window.location.href = "home.html";
+                    }, 1000);
+
+                } else {
+                    $error.text("Invalid email or password!").fadeIn();
+                }
+            });
+
+        });
+
+
         $(document).ready(function () {
 
             const vid = document.getElementById('bg-video');
