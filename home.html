@@ -469,5 +469,13 @@
         </div>
     </div>
 </body>
+<script>
+    if (sessionStorage.getItem("isLoggedIn") === "true") {
+        const loginBtn = document.querySelector(".login-btn");
+        loginBtn.innerText = "Account";
+        loginBtn.setAttribute("href", "account.html");
+    }
+</script>
+
 
 </html>

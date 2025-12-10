@@ -322,9 +322,9 @@
                     <div class="switch-link">Already have an account? <a href="login.html">Log In</a></div>
                 </div>
             </div>
-            </div>
-
         </div>
+
+    </div>
     </div>
     <script>
         $(document).ready(function () {
@@ -357,14 +357,13 @@
                 sessionStorage.setItem("userEmail", email);
                 sessionStorage.setItem("userPassword", password);
 
-                sessionStorage.setItem("isLoggedIn", "true");
-
                 $success.text("Account Created Successfully!").fadeIn();
 
                 setTimeout(() => {
-                    window.location.href = "home.html";
+                    window.location.href = "login.html";
                 }, 1200);
             });
+
 
             $('#loginForm').on('submit', function (e) {
                 e.preventDefault();
@@ -430,83 +429,83 @@
             }
 
 
-                const fullname = $('#fullname').val().trim();
-                const email = $('#signupEmail').val().trim();
-                const password = $('#signupPassword').val();
-                const confirmPassword = $('#confirmPassword').val();
-                const $btn = $(this).find('.submit-btn');
-                const originalText = $btn.text();
+            const fullname = $('#fullname').val().trim();
+            const email = $('#signupEmail').val().trim();
+            const password = $('#signupPassword').val();
+            const confirmPassword = $('#confirmPassword').val();
+            const $btn = $(this).find('.submit-btn');
+            const originalText = $btn.text();
 
-                if (!fullname || !email) {
-                    $error.text('Please fill all required fields.').fadeIn();
-                    return;
-                }
+            if (!fullname || !email) {
+                $error.text('Please fill all required fields.').fadeIn();
+                return;
+            }
 
-                if (password !== confirmPassword) {
-                    $error.text('Passwords do not match!').fadeIn();
-                    return;
-                }
+            if (password !== confirmPassword) {
+                $error.text('Passwords do not match!').fadeIn();
+                return;
+            }
 
-                if (password.length < 6) {
-                    $error.text('Password must be at least 6 characters!').fadeIn();
-                    return;
-                }
+            if (password.length < 6) {
+                $error.text('Password must be at least 6 characters!').fadeIn();
+                return;
+            }
 
-                $btn.text('Creating Account...').prop('disabled', true);
+            $btn.text('Creating Account...').prop('disabled', true);
 
-                setTimeout(function () {
-                    $success.text('Welcome to Artisan Essentials, ' + fullname + '!').fadeIn();
-                    $btn.text(originalText).prop('disabled', false);
-
-                    setTimeout(function () {
-                        $('#signupForm')[0].reset();
-                        $success.fadeOut();
-
-
-                        setTimeout(function () {
-                            window.location.href = "home.html";
-                        }, 300);
-
-                    }, 1800);
-
-                }, 1200);
-            });
-
-
-            $('#loginForm').on('submit', function (e) {
-                e.preventDefault();
-                $success.hide();
-                $error.hide();
-
-                const email = $('#loginEmail').val().trim();
-                const password = $('#loginPassword').val();
-                const $btn = $(this).find('.submit-btn');
-                const originalText = $btn.text();
-
-                if (!email || !password) {
-                    $error.text('Please enter email and password.').fadeIn();
-                    return;
-                }
-
-                if (password.length < 6) {
-                    $error.text('Invalid password!').fadeIn();
-                    return;
-                }
-
-                $btn.text('Logging In...').prop('disabled', true);
+            setTimeout(function () {
+                $success.text('Welcome to Artisan Essentials, ' + fullname + '!').fadeIn();
+                $btn.text(originalText).prop('disabled', false);
 
                 setTimeout(function () {
-                    $success.text('Welcome back to Artisan Essentials!').fadeIn();
-                    $btn.text(originalText).prop('disabled', false);
+                    $('#signupForm')[0].reset();
+                    $success.fadeOut();
 
 
                     setTimeout(function () {
                         window.location.href = "home.html";
-                    }, 1500);
+                    }, 300);
 
-                }, 1000);
+                }, 1800);
 
-            });
+            }, 1200);
+        });
+
+
+        $('#loginForm').on('submit', function (e) {
+            e.preventDefault();
+            $success.hide();
+            $error.hide();
+
+            const email = $('#loginEmail').val().trim();
+            const password = $('#loginPassword').val();
+            const $btn = $(this).find('.submit-btn');
+            const originalText = $btn.text();
+
+            if (!email || !password) {
+                $error.text('Please enter email and password.').fadeIn();
+                return;
+            }
+
+            if (password.length < 6) {
+                $error.text('Invalid password!').fadeIn();
+                return;
+            }
+
+            $btn.text('Logging In...').prop('disabled', true);
+
+            setTimeout(function () {
+                $success.text('Welcome back to Artisan Essentials!').fadeIn();
+                $btn.text(originalText).prop('disabled', false);
+
+
+                setTimeout(function () {
+                    window.location.href = "homme.html";
+                }, 1500);
+
+            }, 1000);
+
+        });
 
     </script>
 </body>
