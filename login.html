@@ -243,25 +243,30 @@
                 const email = $("#loginEmail").val().trim();
                 const pass = $("#loginPassword").val().trim();
 
+                const storedEmail = sessionStorage.getItem("userEmail");
+                const storedPass = sessionStorage.getItem("userPassword");
+
                 if (!email || !pass) {
-                    $("#errorBox").text("Please enter email & password!").fadeIn();
+                    $("#errorBox").text("Please enter both fields!").fadeIn();
                     return;
                 }
 
-                if (pass.length < 6) {
-                    $("#errorBox").text("Password must be at least 6 characters!").fadeIn();
-                    return;
+                if (email === storedEmail && pass === storedPass) {
+
+                    sessionStorage.setItem("isLoggedIn", "true");
+                    sessionStorage.setItem("loggedInUser", email);
+
+                    setTimeout(() => {
+                        window.location.href = "home.html";
+                    }, 500);
+
+                } else {
+                    $("#errorBox").text("Invalid email or password!").fadeIn();
                 }
-
-
-                sessionStorage.setItem("loggedInUser", email);
-
-                setTimeout(() => {
-                    window.location.href = "home.html";
-                }, 800);
             });
 
         });
+
     </script>
 </body>
 
