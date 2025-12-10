@@ -322,26 +322,6 @@
                     <div class="switch-link">Already have an account? <a href="login.html">Log In</a></div>
                 </div>
             </div>
-
-
-            <!-- <div class="auth-card login-side">
-                <div class="form-content">
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" id="loginEmail" placeholder="Enter your email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" id="loginPassword" placeholder="Enter your password" required>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Log In</button>
-                    </form>
-
-                    <div class="switch-link">Don't have an account? <a id="switchToSignup">Sign Up</a></div>
-                </div> -->
             </div>
 
         </div>
@@ -349,9 +329,6 @@
     <script>
         $(document).ready(function () {
 
-            // ==============================
-            // SIGNUP WITH SESSION STORAGE
-            // ==============================
             $('#signupForm').on('submit', function (e) {
                 e.preventDefault();
 
@@ -376,7 +353,6 @@
                     return;
                 }
 
-                // 🔥 Save user to session storage
                 sessionStorage.setItem("userFullname", fullname);
                 sessionStorage.setItem("userEmail", email);
                 sessionStorage.setItem("userPassword", password);
@@ -390,9 +366,6 @@
                 }, 1200);
             });
 
-            // ==============================
-            // LOGIN WITH SESSION STORAGE
-            // ==============================
             $('#loginForm').on('submit', function (e) {
                 e.preventDefault();
 
@@ -413,7 +386,6 @@
                     return;
                 }
 
-                // 🔥 login check
                 if (loginEmail === storedEmail && loginPassword === storedPassword) {
 
                     sessionStorage.setItem("isLoggedIn", "true");
@@ -457,27 +429,6 @@
                 }
             }
 
-            // createParticles();
-
-
-            // $('#switchToLogin').on('click', function (e) {
-            //     e.preventDefault();
-            //     $('#cardWrapper').addClass('flipped');
-            // });
-
-            // $('#switchToSignup').on('click', function (e) {
-            //     e.preventDefault();
-            //     $('#cardWrapper').removeClass('flipped');
-            // });
-
-
-            // const $success = $('#successBox');
-            // const $error = $('#errorBox');
-
-            // $('#signupForm').on('submit', function (e) {
-            //     e.preventDefault();
-            //     $success.hide();
-            //     $error.hide();
 
                 const fullname = $('#fullname').val().trim();
                 const email = $('#signupEmail').val().trim();

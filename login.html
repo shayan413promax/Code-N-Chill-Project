@@ -231,7 +231,6 @@
     </div>
 
     <script>
-        // AUTO-REDIRECT IF ALREADY LOGGED IN
         if (sessionStorage.getItem("loggedInUser")) {
             window.location.href = "home.html";
         }
@@ -254,10 +253,9 @@
                     return;
                 }
 
-                // STORE LOGIN SESSION
+
                 sessionStorage.setItem("loggedInUser", email);
 
-                // REDIRECT
                 setTimeout(() => {
                     window.location.href = "home.html";
                 }, 800);
