@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Essentials - Login</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Cinzel:wght@400;600;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+            filter: brightness(0.55) saturate(1.3);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg,
+                    rgba(14, 32, 62, 0.75),
+                    rgba(28, 62, 110, 0.55),
+                    rgba(45, 98, 150, 0.65),
+                    rgba(22, 46, 86, 0.75));
+            background-size: 400% 400%;
+            animation: sapphireFlow 18s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes sapphireFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .header-logo {
+            position: fixed;
+            top: 30px;
+            left: 50px;
+            z-index: 100;
+        }
+
+        .header-logo h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #8bbdf7 0%, #d8ecff 50%, #8bbdf7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            line-height: 1;
+            animation: shimmer 3s infinite;
+            background-size: 200% 200%;
+            margin-bottom: 2px;
+        }
+
+        .header-logo p {
+            font-family: 'Cormorant Garamond', serif;
+            color: #b7d4f5;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 102vh;
+            padding: 20px;
+        }
+
+        .login-card {
+            width: 420px;
+            background: rgba(30, 60, 110, 0.65);
+            padding: 40px 35px;
+            border-radius: 22px;
+            backdrop-filter: blur(20px);
+            box-shadow:
+                0 0 25px rgba(120, 180, 255, 0.5),
+                0 0 70px rgba(60, 110, 165, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(150, 200, 255, 0.4);
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            background: rgba(255, 255, 255, 0.28);
+            border-color: rgb(120, 180, 255);
+            transform: scale(1.03);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #8bbdf7, #6ba7e6);
+            border: none;
+            font-family: 'Cinzel';
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(120, 180, 255, 0.7);
+        }
+
+        .switch-link {
+            margin-top: 12px;
+            text-align: center;
+            color: #bdd7ff;
+        }
+
+        .switch-link a {
+            color: #9fc9ff;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <video id="bg-video" autoplay muted loop>
+        <source src="login1-vmake.mp4" type="video/mp4">
+    </video>
+
+    <div class="header-logo">
+        <h1>ARTISAN</h1>
+        <p>essentials</p>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div class="container">
+        <div class="login-card">
+
+            <div id="errorBox"
+                style="display:none; background:rgba(255,120,120,0.25); border:1px solid rgba(255,150,150,0.4); color:#ffbcbc; padding:10px; border-radius:10px; margin-bottom:12px; text-align:center; font-size:14px;">
+            </div>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+
+            <div class="switch-link">
+                Don't have an account?
+                <a href="Signup.html">Sign Up</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        if (sessionStorage.getItem("loggedInUser")) {
+            window.location.href = "home.html";
+        }
+
+        $(document).ready(function () {
+
+            $("#loginForm").on("submit", function (e) {
+                e.preventDefault();
+
+                const email = $("#loginEmail").val().trim();
+                const pass = $("#loginPassword").val().trim();
+
+                const storedEmail = sessionStorage.getItem("userEmail");
+                const storedPass = sessionStorage.getItem("userPassword");
+
+                if (!email || !pass) {
+                    $("#errorBox").text("Please enter both fields!").fadeIn();
+                    return;
+                }
+
+                if (email === storedEmail && pass === storedPass) {
+
+                    sessionStorage.setItem("isLoggedIn", "true");
+                    sessionStorage.setItem("loggedInUser", email);
+
+                    setTimeout(() => {
+                        window.location.href = "home.html";
+                    }, 500);
+
+                } else {
+                    $("#errorBox").text("Invalid email or password!").fadeIn();
+                }
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>
